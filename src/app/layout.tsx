@@ -1,5 +1,7 @@
 import "./globals.css";
 import { Footer } from "@/components/layouts/Footer";
+import { Header } from "@/components/layouts/Header";
+
 
 export default function RootLayout({
   children,
@@ -8,7 +10,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <Header />
         {children}
         <Footer />
       </body>
