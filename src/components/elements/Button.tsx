@@ -4,9 +4,9 @@ import styles from "./Button.module.scss";
 import Image from "next/image";
 import { useState, forwardRef } from "react";
 
-type ButtonColor = "primary" | "gray" | "red" | "success" | "warning";
-type ButtonSize = "sm" | "md" | "lg";
-type ButtonVariant = "solid" | "outline" | "translate";
+type ButtonColor = "primary" | "gray" | "red";
+type ButtonSize = "sm" | "lg";
+type ButtonVariant = "solid" | "outline";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -22,7 +22,6 @@ interface ButtonProps {
   rightIcon?: React.ReactNode;
   className?: string;
   id?: string;
-  tabIndex?: number;
   style?: React.CSSProperties;
   testId?: string;
   loadingText?: string;
@@ -44,14 +43,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       rightIcon,
       className = "",
       id,
-      tabIndex,
       style,
       testId,
       loadingText,
     },
     ref
   ) => {
-    const [isHovered, setIsHovered] = useState(false);
+    const [, setIsHovered] = useState(false);
 
     const buttonClasses = [
       styles.button,
@@ -86,31 +84,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       return (
         <>
           {leftIcon && <span className={styles.leftIcon}>{leftIcon}</span>}
-          {variant === "translate" ? (
-            <div className={styles.content}>
-              <motion.div
-                transition={{
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 20,
-                  duration: 0.5,
-                }}
-              >
-                <Image
-                  alt="translate"
-                  src={`https://api.iconify.design/octicon:sparkles-fill-16.svg?color=${
-                    disabled ? "%23A4A5B5" : "%23ffffff"
-                  }`}
-                  width={24}
-                  height={24}
-                  priority
-                />
-              </motion.div>
-              {children}
-            </div>
-          ) : (
-            children
-          )}
+          {children}
           {rightIcon && <span className={styles.rightIcon}>{rightIcon}</span>}
         </>
       );
@@ -123,7 +97,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={buttonClasses}
         style={style}
         data-testid={testId}
-        tabIndex={tabIndex}
         onHoverStart={() => !disabled && !isLoading && setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
         type={type}

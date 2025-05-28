@@ -7,6 +7,7 @@ export default function Home() {
       <p>ホーム画面です</p>
       <Button>sdfadssf</Button>
       <Button variant="outline">sdfadssf</Button>
+      <Button disabled>sdfadssf</Button>
     </div>
   );
 }
