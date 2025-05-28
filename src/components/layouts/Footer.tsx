@@ -2,9 +2,9 @@
 
 import style from "./Footer.module.scss";
 import Image from "next/image";
-import homeIcon from "./navItem.svg";
-import postIcon from "./Post.svg";
-import friendIcon from "./friend.svg";
+import homeIcon from "../../assets/navItem.svg";
+import postIcon from "../../assets/Post.svg";
+import friendIcon from "../../assets/friend.svg";
 
 export const Footer = () => {
   return (
