@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import styles from "./Button.module.scss";
-import Image from "next/image";
 import { useState, forwardRef } from "react";
 
 type ButtonColor = "primary" | "gray" | "red";
@@ -68,14 +67,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       if (isLoading) {
         return (
           <>
-            <Image
-              alt="loading"
-              src="https://api.iconify.design/line-md:loading-loop.svg?color=%23ffffff"
-              width={28}
-              height={28}
-              priority
-              className={styles.image}
-            />
+            <div className={styles.spinner}>
+              <div className={styles.spinnerCircle} />
+            </div>
             {loadingText && <span>{loadingText}</span>}
           </>
         );
@@ -104,6 +98,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           if (onClick && !disabled && !isLoading) onClick();
         }}
         disabled={disabled || isLoading}
+        whileHover={!disabled && !isLoading ? { scale: 1.02 } : undefined}
+        whileTap={!disabled && !isLoading ? { scale: 0.98 } : undefined}
+        transition={{ duration: 0.1 }}
       >
         {buttonContent()}
       </motion.button>
