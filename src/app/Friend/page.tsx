@@ -2,7 +2,7 @@ import { FriendCard } from "./components/friendCard";
 import style from "./index.module.scss";
 import icon from "@/assets/userIcon.svg";
 
-export const friendList: Friend[] = [
+const friendList: Friend[] = [
   { uid: 1, name: "田中", userIcon: icon },
   { uid: 2, name: "佐藤", userIcon: icon },
   { uid: 3, name: "鈴木", userIcon: icon },
@@ -15,7 +15,7 @@ type Friend = {
   userIcon: string;
 };
 
-export default async function Page() {
+export default function Page() {
   return (
     <>
       <div className={style.wrapper}>
