@@ -62,8 +62,10 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
 
     return (
       <div className={containerClasses}>
-        {label && <label className={styles.label}>{label}</label>}
-        <div className={styles.error}>{errors}</div>
+        <div className={styles.labelContainer}>
+          {label && <label className={styles.label}>{label}</label>}
+          <div className={styles.error}>{errors}</div>
+        </div>
         <div className={styles.inputContainer}>
           {leftIcon && <span className={styles.leftIcon}>{leftIcon}</span>}
           {isPassword ? (
@@ -91,7 +93,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
               {...rest}
             />
           )}
-          {(isPassword || url || rightIcon) && (
+          {isPassword && (
             <span className={styles.rightIcon}>
               {isPassword ? (
                 <Image
@@ -107,18 +109,16 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
                   className={styles.image}
                   onClick={() => setIsHidden(!isHidden)}
                 />
-              ) : rightIcon ? (
-                rightIcon
-              ) : url ? (
+              ) : (
                 <Image
-                  src={url}
-                  alt="icon"
+                  src="https://api.iconify.design/line-md:link-loop.svg?color=%23A4A5B5"
+                  alt="link icon"
                   width={24}
                   height={24}
                   priority
                   className={styles.image}
                 />
-              ) : null}
+              )}
             </span>
           )}
         </div>

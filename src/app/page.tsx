@@ -25,6 +25,7 @@ export default function Home() {
         label="input"
       ></InputField>
       <InputField
+        isPassword
         variant="filled"
         placeholder="input"
         onChange={handleInputChange}
