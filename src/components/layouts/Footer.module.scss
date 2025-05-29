@@ -3,9 +3,9 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 18svh;
+  height: 13svh;
   border-top: solid 2px #e8eef4;
-  background-color: white; /* 任意：背景白にしたい場合 */
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,15 +13,35 @@
 
 .content {
   display: flex;
-  gap: 30px;
-  margin-top: 3svh;
+  gap: 40px; //アイコンの間
+}
+
+.iconWrapper {
+  transition: background-color 0.2s ease;
+  padding: 15px;
+  &:active {
+    background-color: #e4ffee; // 押した時の背景色
+    border-radius: 50%;
+  }
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .homeImg {
-  /* filter: brightness(0) saturate(100%) invert(98%) sepia(16%) saturate(961%) hue-rotate(175deg) brightness(100%) contrast(92%); */
-  padding: 20px;
-  &:active {
-    background-color: #e4ffee; /* 好きな色に変更 */
-    border-radius: 50%;
-  }
+  transition: filter 0.2s ease;
+  pointer-events: none;
+
+  // 通常時のフィルター
+  filter: brightness(0) saturate(100%) invert(89%) sepia(6%) saturate(339%)
+    hue-rotate(174deg) brightness(84%) contrast(96%);
+}
+
+.imgActive {
+  // アクティブ時のフィルター
+  filter: brightness(0) saturate(100%) invert(70%) sepia(65%) saturate(1784%)
+    hue-rotate(85deg) brightness(99%) contrast(81%);
 }
