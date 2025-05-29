@@ -54,7 +54,7 @@
     background-color: var(--primary-700);
     color: var(--white-100);
 
-    &:hover:not(.disabled) {
+    &:hover:not(.disabled):not(.loading) {
       background-color: var(--primary-900);
     }
 
@@ -63,7 +63,7 @@
       color: var(--primary-700);
       border: 2px solid var(--primary-700);
 
-      &:hover:not(.disabled) {
+      &:hover:not(.disabled):not(.loading) {
         background-color: var(--primary-700);
         color: var(--white-100);
       }
@@ -74,7 +74,7 @@
     background-color: var(--gray-50);
     color: var(--gray-900);
 
-    &:hover:not(.disabled) {
+    &:hover:not(.disabled):not(.loading) {
       background-color: var(--gray-100);
     }
 
@@ -83,7 +83,7 @@
       color: var(--gray-700);
       border: 2px solid var(--gray-300);
 
-      &:hover:not(.disabled) {
+      &:hover:not(.disabled):not(.loading) {
         background-color: var(--gray-50);
       }
     }
@@ -93,7 +93,7 @@
     background-color: var(--red-100);
     color: var(--white-100);
 
-    &:hover:not(.disabled) {
+    &:hover:not(.disabled):not(.loading) {
       background-color: var(--red-50);
     }
 
@@ -102,7 +102,7 @@
       color: var(--red-100);
       border: 2px solid var(--red-100);
 
-      &:hover:not(.disabled) {
+      &:hover:not(.disabled):not(.loading) {
         background-color: var(--red-100);
         color: var(--white-100);
       }
@@ -135,7 +135,7 @@
   }
 }
 
-.button:hover:not(.disabled) {
+.button:hover:not(.disabled):not(.loading) {
   background-color: var(--primary-300);
 }
 
@@ -150,7 +150,7 @@
   color: var(--gray-900);
 }
 
-.gray:hover:not(.disabled) {
+.gray:hover:not(.disabled):not(.loading) {
   background-color: var(--gray-100);
 }
 
@@ -167,7 +167,7 @@
   background-color: var(--red-100);
 }
 
-.red:hover:not(.disabled) {
+.red:hover:not(.disabled):not(.loading) {
   background-color: var(--red-50);
 }
 

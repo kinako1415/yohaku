@@ -25,19 +25,23 @@ export default function Home() {
       <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
         ソーシャルログインボタン
       </h1>
+      <Button
+        onClick={() => console.log("Button clicked")}
+        color="primary"
+        isLoading
+        size="lg"
+        variant="solid"
+        fullWidth
+        className="custom-button"
+        style={{ marginTop: "20px" }}
+      >
+        カスタムボタン
+      </Button>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        <SocialButton
-          provider="apple"
-          onClick={handleAppleLogin}
-          testId="apple-login-button"
-        />
+        <SocialButton provider="apple" onClick={handleAppleLogin} />
 
-        <SocialButton
-          provider="google"
-          onClick={handleGoogleLogin}
-          testId="google-login-button"
-        />
+        <SocialButton provider="google" onClick={handleGoogleLogin} />
 
         <h3 style={{ marginTop: "20px", marginBottom: "10px" }}>無効状態</h3>
 
