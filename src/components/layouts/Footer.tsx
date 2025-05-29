@@ -18,8 +18,8 @@ export const Footer = () => {
             className={style.homeImg}
             src={homeIcon}
             alt="ホームの画像"
-            width={100}
-            height={100}
+            width={80}
+            height={80}
             onClick={() => {
               router.push("/");
             }}
@@ -28,15 +28,15 @@ export const Footer = () => {
             className={style.homeImg}
             src={postIcon}
             alt="ホームの画像"
-            width={100}
-            height={100}
+            width={80}
+            height={80}
           />
           <Image
             className={style.homeImg}
             src={friendIcon}
             alt="ホームの画像"
-            width={100}
-            height={100}
+            width={80}
+            height={80}
             onClick={() => {
               router.push("./friend");
             }}
