@@ -1,3 +1,4 @@
+import { Apply } from "./components/tab";
 import { FriendCard } from "./components/friendCard";
 import style from "./index.module.scss";
 import icon from "@/assets/userIcon.svg";
@@ -18,6 +19,7 @@ type Friend = {
 export default function Page() {
   return (
     <>
+      <Apply />
       <div className={style.wrapper}>
         <h2>現在のフレンド</h2>
         <div className={style.content}>
