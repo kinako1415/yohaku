@@ -68,14 +68,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       if (isLoading) {
         return (
           <>
-            <Image
-              alt="loading"
-              src="https://api.iconify.design/line-md:loading-loop.svg?color=%23ffffff"
-              width={28}
-              height={28}
-              priority
-              className={styles.image}
-            />
+            <div className={styles.spinner}>
+              <div className={styles.spinnerCircle} />
+            </div>
             {loadingText && <span>{loadingText}</span>}
           </>
         );
