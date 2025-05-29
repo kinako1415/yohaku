@@ -15,7 +15,6 @@ interface SocialButtonProps {
   className?: string;
   id?: string;
   style?: React.CSSProperties;
-  testId?: string;
   children?: React.ReactNode;
 }
 
@@ -72,7 +71,6 @@ export const SocialButton = forwardRef<HTMLButtonElement, SocialButtonProps>(
       className = "",
       id,
       style,
-      testId,
       children,
     },
     ref
@@ -97,7 +95,6 @@ export const SocialButton = forwardRef<HTMLButtonElement, SocialButtonProps>(
         className={buttonClasses}
         id={id}
         style={style}
-        data-testid={testId}
         whileHover={!disabled && !isLoading ? { scale: 1.02 } : undefined}
         whileTap={!disabled && !isLoading ? { scale: 0.98 } : undefined}
         transition={{ duration: 0.1 }}
