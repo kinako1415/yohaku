@@ -3,6 +3,7 @@ import { useState } from "react";
 import { SocialButton } from "@/components/elements/SocialButton";
 import { InputField } from "@/components/elements/Input";
 import { Button } from "@/components/elements/Button";
+import Image from "next/image";
 import styles from "./login.module.scss";
 
 export default function Login() {
@@ -26,6 +27,14 @@ export default function Login() {
 
   return (
     <div className={styles.container}>
+      <Image
+        src="/topLogo.svg"
+        alt="toggle visibility"
+        width={300}
+        height={300}
+        priority
+        className={styles.image}
+      />
       <div className={styles.socialSection}>
         <SocialButton provider="apple" onClick={handleAppleLogin} fullWidth />
 
