@@ -4,7 +4,7 @@ import styles from "./Input.module.scss";
 import Image from "next/image";
 
 type InputSize = "sm" | "md" | "lg";
-type InputVariant = "default" | "filled" | "outline";
+type InputVariant = "default" | "filled";
 
 type InputFieldProps = {
   url?: string;
@@ -19,8 +19,6 @@ type InputFieldProps = {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   label?: string;
-  helperText?: string;
-  testId?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
@@ -38,8 +36,6 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       leftIcon,
       rightIcon,
       label,
-      helperText,
-      testId,
       className = "",
       disabled,
       ...rest
@@ -79,7 +75,6 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
                 onChange(e);
               }}
               disabled={disabled}
-              data-testid={testId}
               ref={ref}
               {...rest}
             />
@@ -92,7 +87,6 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
                 onChange(e);
               }}
               disabled={disabled}
-              data-testid={testId}
               ref={ref}
               {...rest}
             />
@@ -128,9 +122,6 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             </span>
           )}
         </div>
-        {helperText && !errors && (
-          <div className={styles.helperText}>{helperText}</div>
-        )}
       </div>
     );
   }

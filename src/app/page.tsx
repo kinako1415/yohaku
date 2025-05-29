@@ -18,6 +18,18 @@ export default function Home() {
         onChange={handleInputChange}
         label="input"
       ></InputField>
+      <InputField
+        errors="This field is required"
+        placeholder="input"
+        onChange={handleInputChange}
+        label="input"
+      ></InputField>
+      <InputField
+        variant="filled"
+        placeholder="input"
+        onChange={handleInputChange}
+        label="input"
+      ></InputField>
     </div>
   );
 }

@@ -23,13 +23,6 @@
     font-weight: 400;
   }
 
-  .helperText {
-    margin-top: 6px;
-    padding-left: 12px;
-    color: var(--gray-500);
-    font-size: 12px;
-  }
-
   .inputContainer {
     position: relative;
     display: flex;
@@ -111,11 +104,6 @@
       &.filled {
         background-color: var(--gray-100);
         border: 2px solid var(--gray-100);
-      }
-
-      &.outline {
-        background-color: transparent;
-        border: 2px solid var(--gray-300);
       }
 
       &::placeholder {
