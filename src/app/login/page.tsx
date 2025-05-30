@@ -35,15 +35,6 @@ export default function Login() {
         priority
         className={styles.image}
       />
-      <div className={styles.socialSection}>
-        <SocialButton provider="apple" onClick={handleAppleLogin} fullWidth />
-
-        <SocialButton provider="google" onClick={handleGoogleLogin} fullWidth />
-      </div>
-
-      <div className={styles.divider}>
-        <span className={styles.dividerText}>または</span>
-      </div>
 
       <form
         className={styles.form}
@@ -92,6 +83,16 @@ export default function Login() {
           新規登録
         </a>
       </p>
+
+      <div className={styles.divider}>
+        <span className={styles.dividerText}>または</span>
+      </div>
+
+      <div className={styles.socialSection}>
+        <SocialButton provider="apple" onClick={handleAppleLogin} fullWidth />
+
+        <SocialButton provider="google" onClick={handleGoogleLogin} fullWidth />
+      </div>
     </div>
   );
 }
