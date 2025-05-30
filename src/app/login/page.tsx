@@ -31,7 +31,7 @@ export default function Login() {
         src="/topLogo.svg"
         alt="toggle visibility"
         width={300}
-        height={300}
+        height={260}
         priority
         className={styles.image}
       />

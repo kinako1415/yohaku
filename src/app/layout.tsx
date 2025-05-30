@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Footer } from "@/components/layouts/Footer";
-import { Header } from "@/components/layouts/Header";
+import ConditionalHeader from "./ConditionalHeader";
 
 export default function RootLayout({
   children,
@@ -10,7 +10,7 @@ export default function RootLayout({
   return (
     <html lang="jp">
       <body>
-        <Header />
+        <ConditionalHeader />
         {children}
         <Footer />
       </body>
