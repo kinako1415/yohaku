@@ -4,7 +4,7 @@ import { Header } from "@/components/layouts/Header";
 
 export default function ConditionalHeader() {
   const pathname = usePathname();
-  const hideOn = ["/login", "/signup"];
+  const hideOn = ["/signin", "/signup"];
   const shouldShow = !hideOn.includes(pathname);
 
   return shouldShow ? <Header /> : null;

@@ -4,7 +4,7 @@ import { SocialButton } from "@/components/elements/SocialButton";
 import { InputField } from "@/components/elements/Input";
 import { Button } from "@/components/elements/Button";
 import Image from "next/image";
-import styles from "./login.module.scss";
+import styles from "./signin.module.scss";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -30,7 +30,7 @@ export default function Login() {
       <Image
         src="/topLogo.svg"
         alt="toggle visibility"
-        width={300}
+        width={320}
         height={260}
         priority
         className={styles.image}
