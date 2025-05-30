@@ -3,6 +3,7 @@ import { Select } from "./components/select";
 import style from "./index.module.scss";
 import icon from "@/assets/userIcon.svg";
 
+
 const friendList: Friend[] = [
   { uid: 1, name: "田中", userIcon: icon },
   { uid: 2, name: "佐藤", userIcon: icon },
