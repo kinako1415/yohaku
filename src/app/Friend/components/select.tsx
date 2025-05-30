@@ -1,9 +1,10 @@
 "use client";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import style from "./tab.module.scss";
+import style from "./select.module.scss";
+import { Apply } from "./apply";
 
-export const Apply = () => (
+export const Select = () => (
   <Tabs className={style.tabs}>
     <TabList className={style.tabList}>
       <Tab className={style.tab} selectedClassName={style.tabSelected}>
@@ -15,7 +16,7 @@ export const Apply = () => (
     </TabList>
 
     <TabPanel>
-      <h2>Any content 1</h2>
+      <Apply />
     </TabPanel>
     <TabPanel>
       <h2>Any content 2</h2>
