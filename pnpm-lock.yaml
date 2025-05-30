@@ -23,6 +23,9 @@ importers:
       sass:
         specifier: ^1.89.0
         version: 1.89.0
+      zod:
+        specifier: ^3.25.39
+        version: 3.25.39
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3
@@ -1918,6 +1921,9 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  zod@3.25.39:
+    resolution: {integrity: sha512-yrva2T2x4R+FMFTPBVD/YPS7ct8njqjnV93zNx/MlwqLAxcnxwRGbXWyWF63/nErl3rdRd8KARObon7BiWzabQ==}
 
 snapshots:
 
@@ -3978,3 +3984,5 @@ snapshots:
   yallist@5.0.0: {}
 
   yocto-queue@0.1.0: {}
+
+  zod@3.25.39: {}
