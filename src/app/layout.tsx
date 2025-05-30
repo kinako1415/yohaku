@@ -10,8 +10,10 @@ export default function RootLayout({
   return (
     <html lang="jp">
       <body>
-        <Header />
-        {children}
+        <main>
+          <Header />
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
