@@ -28,6 +28,7 @@ export default function Page() {
               key={friend.uid}
               name={friend.name}
               userIcon={friend.userIcon}
+              isApply={false}
             />
           ))}
         </div>
