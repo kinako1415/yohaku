@@ -1,19 +1,29 @@
 "use client";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signInSchema, signInValue } from "@/schemas/signIn";
 import { SocialButton } from "@/components/elements/SocialButton";
 import { InputField } from "@/components/elements/Input";
 import { Button } from "@/components/elements/Button";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import styles from "./signin.module.scss";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleEmailLogin = async () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<signInValue>({
+    resolver: zodResolver(signInSchema),
+  });
+
+  const onSubmit = async (data: signInValue) => {
     setIsLoading(true);
-    console.log("Email login:", { email, password });
+    console.log("Email login:", data);
     setTimeout(() => setIsLoading(false), 2000);
   };
 
@@ -36,22 +46,21 @@ export default function Login() {
         className={styles.image}
       />
 
-      <form
+      <motion.form
         className={styles.form}
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleEmailLogin();
-        }}
+        onSubmit={handleSubmit(onSubmit)}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
       >
         <div className={styles.inputGroup}>
           <InputField
             label="メールアドレス"
             type="email"
             placeholder="example@email.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            errors={errors.email?.message}
             fullWidth
-            required
+            {...register("email")}
           />
         </div>
 
@@ -60,22 +69,16 @@ export default function Login() {
             label="パスワード"
             isPassword
             placeholder="パスワードを入力"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            errors={errors.password?.message}
             fullWidth
-            required
+            {...register("password")}
           />
         </div>
 
-        <Button
-          type="submit"
-          isLoading={isLoading}
-          loadingText="ログイン中..."
-          fullWidth
-        >
+        <Button type="submit" isLoading={isLoading} fullWidth>
           ログイン
         </Button>
-      </form>
+      </motion.form>
 
       <p className={styles.signupText}>
         アカウントをお持ちでない方は{" "}
