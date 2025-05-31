@@ -10,7 +10,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "./signin.module.scss";
 
-export default function Login() {
+export default function Signin() {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -41,13 +41,13 @@ export default function Login() {
         src="/topLogo.svg"
         alt="toggle visibility"
         width={320}
-        height={200}
+        height={120}
         priority
         className={styles.image}
       />
 
       <div className={styles.titleContainer}>
-        <div className={styles.title}>おかえりなさい</div>
+        <div className={styles.title}>サインイン</div>
         <p className={styles.description}>
           ちょっとしたスキマ時間
           <br />
@@ -55,13 +55,7 @@ export default function Login() {
         </p>
       </div>
 
-      <motion.form
-        className={styles.form}
-        onSubmit={handleSubmit(onSubmit)}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-      >
+      <motion.form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <InputField
             label="メールアドレス"
@@ -71,9 +65,7 @@ export default function Login() {
             fullWidth
             {...register("email")}
           />
-        </div>
 
-        <div className={styles.inputGroup}>
           <InputField
             label="パスワード"
             isPassword
@@ -84,6 +76,7 @@ export default function Login() {
           />
         </div>
 
+        <div className={styles.spacer} />
         <Button type="submit" isLoading={isLoading} fullWidth>
           ログイン
         </Button>

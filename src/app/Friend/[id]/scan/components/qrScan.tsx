@@ -47,7 +47,7 @@ export const QrScan = () => {
     };
 
     startCamera(); // コンポーネントマウント時にカメラを起動
-  }, []);
+  }, [isStarted]);
 
   return (
     <div>

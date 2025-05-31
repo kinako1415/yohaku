@@ -2,13 +2,14 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 20px 24px;
+  padding: 20px 60px;
   min-height: 100vh;
   width: 100%;
   inset: 0;
   margin: 0 auto;
   gap: 12px;
   box-sizing: border-box;
+  max-width: 600px;
 }
 
 .image {
@@ -95,14 +96,14 @@
   }
 }
 
-.signupText {
+.signinText {
   color: var(--gray-400);
   font-size: 14px;
   text-align: center;
   line-height: 1.4;
 }
 
-.signupLink {
+.signinLink {
   color: var(--primary-700);
   text-decoration: none;
   font-weight: 500;
@@ -112,6 +113,14 @@
     color: var(--primary-900);
     text-decoration: underline;
   }
+}
+
+.stepContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
 }
 
 @media (max-width: 768px) {
@@ -235,34 +244,5 @@
       font-size: 11px;
       padding: 0 12px;
     }
-  }
-}
-
-// デスクトップ表示での調整
-@media (min-width: 768px) {
-  .container {
-    padding: 40px 60px;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .titleContainer {
-    margin-bottom: 24px;
-
-    .title {
-      font-size: 32px;
-    }
-
-    .description {
-      font-size: 14px;
-    }
-  }
-
-  .form {
-    gap: 20px;
-  }
-
-  .socialSection {
-    gap: 16px;
   }
 }
