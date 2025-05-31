@@ -41,10 +41,20 @@ export default function Login() {
         src="/topLogo.svg"
         alt="toggle visibility"
         width={320}
-        height={260}
+        height={200}
         priority
         className={styles.image}
       />
+
+      <div className={styles.titleContainer}>
+        <div className={styles.title}>
+          <span>おかえりなさい、</span>
+          <span>サインインはこちら</span>
+        </div>
+        <p className={styles.description}>
+          スキマ時間にふらっと会える。そんな毎日をはじめよう。
+        </p>
+      </div>
 
       <motion.form
         className={styles.form}
