@@ -7,7 +7,7 @@ import style from "./scan.module.scss";
 export const QrScan = () => {
   const [decodedText, setDecodedText] = useState<string | null>(null);
   const scannerRef = useRef<Html5Qrcode | null>(null);
-  const isStartedRef = useRef(false);
+  const [isStarted, setIsStarter] = useState<boolean>(false);
 
   useEffect(() => {
     // 既にスキャナーが初期化されている場合は何もしない
@@ -19,16 +19,16 @@ export const QrScan = () => {
     scannerRef.current = scanner;
 
     const startCamera = async () => {
-      if (isStartedRef.current) return;
+      if (isStarted) return;
 
       try {
         const devices = await Html5Qrcode.getCameras();
         if (devices.length === 0) {
-          alert("カメラが見つかりませんでした。");
+          console.warn("カメラが見つかりませんでした。");
           return;
         }
 
-        isStartedRef.current = true; // 開始フラグをセット
+        setIsStarter(true); // 開始フラグをセット
 
         await scanner.start(
           { facingMode: "environment" },
@@ -37,7 +37,7 @@ export const QrScan = () => {
             setDecodedText(text);
             // 読み取り成功後、スキャナーを停止しクリア
             scanner.stop().then(() => scanner.clear());
-            isStartedRef.current = false; // フラグをリセット
+            setIsStarter(false);
           },
           (err) => console.warn("読み取りエラー:", err)
         );
@@ -47,24 +47,13 @@ export const QrScan = () => {
     };
 
     startCamera(); // コンポーネントマウント時にカメラを起動
-
-    // クリーンアップ関数: コンポーネントがアンマウントされるときにスキャナーを停止し、クリアする
-    return () => {
-      if (scannerRef.current && isStartedRef.current) {
-        scannerRef.current.stop().then(() => {
-          scannerRef.current?.clear();
-          isStartedRef.current = false;
-          scannerRef.current = null; // スキャナーインスタンスをクリア
-        });
-      }
-    };
   }, []);
 
   return (
     <div>
       <div id="reader" className={style.reader} />
       {decodedText && (
-        <div style={{ marginTop: 20 }}>
+        <div>
           <p>読み取った内容:</p>
           <a href={decodedText} target="_blank" rel="noopener noreferrer">
             {decodedText}
