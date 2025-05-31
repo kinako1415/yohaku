@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 82vh;
   margin-top: 120px;
   position: relative;
 }
@@ -53,31 +54,26 @@
 
 .image {
   position: absolute;
-  bottom: 96px;
+  bottom: 40px;
   user-select: none;
+  z-index: 1;
 }
 
 // Responsive design
 @media (max-width: 480px) {
-  .content {
-    padding: 20px 16px;
+  .container {
+    margin-top: 80px;
   }
 
   .title {
-    font-size: 28 px;
+    font-size: 28px;
   }
 
   .description {
     font-size: 14px;
   }
 
-  .iconCircle {
-    width: 64px;
-    height: 64px;
-  }
-
-  .userIcon {
-    width: 32px;
-    height: 32px;
+  .image {
+    bottom: 20px;
   }
 }

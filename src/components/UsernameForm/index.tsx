@@ -38,19 +38,35 @@ export default function UsernameForm({ onComplete }: UsernameFormProps) {
     <motion.div
       className={styles.container}
       style={{ position: "relative" }}
-      initial={{ x: "100%" }}
-      animate={{ x: 0 }}
-      exit={{ x: "100%" }}
-      transition={{ duration: 0.15, delay: 0.1 }}
+      initial={{ x: "100%", opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: "-100%", opacity: 0 }}
+      transition={{
+        type: "spring",
+        stiffness: 280,
+        damping: 25,
+        mass: 0.8,
+      }}
     >
-      <div className={styles.titleContainer}>
+      <motion.div
+        className={styles.titleContainer}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1, duration: 0.6 }}
+      >
         <h1 className={styles.title}>ニックネーム</h1>
         <p className={styles.description}>
           友達に表示されるニックネームを考えよう
         </p>
-      </div>
+      </motion.div>
 
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <motion.form
+        className={styles.form}
+        onSubmit={handleSubmit(onSubmit)}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+      >
         <div className={styles.inputSection}>
           <InputField
             type="text"
@@ -72,16 +88,32 @@ export default function UsernameForm({ onComplete }: UsernameFormProps) {
             始める
           </Button>
         </div>
-      </form>
+      </motion.form>
       <motion.div
         className={styles.image}
-        style={{ position: "absolute" }}
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
+        style={{
+          position: "absolute",
+          bottom: "40px",
+          zIndex: 1,
+        }}
+        initial={{ opacity: 0, scale: 0, y: 50 }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          rotate: [0, -5, 5, -3, 3, 0],
+        }}
         transition={{
-          spring: { stiffness: 300, damping: 20 },
-          duration: 0.2,
-          delay: 0.4,
+          type: "spring",
+          stiffness: 200,
+          damping: 15,
+          mass: 1,
+          delay: 0.3,
+          rotate: {
+            duration: 0.6,
+            delay: 0.5,
+            ease: "easeInOut",
+          },
         }}
       >
         <Image
