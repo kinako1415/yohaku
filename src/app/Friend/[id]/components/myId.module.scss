@@ -30,3 +30,20 @@
   display: flex;
   gap: 20px;
 }
+.qrCode {
+  position: relative;
+  display: inline-block;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
