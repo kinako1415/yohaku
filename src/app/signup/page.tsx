@@ -6,7 +6,7 @@ import { signUpSchema, signUpValue } from "@/schemas/signUp";
 import { SocialButton } from "@/components/elements/SocialButton";
 import { InputField } from "@/components/elements/Input";
 import { Button } from "@/components/elements/Button";
-import UsernameForm from "@/components/UsernameForm";
+import { UsernameForm } from "./UsernameForm";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -43,12 +43,7 @@ export default function Signup() {
   const handleUsernameComplete = (username: string) => {
     console.log("Username selected:", username);
     console.log("Signup complete with data:", { ...signupData, username });
-    // Redirect to home or dashboard
     router.push("/home");
-  };
-
-  const handleBackToSignup = () => {
-    setCurrentStep("signup");
   };
 
   const handleAppleLogin = () => {
@@ -65,8 +60,9 @@ export default function Signup() {
         {currentStep === "signup" ? (
           <motion.div
             key="signup"
-            initial={{ x: 0 }}
-            exit={{ x: "-100%" }}
+            initial={{ x: 0, opacity: 0 }}
+            exit={{ x: "-100%", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.15 }}
             className={styles.stepContainer}
           >

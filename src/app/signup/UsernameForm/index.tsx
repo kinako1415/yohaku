@@ -13,8 +13,9 @@ interface UsernameFormProps {
   onComplete?: (username: string) => void;
 }
 
-export default function UsernameForm({ onComplete }: UsernameFormProps) {
+export function UsernameForm({ onComplete }: UsernameFormProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const [isCompleting, setIsCompleting] = useState(false);
 
   const {
     register,
@@ -26,11 +27,15 @@ export default function UsernameForm({ onComplete }: UsernameFormProps) {
 
   const onSubmit = async (data: UsernameValue) => {
     setIsLoading(true);
-    console.log("Username selected:", data.username);
 
     setTimeout(() => {
       setIsLoading(false);
-      onComplete?.(data.username);
+      setIsCompleting(true);
+
+      // Exit animation duration before completing
+      setTimeout(() => {
+        onComplete?.(data.username);
+      }, 800);
     }, 1500);
   };
 
@@ -39,20 +44,30 @@ export default function UsernameForm({ onComplete }: UsernameFormProps) {
       className={styles.container}
       style={{ position: "relative" }}
       initial={{ x: "100%", opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: "-100%", opacity: 0 }}
+      animate={
+        isCompleting
+          ? { x: "0%", opacity: 0, scale: 0.8 }
+          : { x: 0, opacity: 1 }
+      }
       transition={{
         type: "spring",
-        stiffness: 280,
-        damping: 25,
+        stiffness: isCompleting ? 350 : 280,
+        damping: isCompleting ? 30 : 25,
         mass: 0.8,
+        duration: isCompleting ? 0.6 : undefined,
       }}
     >
       <motion.div
         className={styles.titleContainer}
         initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1, duration: 0.6 }}
+        animate={
+          isCompleting ? { opacity: 0, y: 0, scale: 0.8 } : { opacity: 1, y: 0 }
+        }
+        transition={{
+          delay: isCompleting ? 0 : 0.1,
+          duration: isCompleting ? 0.4 : 0.6,
+          ease: "easeInOut",
+        }}
       >
         <h1 className={styles.title}>ニックネーム</h1>
         <p className={styles.description}>
@@ -64,8 +79,14 @@ export default function UsernameForm({ onComplete }: UsernameFormProps) {
         className={styles.form}
         onSubmit={handleSubmit(onSubmit)}
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
+        animate={
+          isCompleting ? { opacity: 0, y: 0, scale: 0.8 } : { opacity: 1, y: 0 }
+        }
+        transition={{
+          delay: isCompleting ? 0.1 : 0.2,
+          duration: isCompleting ? 0.4 : 0.6,
+          ease: "easeInOut",
+        }}
       >
         <div className={styles.inputSection}>
           <InputField
@@ -96,25 +117,41 @@ export default function UsernameForm({ onComplete }: UsernameFormProps) {
           bottom: "40px",
           zIndex: 1,
         }}
-        initial={{ opacity: 0, scale: 0, y: 50 }}
-        animate={{
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          rotate: [0, -5, 5, -3, 3, 0],
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 200,
-          damping: 15,
-          mass: 1,
-          delay: 0.3,
-          rotate: {
-            duration: 0.6,
-            delay: 0.5,
-            ease: "easeInOut",
-          },
-        }}
+        initial={{ opacity: 0, scale: 0.8, y: 50 }}
+        animate={
+          isCompleting
+            ? {
+                opacity: 0,
+                scale: 0.8,
+                y: 0,
+              }
+            : {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                rotate: [0, -5, 5, -3, 3, 0],
+              }
+        }
+        transition={
+          isCompleting
+            ? {
+                duration: 0.8,
+                delay: 0.2,
+                ease: "easeInOut",
+              }
+            : {
+                type: "spring",
+                stiffness: 200,
+                damping: 15,
+                mass: 1,
+                delay: 0.3,
+                rotate: {
+                  duration: 0.6,
+                  delay: 0.5,
+                  ease: "easeInOut",
+                },
+              }
+        }
       >
         <Image
           src="/nicknameIcon.svg"
