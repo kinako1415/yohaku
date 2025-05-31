@@ -34,3 +34,8 @@ body {
   height: 100%;
   background-color: var(--white-100);
 }
+
+main {
+  padding-bottom: 13svh;
+}
+

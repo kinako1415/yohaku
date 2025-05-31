@@ -1,6 +1,8 @@
 import { FriendCard } from "./components/friendCard";
+import { Select } from "./components/select";
 import style from "./index.module.scss";
 import icon from "@/assets/userIcon.svg";
+
 
 const friendList: Friend[] = [
   { uid: 1, name: "田中", userIcon: icon },
@@ -18,6 +20,7 @@ type Friend = {
 export default function Page() {
   return (
     <>
+      <Select />
       <div className={style.wrapper}>
         <h2>現在のフレンド</h2>
         <div className={style.content}>
@@ -26,6 +29,7 @@ export default function Page() {
               key={friend.uid}
               name={friend.name}
               userIcon={friend.userIcon}
+              isApply={false}
             />
           ))}
         </div>
