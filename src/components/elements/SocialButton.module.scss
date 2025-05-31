@@ -120,3 +120,46 @@
     }
   }
 }
+
+// スマートフォン対応
+@media (max-width: 480px) {
+  .socialButton {
+    padding: 10px 16px;
+    height: 44px;
+    font-size: 15px;
+
+    .content {
+      gap: 10px;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .text {
+      font-size: 15px;
+    }
+  }
+}
+
+// 小型スマートフォン対応
+@media (max-width: 360px) {
+  .socialButton {
+    padding: 8px 14px;
+    height: 40px;
+
+    .content {
+      gap: 8px;
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .text {
+      font-size: 14px;
+    }
+  }
+}

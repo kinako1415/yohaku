@@ -3,7 +3,7 @@
   font-size: 16px;
   border-radius: 100px;
   justify-content: center;
-  height: 40px;
+  height: 48px;
   align-items: center;
   font-weight: 500;
   border: none;
@@ -54,60 +54,13 @@
     background-color: var(--primary-700);
     color: var(--white-100);
 
-    &:hover:not(.disabled):not(.loading) {
-      background-color: var(--primary-900);
-    }
-
     &.outline {
       background-color: transparent;
       color: var(--primary-700);
       border: 2px solid var(--primary-700);
-
-      &:hover:not(.disabled):not(.loading) {
-        background-color: var(--primary-700);
-        color: var(--white-100);
-      }
     }
   }
 
-  &.gray {
-    background-color: var(--gray-50);
-    color: var(--gray-900);
-
-    &:hover:not(.disabled):not(.loading) {
-      background-color: var(--gray-100);
-    }
-
-    &.outline {
-      background-color: transparent;
-      color: var(--gray-700);
-      border: 2px solid var(--gray-300);
-
-      &:hover:not(.disabled):not(.loading) {
-        background-color: var(--gray-50);
-      }
-    }
-  }
-
-  &.red {
-    background-color: var(--red-100);
-    color: var(--white-100);
-
-    &:hover:not(.disabled):not(.loading) {
-      background-color: var(--red-50);
-    }
-
-    &.outline {
-      background-color: transparent;
-      color: var(--red-100);
-      border: 2px solid var(--red-100);
-
-      &:hover:not(.disabled):not(.loading) {
-        background-color: var(--red-100);
-        color: var(--white-100);
-      }
-    }
-  }
   .spinner {
     display: flex;
     align-items: center;
@@ -133,10 +86,6 @@
       transform: rotate(360deg);
     }
   }
-}
-
-.button:hover:not(.disabled):not(.loading) {
-  background-color: var(--primary-300);
 }
 
 .button.disabled {
