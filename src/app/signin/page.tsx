@@ -47,12 +47,11 @@ export default function Login() {
       />
 
       <div className={styles.titleContainer}>
-        <div className={styles.title}>
-          <span>おかえりなさい、</span>
-          <span>サインインはこちら</span>
-        </div>
+        <div className={styles.title}>おかえりなさい</div>
         <p className={styles.description}>
-          スキマ時間にふらっと会える。そんな毎日をはじめよう。
+          ちょっとしたスキマ時間
+          <br />
+          誰かとふらっと会いたくなったら、ここへ。
         </p>
       </div>
 
