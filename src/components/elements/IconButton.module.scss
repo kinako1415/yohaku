@@ -1,0 +1,90 @@
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  background-color: var(--primary-50);
+  outline: none;
+  color: var(--primary-700);
+
+  &:hover:not(.disabled):not(.loading) {
+    transform: scale(1.05);
+  }
+
+  &:active:not(.disabled):not(.loading) {
+    outline: 2px solid var(--primary-500);
+    transform: scale(0.95);
+  }
+
+  .spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .spinnerCircle {
+    border: 2px solid var(--primary-400);
+    border-top: 2px solid var(--primary-700);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.sm {
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+
+  .spinnerCircle {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.md {
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+
+  .spinnerCircle {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.lg {
+  width: 60px;
+  height: 60px;
+  padding: 16px;
+
+  .spinnerCircle {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.loading {
+  cursor: not-allowed;
+
+  .icon {
+    opacity: 0;
+  }
+}

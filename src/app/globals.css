@@ -3,7 +3,7 @@
   --primary-700: #1edb63;
   --primary-400: #86efac;
   --primary-300: #4ade80;
-  --primary-50: #f0fdf4;
+  --primary-50: #dcfce7;
 
   --gray-900: #111827;
   --gray-800: #1f2937;
@@ -38,4 +38,3 @@ body {
 main {
   padding-bottom: 13svh;
 }
-
