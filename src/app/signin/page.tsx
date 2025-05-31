@@ -71,9 +71,7 @@ export default function Login() {
             fullWidth
             {...register("email")}
           />
-        </div>
 
-        <div className={styles.inputGroup}>
           <InputField
             label="パスワード"
             isPassword

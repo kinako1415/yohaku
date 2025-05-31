@@ -14,7 +14,6 @@
 
 .image {
   margin-top: 8px;
-  margin-bottom: 16px;
   user-select: none;
 }
 
@@ -56,6 +55,7 @@
 .inputGroup {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .socialSection {
@@ -124,7 +124,6 @@
 
   .image {
     margin-top: 8px;
-    margin-bottom: 16px;
   }
 
   .titleContainer {
@@ -207,7 +206,6 @@
     width: 220px;
     height: 140px;
     margin-top: 4px;
-    margin-bottom: 16px;
   }
 
   .titleContainer {
