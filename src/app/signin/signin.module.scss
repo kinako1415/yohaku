@@ -1,4 +1,5 @@
 .container {
+  position: fixed;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -14,6 +15,7 @@
 .image {
   margin-top: 8px;
   margin-bottom: 8px;
+  user-select: none;
 }
 
 .titleContainer {
