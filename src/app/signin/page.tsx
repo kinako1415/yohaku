@@ -41,13 +41,13 @@ export default function Login() {
         src="/topLogo.svg"
         alt="toggle visibility"
         width={320}
-        height={200}
+        height={120}
         priority
         className={styles.image}
       />
 
       <div className={styles.titleContainer}>
-        <div className={styles.title}>おかえりなさい</div>
+        <div className={styles.title}>サインイン</div>
         <p className={styles.description}>
           ちょっとしたスキマ時間
           <br />
@@ -84,6 +84,7 @@ export default function Login() {
           />
         </div>
 
+        <div className={styles.spacer} />
         <Button type="submit" isLoading={isLoading} fullWidth>
           ログイン
         </Button>

@@ -1,5 +1,4 @@
 .container {
-  position: fixed;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -7,6 +6,7 @@
   min-height: 100vh;
   width: 100%;
   max-width: 480px;
+  inset: 0;
   margin: 0 auto;
   gap: 12px;
   box-sizing: border-box;
@@ -14,7 +14,7 @@
 
 .image {
   margin-top: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   user-select: none;
 }
 
@@ -28,7 +28,7 @@
 
   .title {
     color: var(--primary-700);
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 700;
     text-align: center;
     line-height: 1.2;
@@ -51,7 +51,6 @@
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  margin-bottom: 16px;
 }
 
 .inputGroup {
@@ -65,6 +64,10 @@
   gap: 12px;
   width: 100%;
   margin-bottom: 16px;
+}
+
+.spacer {
+  height: 12px;
 }
 
 .divider {
@@ -115,13 +118,13 @@
 // タブレット対応
 @media (max-width: 768px) {
   .container {
-    padding: 20px 24px;
+    padding: 20px 40px;
     gap: 10px;
   }
 
   .image {
     margin-top: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
   }
 
   .titleContainer {
@@ -130,7 +133,7 @@
     gap: 4px;
 
     .title {
-      font-size: 24px;
+      font-size: 28px;
       line-height: 1.2;
     }
 
@@ -141,7 +144,6 @@
 
   .form {
     gap: 14px;
-    margin-bottom: 14px;
   }
 
   .socialSection {
@@ -156,7 +158,7 @@
 
 @media (max-width: 480px) {
   .container {
-    padding: 32px 48px;
+    padding: 32px 40px;
     gap: 16px;
     min-height: 100vh;
   }
@@ -166,7 +168,7 @@
     padding: 0 12px;
 
     .title {
-      font-size: 24px;
+      font-size: 28px;
       line-height: 1.2;
     }
 
@@ -178,7 +180,6 @@
 
   .form {
     gap: 12px;
-    margin-bottom: 12px;
   }
 
   .socialSection {
@@ -206,7 +207,7 @@
     width: 220px;
     height: 140px;
     margin-top: 4px;
-    margin-bottom: 6px;
+    margin-bottom: 16px;
   }
 
   .titleContainer {
@@ -214,7 +215,7 @@
     padding: 0 8px;
 
     .title {
-      font-size: 20px;
+      font-size: 28px;
     }
 
     .description {
@@ -224,7 +225,6 @@
 
   .form {
     gap: 10px;
-    margin-bottom: 10px;
   }
 
   .socialSection {
