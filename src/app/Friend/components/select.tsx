@@ -7,6 +7,7 @@ import icon from "@/assets/userIcon.svg";
 import Image from "next/image";
 import qr from "@/assets/QRcode Icon.svg";
 import { useRouter } from "next/navigation";
+import { AllowButton } from "./AllowButton";
 
 const friendList: Friend[] = [
   { uid: 1, name: "田中", userIcon: icon },
@@ -44,6 +45,7 @@ export const Select = () => {
           </Tab>
         </TabList>
 
+        {/* 申請中の時 */}
         <TabPanel>
           <div className={style.wrapper}>
             <div className={style.content}>
@@ -53,14 +55,27 @@ export const Select = () => {
                   name={friend.name}
                   userIcon={friend.userIcon}
                   isApply={true}
+                  isAllow={false}
                 />
               ))}
             </div>
           </div>
         </TabPanel>
-
+        {/* 保留中の時 */}
         <TabPanel>
-          <h2>Any content 2</h2>
+          <div className={style.wrapper}>
+            <div className={style.content}>
+              {friendList.map((friend) => (
+                <FriendCard
+                  key={friend.uid}
+                  name={friend.name}
+                  userIcon={friend.userIcon}
+                  isApply={false}
+                  isAllow={true}
+                />
+              ))}
+            </div>
+          </div>
         </TabPanel>
       </Tabs>
     </>
