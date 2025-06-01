@@ -1,0 +1,78 @@
+.content {
+	width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+	margin-top: 10%;
+}
+.header {
+	display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.PrevMonthButton,
+.NextMonthButton {
+	display: flex;
+}
+.month {
+	text-align: center;
+	font-weight: bold;
+	font-size: 24px;
+	color: var(--primary-700);;
+}
+
+.table {
+	padding: 10px;
+  text-align: center;
+	border: 0.86px solid#D1D5DB;
+	border-radius: 10.35px;
+	margin-left: auto;
+  margin-right: auto;
+}
+
+.headerTh {
+  padding: 0.2rem;
+  font-size: 12px;
+	font-weight: normal;
+	text-align: center;
+	color: var(--gray-900);
+}
+.headerCols {
+  height: 40px;
+}
+.sundayHeader {
+	color: #EF4444;
+}
+.saturdayHeader {
+	color: #3B82F6;
+}
+
+.mainTh {
+  padding: 1.5%;
+}
+.day {
+	font-size: 10.35px;
+	color: var(--gray-900);
+	font-weight: normal;
+	width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s;
+
+}
+.outside {
+	color: #D1D5DB !important;
+}
+.selectedDay {
+	background-color: var(--primary-700);
+	border-radius: 50%;
+	color: #fff;
+	border: none;
+}

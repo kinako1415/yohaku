@@ -1,84 +1,84 @@
 "use client";
 
 import style from "./Calendar.module.scss";
-import React, { useState } from "react";
-import { Box, styled } from "@mui/material";
-import { calcWeek } from "./utils";
-import { hour } from './utils';
+import { FC } from "react";
+import dayjs from "dayjs";
 
-import iconMonth from "../../../assets/Vectordown.svg";
-import iconWeek from "../../../assets/Vectorup.svg";
+import { useCalender } from "./useCalender";
+import { IconButton } from "@/components/elements/IconButton";
 import Image from "next/image";
-import { posix } from "path";
 
-const days = ["日", "月", "火", "水", "木", "金", "土"];
+export const Calendar: FC = () => {
+  const {
+    selectedMonth,
+    selectedDate,
+    calenderData,
+    handlePrevMonth,
+    handleNextMonth,
+    handleSelectDate,
+  } = useCalender();
 
-const Wrapper = styled(Box)(({ theme }) => ({
-  width: "100%",
-  margin: 4,
-}));
-
-const FirstGrid = styled(Box)(({ theme }) => ({
-  display: "grid",
-  gridTemplateColumns: "50px calc(100% - 50pc)",
-}));
-
-const DaysGrid = styled(Box)(({ theme }) => ({
-  display: "grid",
-  gridTemplateColumns: "repeat(7, 1fr) ",
-}));
-
-const RowsGrid = styled(Box)(({ theme }) => ({
-  marginTop: theme.spacing(6),
-  display: "grid",
-  gridTemplateRows: `repeat('24, ${theme.spacing(6)})`,
-}));
-
-const Day = styled(Box)(() => ({
-  borderLeft: "1px solid #dcdcdc",
-}));
-
-const Hour = styled(Box)(({ theme }) => ({
-  marginRight: theme.spacing(3),
-  textAlign: "right",
-  position: "relative",
-  "&::before": {
-    position: "absolute",
-		top: 11,
-		left: 55,
-		content: '""',
-		width: 'calc(100vw - 70px)',
-		borderTop: '1px solid #dcdcdc',
-  },
-}));
-
-
-
-export default function Calendar() {
-  const [week, setWeek] = useState(calcWeek());
   return (
-    <>
-      <Wrapper>
-        <FirstGrid>
-          <RowsGrid>
-            {hour(24).map((time, idx) => (
-              <Hour key={idx}>{time}:00</Hour>
+    <div className={style.content}>
+      <div className={style.header}>
+        <div className={style.PrevMonthButton}>
+          <IconButton
+            size="sm"
+            icon="/settings.svg"
+            alt="前月"
+            onClick={handlePrevMonth}
+          />
+        </div>
+        <span className={style.month}>{selectedMonth.format("M月")}</span>
+        <div className={style.NextMonthButton}>
+          <IconButton
+            size="sm"
+            icon="/settings.svg"
+            alt="次月"
+            onClick={handleNextMonth}
+          />
+        </div>
+      </div>
+      <table className={style.table}>
+        <thead>
+          <tr className={style.headerCols}>
+            {["日", "月", "火", "水", "木", "金", "土"].map((day, index) => (
+              <th
+                key={index}
+                className={`
+								${style.headerTh}
+								${index === 0 ? style.sundayHeader : ""}
+								${index === 6 ? style.saturdayHeader : ""}
+								`}
+              >
+                {day}
+              </th>
             ))}
-          </RowsGrid>
-          <DaysGrid>
-            {week.map((day, idx) => (
-							<>
-              <Day key={idx}>
-                {day.format("D")}
-                <br />
-                {day.format("ddd")}
-              </Day>
-							</>
-					
-            ))}
-          </DaysGrid>
-        </FirstGrid>
-      </Wrapper>
-    </>
+          </tr>
+        </thead>
+        <tbody>
+          {calenderData.map((calendar, index) => (
+            <tr key={index} className={style.mainCols}>
+              {calendar.map((date, index) => (
+                <td key={index} className={style.mainTh}>
+                  <button
+                    onClick={() => handleSelectDate(date)}
+                    className={`
+											${style.day} 
+											${date.isSame(selectedDate, "day") ? style.selectedDay : ""}
+											${date.month() !== selectedMonth.month() ? style.outside : ""}
+                    `}
+                  >
+                    {date.date()}
+                  </button>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {/* 選択された日にち情報を表示 */}
+      {/* 選択された日: {dayjs(selectedDate).format("YYYY年M月D日")} */}
+    </div>
   );
-}
+};
