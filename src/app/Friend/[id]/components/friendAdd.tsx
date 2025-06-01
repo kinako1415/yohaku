@@ -60,7 +60,11 @@ export const FriendAdd = () => {
           alt="カメラのボタン"
           width={65}
           height={65}
-          style={{ cursor: "pointer" }}
+          style={{
+            cursor: "pointer",
+            backgroundColor: "#fff",
+            borderRadius: "50px",
+          }}
         />
         <Image
           onClick={downloadQrCode}
@@ -68,7 +72,11 @@ export const FriendAdd = () => {
           alt="ダウンロード"
           width={65}
           height={65}
-          style={{ cursor: "pointer" }}
+          style={{
+            cursor: "pointer",
+            backgroundColor: "#fff",
+            borderRadius: "50px",
+          }}
         />
         <Image
           onClick={handleShareClick}
@@ -76,6 +84,11 @@ export const FriendAdd = () => {
           alt="カメラのボタン"
           width={65}
           height={65}
+          style={{
+            cursor: "pointer",
+            backgroundColor: "#fff",
+            borderRadius: "50px",
+          }}
         />
 
         {/* 隠しinputファイル選択 */}

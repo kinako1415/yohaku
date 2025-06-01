@@ -1,12 +1,12 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import style from "./myId.module.scss";
 import Image from "next/image";
 import { QRCodeCanvas } from "qrcode.react";
 import copy from "@/assets/copy.svg";
 import yohaku from "@/assets/yohaku.svg";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { FriendAdd } from "./friendAdd";
 
 export const MyId = () => {

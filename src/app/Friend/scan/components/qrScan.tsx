@@ -3,12 +3,11 @@
 import { useRef, useState, useEffect } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import style from "./scan.module.scss";
-import { FriendAdd } from "../../[id]/components/friendAdd";
 
 export const QrScan = () => {
   const [decodedText, setDecodedText] = useState<string | null>(null);
   const scannerRef = useRef<Html5Qrcode | null>(null);
-  const [isStarted, setIsStarted] = useState<boolean>(false); // 変数名を修正
+  const [isStarted, setIsStarter] = useState<boolean>(false);
 
   useEffect(() => {
     // 既にスキャナーが初期化されている場合は何もしない
@@ -16,12 +15,10 @@ export const QrScan = () => {
       return;
     }
 
-    // "reader" はカメラプレビューを表示するdivのID
     const scanner = new Html5Qrcode("reader");
     scannerRef.current = scanner;
 
     const startCamera = async () => {
-      // isStarted のチェックを useEffect の外ではなく、ここで
       if (isStarted) return;
 
       try {
@@ -31,45 +28,32 @@ export const QrScan = () => {
           return;
         }
 
-        setIsStarted(true); // 開始フラグをセット
+        setIsStarter(true); // 開始フラグをセット
 
         await scanner.start(
           { facingMode: "environment" },
-          { fps: 5, qrbox: { width: 250, height: 250 } },
-
+          { fps: 5, qrbox: 250 },
           (text) => {
             setDecodedText(text);
             // 読み取り成功後、スキャナーを停止しクリア
-            if (scannerRef.current) {
-              // nullチェックを追加
-              scannerRef.current.stop().then(() => scannerRef.current?.clear()); // nullチェックを追加
-            }
-            setIsStarted(false);
+            scanner.stop().then(() => scanner.clear());
+            setIsStarter(false);
           },
           (err) => console.warn("読み取りエラー:", err)
         );
       } catch (err) {
         console.error("カメラ初期化失敗:", err);
-        setIsStarted(false); // エラー時もフラグをリセット
       }
     };
 
-    if (!isStarted) {
-      startCamera();
-    }
-  }, [isStarted]); // isStarted の変更を監視
+    startCamera(); // コンポーネントマウント時にカメラを起動
+  }, []);
 
   return (
-    <div className={style.container}>
-      <div className={style.cameraWrapper}>
-        <div id="reader" className={style.reader}></div>
-      </div>
-      <div className={style.img}>
-        <FriendAdd />
-      </div>
-
+    <div className={style.content}>
+      <div id="reader" className={style.reader} />
       {decodedText && (
-        <div className={style.decodedTextContainer}>
+        <div>
           <p>読み取った内容:</p>
           <a href={decodedText} target="_blank" rel="noopener noreferrer">
             {decodedText}
