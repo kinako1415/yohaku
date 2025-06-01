@@ -63,14 +63,10 @@ export const QrScan = () => {
     <div className={style.container}>
       <div className={style.cameraWrapper}>
         <div id="reader" className={style.reader}></div>
-        <div className={style.qrOverlay}>
-          <div className={style.top}></div>
-          <div className={style.left}></div>
-          <div className={style.right}></div>
-          <div className={style.bottom}></div>
-        </div>
       </div>
-      <div className={style.qrOverlay}></div>
+      <div className={style.img}>
+        <FriendAdd />
+      </div>
 
       {decodedText && (
         <div className={style.decodedTextContainer}>

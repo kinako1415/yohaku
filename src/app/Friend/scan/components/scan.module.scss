@@ -3,6 +3,7 @@
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
+  position: relative;
 }
 
 .cameraWrapper {
@@ -28,4 +29,11 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.img {
+  position: absolute;
+  bottom: 15svh;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
