@@ -1,0 +1,248 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 60px;
+  min-height: 100vh;
+  width: 100%;
+  inset: 0;
+  margin: 0 auto;
+  gap: 12px;
+  box-sizing: border-box;
+  max-width: 600px;
+}
+
+.image {
+  margin-top: 8px;
+  user-select: none;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 0 16px;
+  gap: 8px;
+
+  .title {
+    color: var(--primary-700);
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+
+    & span {
+      display: block;
+    }
+  }
+
+  .description {
+    color: var(--gray-500);
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.4;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.socialSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.spacer {
+  height: 12px;
+}
+
+.divider {
+  position: relative;
+  margin: 16px 0;
+  text-align: center;
+  width: 100%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--gray-300);
+  }
+
+  .dividerText {
+    background-color: var(--white-100);
+    color: var(--gray-500);
+    padding: 0 16px;
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.signinText {
+  color: var(--gray-400);
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.signinLink {
+  color: var(--primary-700);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--primary-900);
+    text-decoration: underline;
+  }
+}
+
+.stepContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 40px;
+    gap: 10px;
+  }
+
+  .image {
+    margin-top: 8px;
+  }
+
+  .titleContainer {
+    margin-bottom: 16px;
+    padding: 0 12px;
+    gap: 4px;
+
+    .title {
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .description {
+      font-size: 12px;
+    }
+  }
+
+  .form {
+    gap: 14px;
+  }
+
+  .socialSection {
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .divider {
+    margin: 14px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 32px 40px;
+    gap: 16px;
+    min-height: 100vh;
+  }
+
+  .titleContainer {
+    margin-bottom: 16px;
+    padding: 0 12px;
+
+    .title {
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .description {
+      font-size: 12px;
+      margin-top: 4px;
+    }
+  }
+
+  .form {
+    gap: 12px;
+  }
+
+  .socialSection {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .divider {
+    margin: 12px 0;
+
+    .dividerText {
+      font-size: 12px;
+      padding: 0 14px;
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding: 8px 24px;
+    gap: 12px;
+  }
+
+  .image {
+    width: 220px;
+    height: 140px;
+    margin-top: 4px;
+  }
+
+  .titleContainer {
+    margin-bottom: 12px;
+    padding: 0 8px;
+
+    .title {
+      font-size: 28px;
+    }
+
+    .description {
+      font-size: 12px;
+    }
+  }
+
+  .form {
+    gap: 10px;
+  }
+
+  .socialSection {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .divider {
+    margin: 10px 0;
+
+    .dividerText {
+      font-size: 11px;
+      padding: 0 12px;
+    }
+  }
+}

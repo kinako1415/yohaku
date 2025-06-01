@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* &.sm の場合（同じ要素に両方のクラス） */
+      .button.sm {
+        padding: 8px 12px;
+        background-color: blue;
+        color: white;
+      }
+
+      /* .sm の場合（子要素セレクタ） */
+      .button .sm {
+        padding: 8px 12px;
+        background-color: red;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>1. &.sm の場合（.button.sm）</h3>
+    <!-- 同じ要素に両方のクラス -->
+    <button class="button sm">小さいボタン（青色）</button>
+
+    <h3>2. .sm の場合（.button .sm）</h3>
+    <!-- 親要素に.button、子要素に.sm -->
+    <div class="button">
+      <span class="sm">子要素（赤色）</span>
+    </div>
+
+    <h3>3. 比較</h3>
+    <!-- これは青色になる -->
+    <button class="button sm">同じ要素に両クラス</button>
+
+    <!-- これは何もスタイルが適用されない -->
+    <span class="sm">smクラスのみ</span>
+  </body>
+</html>
