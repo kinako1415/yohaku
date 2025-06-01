@@ -32,7 +32,7 @@ export const QrScan = () => {
 
         await scanner.start(
           { facingMode: "environment" },
-          { fps: 5, qrbox: 250 },
+          { fps: 10, qrbox: 250 },
           (text) => {
             setDecodedText(text);
             // 読み取り成功後、スキャナーを停止しクリア
