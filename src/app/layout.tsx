@@ -1,6 +1,8 @@
 import "./globals.css";
+
 import ConditionalHeader from "./ConditionalHeader";
 import ConditionalFooter from "./ConditionalFooter";
+
 
 export default function RootLayout({
   children,
