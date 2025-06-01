@@ -1,3 +1,9 @@
+
+
 export default function Home() {
-  return <div>homeです</div>;
+  return (
+    <div>
+      <h1>ホームです</h1>
+    </div>
+  );
 }
