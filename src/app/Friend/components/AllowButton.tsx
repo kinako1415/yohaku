@@ -6,8 +6,12 @@ export const AllowButton = () => {
     <>
       <div className={style.content}>
         <div className={style.apply}>
-          <Button size="sm">許可</Button>
-          <Button size="sm">拒否</Button>
+          <Button fullWidth={false} size="sm">
+            許可
+          </Button>
+          <Button fullWidth={false} size="sm" color="gray">
+            拒否
+          </Button>
         </div>
       </div>
     </>
