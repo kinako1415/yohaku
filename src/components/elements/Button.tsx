@@ -5,6 +5,7 @@ import { useState, forwardRef } from "react";
 
 type ButtonSize = "sm" | "lg";
 type ButtonVariant = "solid" | "outline";
+type ButtonColor = "gray" | "primary";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -12,6 +13,7 @@ interface ButtonProps {
   onClick?: () => void;
   size?: ButtonSize;
   variant?: ButtonVariant;
+  color?: ButtonColor;
   isLoading?: boolean;
   disabled?: boolean;
   fullWidth?: boolean;
@@ -32,6 +34,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       onClick,
       size = "md",
       variant = "solid",
+      color = "primary",
       isLoading = false,
       disabled = false,
       fullWidth = true,
@@ -51,6 +54,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       styles.button,
       size && styles[size],
       variant && styles[variant],
+      color && styles[color],
       isLoading && styles.loading,
       disabled && styles.disabled,
       !fullWidth && styles.fitContent,
@@ -84,7 +88,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <motion.button
         ref={ref}
         id={id}
-        className={`${buttonClasses} ${styles.primary}`}
+        className={buttonClasses}
         style={style}
         data-testid={testId}
         onHoverStart={() => !disabled && !isLoading && setIsHovered(true)}

@@ -8,7 +8,7 @@ interface IconButtonProps {
   onClick?: () => void;
   size?: "sm" | "md" | "lg";
   disabled?: boolean;
-  loading?: boolean;
+  isLoading?: boolean;
   icon: string;
   alt?: string;
   className?: string;
@@ -21,7 +21,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       onClick,
       size = "md",
       disabled = false,
-      loading = false,
+      isLoading: loading = false,
       icon,
       alt = "icon",
       className = "",
