@@ -4,18 +4,14 @@ import camera from "@/assets/camera.svg";
 import share from "@/assets/share.svg";
 import fot from "@/assets/fot.svg";
 import { useRef } from "react";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 import { Html5Qrcode } from "html5-qrcode";
-import { usePathname } from "next/navigation";
 import style from "./friendAdd.module.scss";
 import Image from "next/image";
 
 export const FriendAdd = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
-  const pathname = usePathname();
-  const pathArr = pathname.split("/");
-  const userId = pathArr[pathArr.length - 1];
 
   // 画像を選んでQR読み取り
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +36,7 @@ export const FriendAdd = () => {
 
   //カメラを起動
   const handleCameraClick = () => {
-    router.push(`/friend/${userId}/scan`);
+    router.push(`/friend/scan`);
   };
 
   //QRコードをダウンロード
