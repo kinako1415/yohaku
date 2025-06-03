@@ -18,12 +18,8 @@ interface InputAreaProps {
   disabled?: boolean;
   maxLength?: number;
   showCharCount?: boolean;
-  // 高さ指定プロパティ
-  height?: number | string;          // 固定高さ（px または CSS値）
-  minHeight?: number | string;       // 最小高さ
-  maxHeight?: number | string;       // 最大高さ
-  autoHeight?: boolean;              // 内容に応じて自動調整
-  fixedHeight?: boolean;             // 固定高さ（スクロール有効）
+  fullHeight?: boolean;
+  fixedHeight?: number | string;
 }
 
 export const InputArea = forwardRef<
@@ -45,20 +41,13 @@ export const InputArea = forwardRef<
       maxLength,
       showCharCount = false,
       value,
-      // 高さ指定プロパティ
-      height,
-      minHeight,
-      maxHeight,
-      autoHeight = false,
-      fixedHeight = false,
+      fullHeight = false,
+      fixedHeight,
       ...rest
     },
     ref
   ) => {
-    const containerClasses = [
-      styles.container,
-      !fullWidth && styles.fitContent,
-    ]
+    const containerClasses = [styles.container, !fullWidth && styles.fitContent]
       .filter(Boolean)
       .join(" ");
 
@@ -75,36 +64,20 @@ export const InputArea = forwardRef<
     const currentLength = typeof value === "string" ? value.length : 0;
     const isOverLimit = maxLength ? currentLength > maxLength : false;
 
-    // 高さ関連のスタイルを計算
     const getHeightStyles = () => {
       const styles: React.CSSProperties = {
-        resize: "none", // リサイズを無効化
+        resize: "none",
       };
 
-      if (height) {
-        styles.height = typeof height === "number" ? `${height}px` : height;
-      }
-
-      if (minHeight) {
-        styles.minHeight = typeof minHeight === "number" ? `${minHeight}px` : minHeight;
-      }
-
-      if (maxHeight) {
-        styles.maxHeight = typeof maxHeight === "number" ? `${maxHeight}px` : maxHeight;
-      }
-
-      if (fixedHeight && height) {
-        styles.height = typeof height === "number" ? `${height}px` : height;
+      if (fullHeight) {
+        styles.height = "100vh";
         styles.overflow = "auto";
       }
 
-      if (autoHeight) {
-        styles.resize = "none";
-        styles.overflow = "hidden";
-        // 自動高さ調整の場合は最小高さを設定
-        if (!minHeight) {
-          styles.minHeight = size === "sm" ? "80px" : size === "lg" ? "160px" : "120px";
-        }
+      if (fixedHeight) {
+        styles.height =
+          typeof fixedHeight === "number" ? `${fixedHeight}px` : fixedHeight;
+        styles.overflow = "auto";
       }
 
       return styles;
@@ -130,7 +103,11 @@ export const InputArea = forwardRef<
             {...rest}
           />
           {showCharCount && maxLength && (
-            <div className={`${styles.charCount} ${isOverLimit ? styles.overLimit : ""}`}>
+            <div
+              className={`${styles.charCount} ${
+                isOverLimit ? styles.overLimit : ""
+              }`}
+            >
               {currentLength} / {maxLength}
             </div>
           )}

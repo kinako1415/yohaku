@@ -11,7 +11,7 @@ export const InputExamples = () => {
   return (
     <div style={{ padding: "20px", maxWidth: "600px", margin: "0 auto" }}>
       <h2>Input Components Examples</h2>
-      
+
       <div style={{ marginBottom: "32px" }}>
         <h3>Regular Input</h3>
         <InputField
@@ -122,37 +122,25 @@ export const InputExamples = () => {
         <h3>InputArea Height Options</h3>
         <div style={{ marginBottom: "16px" }}>
           <InputArea
-            placeholder="Fixed height 100px"
+            placeholder="Fixed height 100px with scroll"
             label="Fixed Height"
-            height={100}
+            fixedHeight={100}
             onChange={() => {}}
           />
         </div>
         <div style={{ marginBottom: "16px" }}>
           <InputArea
-            placeholder="Min height 80px, Max height 200px"
-            label="Min/Max Height"
-            minHeight={80}
-            maxHeight={200}
-            onChange={() => {}}
-          />
-        </div>
-        <div style={{ marginBottom: "16px" }}>
-          <InputArea
-            placeholder="Fixed height with scroll"
-            label="Fixed with Scroll"
-            height={120}
-            fixedHeight={true}
+            placeholder="Fixed height 200px with scroll"
+            label="Fixed Height (Large)"
+            fixedHeight={200}
             onChange={() => {}}
           />
         </div>
         <div>
           <InputArea
-            placeholder="Auto height adjustment"
-            label="Auto Height"
-            autoHeight={true}
-            minHeight={60}
-            maxHeight={300}
+            placeholder="Full screen height"
+            label="Full Height"
+            fullHeight={true}
             onChange={() => {}}
           />
         </div>
