@@ -1,0 +1,120 @@
+.container {
+  position: relative;
+  width: 100%;
+
+  &.fitContent {
+    width: fit-content;
+  }
+
+  .labelContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 6px;
+    gap: 8px;
+
+    .label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gray-700);
+      margin: 0;
+    }
+
+    .error {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--color-error);
+      margin: 0;
+      text-align: right;
+      flex-shrink: 0;
+    }
+  }
+
+  .textareaContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 12px 16px;
+      font-size: 16px;
+      font-weight: 400;
+      font-family: inherit;
+      line-height: 1.5;
+      border-radius: 8px;
+      background-color: var(--gray-50);
+      color: var(--gray-900);
+      border: 2px solid var(--gray-200);
+      outline: none;
+      outline-offset: -3px;
+      transition: all 0.2s ease;
+      resize: vertical;
+
+      &::placeholder {
+        color: var(--gray-400);
+        font-weight: 400;
+      }
+
+      &.sm {
+        min-height: 80px;
+        padding: 8px 12px;
+        font-size: 14px;
+        border-radius: 12px;
+      }
+
+      &.lg {
+        min-height: 160px;
+        padding: 16px 20px;
+        font-size: 18px;
+        border-radius: 20px;
+      }
+
+      &.filled {
+        background-color: var(--gray-100);
+        border: 2px solid var(--gray-100);
+      }
+
+      &:hover:not(:focus):not(:disabled) {
+        border: 2px solid var(--gray-300);
+      }
+
+      &:focus {
+        border: 2px solid var(--primary-400);
+        background-color: var(--white-100);
+      }
+
+      &:disabled {
+        background-color: var(--gray-100);
+        color: var(--gray-400);
+        cursor: not-allowed;
+        border: 2px solid var(--gray-200);
+        resize: none;
+      }
+
+      &.errorBorder {
+        border: 2px solid var(--color-error) !important;
+        background-color: var(--color-error-bg) !important;
+
+        &:focus {
+          border: 2px solid var(--color-error) !important;
+        }
+      }
+    }
+
+    .charCount {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--gray-500);
+      transition: color 0.2s ease;
+
+      &.overLimit {
+        color: var(--color-error);
+        font-weight: 500;
+      }
+    }
+  }
+}
