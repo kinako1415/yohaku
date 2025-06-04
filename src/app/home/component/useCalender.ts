@@ -19,6 +19,7 @@ export const useCalender = () => {
     setSelectedMonth(selectedMonth.add(1, "month"));
   }, [selectedMonth]);
 
+
   // 表示している月の日数を取得
   const daysInMonth = selectedMonth.daysInMonth();
 
@@ -42,7 +43,7 @@ export const useCalender = () => {
         handleNextMonth();
       }
     },
-    [selectedMonth]
+    [selectedMonth, handlePrevMonth, handleNextMonth]
   );
 
   // 表示している月の初日の曜日を取得
@@ -67,35 +68,40 @@ export const useCalender = () => {
     },
     (_, i) => selectedMonth.endOf("month").add(i + 1, "day")
   );
+ //曜日始まり 週を取得
+  const selectedWeekList = useMemo(() => {
+    const weekStart = selectedDate.startOf("week");
+    return Array.from({ length: 7}, (_, i) => weekStart.add(i, "day"));
+  },[selectedDate]);
 
   // 前月、当月、次月の日付を結合し、週ごとに分ける
-	const calenderData = useMemo(() => {
-		const weeklyCalendarData = Object.values(
-			[
-				...prevMonthDateList,
-				...selectedMonthDateList,
-				...nextMonthDateList,
-			].reduce((acc, date, index) => {
-				const weekIndex = Math.floor(index / 7);
+  const calenderData = useMemo(() => {
+    const weeklyCalendarData = Object.values(
+      [
+        ...prevMonthDateList,
+        ...selectedMonthDateList,
+        ...nextMonthDateList,
+      ].reduce((acc, date, index) => {
+        const weekIndex = Math.floor(index / 7);
 
-				return {
-					...acc,
-					[weekIndex]: [...(acc[weekIndex] ?? []), date],
-				}
-			}, [] as dayjs.Dayjs[][])
-		)
+        return {
+          ...acc,
+          [weekIndex]: [...(acc[weekIndex] ?? []), date],
+        };
+      }, [] as dayjs.Dayjs[][])
+    );
 
-		return weeklyCalendarData
-	},[selectedMonthDateList])
+    return weeklyCalendarData;
+  }, [prevMonthDateList, selectedMonthDateList, nextMonthDateList]);
 
-	return {
-		selectedMonth,
-		selectedDate,
-		calenderData,
-		handlePrevMonth,
-		handleNextMonth,
-		handleSelectDate,
-	}
-
+  return {
+    selectedMonth,
+    selectedDate,
+    calenderData,
+    selectedWeekList,
+    handlePrevMonth,
+    handleNextMonth,
+    handleSelectDate,
+  };
 }
 
