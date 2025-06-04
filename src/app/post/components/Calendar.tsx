@@ -2,11 +2,10 @@
 
 import style from "./Calendar.module.scss";
 import { FC } from "react";
-import dayjs from "dayjs";
 
-import { useCalender } from "./useCalender";
+import { useCalender } from "../../home/component/useCalender";
 import { IconButton } from "@/components/elements/IconButton";
-import Image from "next/image";
+
 
 export const Calendar: FC = () => {
   const {
@@ -24,7 +23,7 @@ export const Calendar: FC = () => {
         <div className={style.PrevMonthButton}>
           <IconButton
             size="sm"
-            icon="/settings.svg"
+            icon="https://api.iconify.design/heroicons:chevron-left-20-solid.svg?color=%2322c55e"
             alt="前月"
             onClick={handlePrevMonth}
           />
@@ -33,7 +32,7 @@ export const Calendar: FC = () => {
         <div className={style.NextMonthButton}>
           <IconButton
             size="sm"
-            icon="/settings.svg"
+            icon="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%2322c55e"
             alt="次月"
             onClick={handleNextMonth}
           />
