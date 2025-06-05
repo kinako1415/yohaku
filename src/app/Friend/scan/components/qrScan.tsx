@@ -13,7 +13,7 @@ export const QrScan = () => {
   });
 
   return (
-    <div>
+    <>
       <div className={styles.wrapper}>
         <video ref={ref} className={styles.video} />
         <div className={styles.mask}>
@@ -26,9 +26,6 @@ export const QrScan = () => {
 
         <div className={styles.scanBox}></div>
       </div>
-      <p style={{ textAlign: "center", color: "#0f0" }}>
-        Last result: {result}
-      </p>
-    </div>
+    </>
   );
 };
