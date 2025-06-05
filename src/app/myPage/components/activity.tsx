@@ -6,10 +6,11 @@ type Activity = {
   title: string;
   detail: string;
   match: number;
+  isMatch?: boolean;
 };
 
 export const Activity: React.FC<Activity> = (props) => {
-  const { time, day, title, detail, match } = props;
+  const { time, day, title, detail, match, isMatch } = props;
   return (
     <>
       <div className={style.content}>
@@ -20,7 +21,8 @@ export const Activity: React.FC<Activity> = (props) => {
         <div className={style.text}>
           <h4 className={style.title}>{title}</h4>
           <p className={style.detail}>{detail}</p>
-          <p className={style.match}>{match}とマッチ</p>
+
+          {isMatch && <p className={style.match}>{match}とマッチ</p>}
         </div>
       </div>
     </>

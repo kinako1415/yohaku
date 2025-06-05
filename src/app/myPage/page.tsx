@@ -36,18 +36,38 @@ export default function Page() {
   return (
     <>
       <div className={style.content}>
-        <h3>📅 最近のアクティビティ</h3>
-        <div className={style.activity}>
-          {activityList.map((activity, index) => (
-            <Activity
-              key={index}
-              day={activity.day}
-              time={activity.time}
-              title={activity.title}
-              detail={activity.detail}
-              match={activity.match}
-            />
-          ))}
+        <div>
+          <h3>📅 参加予定</h3>
+          <div className={style.joinActivity}>
+            {activityList.map((activity, index) => (
+              <Activity
+                key={index}
+                day={activity.day}
+                time={activity.time}
+                title={activity.title}
+                detail={activity.detail}
+                match={activity.match}
+                isMatch={false}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3>📅 最近のアクティビティ</h3>
+          <div className={style.activity}>
+            {activityList.map((activity, index) => (
+              <Activity
+                key={index}
+                day={activity.day}
+                time={activity.time}
+                title={activity.title}
+                detail={activity.detail}
+                match={activity.match}
+                isMatch={true}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </>
