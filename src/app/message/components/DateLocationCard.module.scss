@@ -1,0 +1,52 @@
+.card {
+  position: fixed;
+  background-color: white;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 16px;
+  left: 24px;
+  right: 24px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.dateSection,
+.locationSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dateLabel,
+.locationLabel {
+  font-size: 12px;
+  color: var(--primary-700);
+  font-weight: 600;
+}
+
+.date,
+.location {
+  font-size: 14px;
+  color: var(--gray-800);
+  font-weight: 500;
+}
+
+.toggleButton {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.description {
+  font-size: 13px;
+  color: var(--gray-500);
+  line-height: 1.5;
+  margin-top: 12px;
+  overflow: hidden;
+}

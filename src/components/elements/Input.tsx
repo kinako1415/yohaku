@@ -3,6 +3,7 @@ import { forwardRef, useState } from "react";
 import styles from "./Input.module.scss";
 import Image from "next/image";
 
+type radiusSize = "md" | "full";
 type InputSize = "sm" | "md" | "lg";
 type InputVariant = "default" | "filled";
 
@@ -14,6 +15,7 @@ type InputFieldProps = {
   errors?: string;
   isPassword?: boolean;
   size?: InputSize;
+  radius?: radiusSize;
   variant?: InputVariant;
   fullWidth?: boolean;
   leftIcon?: React.ReactNode;
@@ -31,6 +33,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       errors,
       isPassword = false,
       size = "md",
+      radius = "md",
       variant = "default",
       fullWidth = true,
       leftIcon,
@@ -50,7 +53,8 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
 
     const inputClasses = [
       styles.input,
-      size && styles[size],
+      size && styles[`size-${size}`],
+      radius && styles[`radius-${radius}`],
       variant && styles[variant],
       errors && styles.errorBorder,
       leftIcon && styles.hasLeftIcon,
@@ -67,7 +71,6 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           <div className={styles.error}>{errors}</div>
         </div>
         <div className={styles.inputContainer}>
-          {leftIcon && <span className={styles.leftIcon}>{leftIcon}</span>}
           {isPassword ? (
             <input
               className={inputClasses}
@@ -93,32 +96,25 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
               {...rest}
             />
           )}
+          {leftIcon && <span className={styles.leftIcon}>{leftIcon}</span>}
+          {rightIcon && !isPassword && (
+            <span className={styles.rightIcon}>{rightIcon}</span>
+          )}
           {isPassword && (
             <span className={styles.rightIcon}>
-              {isPassword ? (
-                <Image
-                  src={
-                    isHidden
-                      ? "https://api.iconify.design/line-md:watch-off-loop.svg?color=%23A4A5B5"
-                      : "https://api.iconify.design/line-md:watch-loop.svg?color=%23A4A5B5"
-                  }
-                  alt="toggle visibility"
-                  width={24}
-                  height={24}
-                  priority
-                  className={styles.image}
-                  onClick={() => setIsHidden(!isHidden)}
-                />
-              ) : (
-                <Image
-                  src="https://api.iconify.design/line-md:link-loop.svg?color=%23A4A5B5"
-                  alt="link icon"
-                  width={24}
-                  height={24}
-                  priority
-                  className={styles.image}
-                />
-              )}
+              <Image
+                src={
+                  isHidden
+                    ? "https://api.iconify.design/line-md:watch-off-loop.svg?color=%23A4A5B5"
+                    : "https://api.iconify.design/line-md:watch-loop.svg?color=%23A4A5B5"
+                }
+                alt="toggle visibility"
+                width={24}
+                height={24}
+                priority
+                className={styles.image}
+                onClick={() => setIsHidden(!isHidden)}
+              />
             </span>
           )}
         </div>

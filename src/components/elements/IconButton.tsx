@@ -53,13 +53,16 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         className={buttonClasses}
         onClick={onClick}
         disabled={disabled || loading}
+        initial={{
+          scale: 1,
+        }}
         whileTap={
           !disabled && !loading
             ? {
                 scale: 0.95,
                 transition: { type: "spring", stiffness: 400, damping: 15 },
               }
-            : undefined
+            : { scale: 1 }
         }
         whileHover={
           !disabled && !loading
@@ -67,7 +70,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
                 scale: 1.02,
                 transition: { type: "spring", stiffness: 400, damping: 15 },
               }
-            : undefined
+            : { scale: 1 }
         }
         {...props}
       >
@@ -81,8 +84,11 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
             alt={alt}
             width={iconSize}
             height={iconSize}
-            className={styles.icon}
+            className={`${styles.icon} ${disabled ? styles.disabledIcon : ""}`}
             priority={false}
+            style={{
+              opacity: disabled ? 0.6 : 1,
+            }}
           />
         )}
       </motion.button>
