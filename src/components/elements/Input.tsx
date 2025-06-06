@@ -67,7 +67,6 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           <div className={styles.error}>{errors}</div>
         </div>
         <div className={styles.inputContainer}>
-          {leftIcon && <span className={styles.leftIcon}>{leftIcon}</span>}
           {isPassword ? (
             <input
               className={inputClasses}
@@ -93,32 +92,25 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
               {...rest}
             />
           )}
+          {leftIcon && <span className={styles.leftIcon}>{leftIcon}</span>}
+          {rightIcon && !isPassword && (
+            <span className={styles.rightIcon}>{rightIcon}</span>
+          )}
           {isPassword && (
             <span className={styles.rightIcon}>
-              {isPassword ? (
-                <Image
-                  src={
-                    isHidden
-                      ? "https://api.iconify.design/line-md:watch-off-loop.svg?color=%23A4A5B5"
-                      : "https://api.iconify.design/line-md:watch-loop.svg?color=%23A4A5B5"
-                  }
-                  alt="toggle visibility"
-                  width={24}
-                  height={24}
-                  priority
-                  className={styles.image}
-                  onClick={() => setIsHidden(!isHidden)}
-                />
-              ) : (
-                <Image
-                  src="https://api.iconify.design/line-md:link-loop.svg?color=%23A4A5B5"
-                  alt="link icon"
-                  width={24}
-                  height={24}
-                  priority
-                  className={styles.image}
-                />
-              )}
+              <Image
+                src={
+                  isHidden
+                    ? "https://api.iconify.design/line-md:watch-off-loop.svg?color=%23A4A5B5"
+                    : "https://api.iconify.design/line-md:watch-loop.svg?color=%23A4A5B5"
+                }
+                alt="toggle visibility"
+                width={24}
+                height={24}
+                priority
+                className={styles.image}
+                onClick={() => setIsHidden(!isHidden)}
+              />
             </span>
           )}
         </div>
