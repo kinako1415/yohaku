@@ -1,7 +1,7 @@
 .content {
   background-color: var(--primary-700);
   border-radius: 12px;
-  width: 350px;
+  width: 330px;
   padding: 3% 7%;
   // max-block-size: 500px;
   margin: 0 auto;
@@ -17,6 +17,7 @@
 
 .titleWrapper {
   display: flex;
+  gap: 30px;
   justify-content: space-between;
   align-items: center;
 }

@@ -68,6 +68,7 @@ export default function Page() {
                 detail={activity.detail}
                 match={activity.match}
                 isMatch={false}
+                width="sm"
               />
             ))}
           </div>
@@ -85,6 +86,7 @@ export default function Page() {
                 detail={activity.detail}
                 match={activity.match}
                 isMatch={true}
+                width="lg"
               />
             ))}
           </div>
