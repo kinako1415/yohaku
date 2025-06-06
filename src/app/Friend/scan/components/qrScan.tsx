@@ -7,7 +7,7 @@ import Image from "next/image";
 import frame from "@/assets/qrCodeFrame.svg"; // Adjust the path as necessary
 
 export const QrScan = () => {
-  const [, setResult] = useState("");
+  const [result, setResult] = useState("");
   const { ref } = useZxing({
     onDecodeResult(result) {
       setResult(result.getText());
@@ -31,6 +31,7 @@ export const QrScan = () => {
           width={310}
           height={310}
         />
+        <p>{result}</p>
       </div>
     </>
   );

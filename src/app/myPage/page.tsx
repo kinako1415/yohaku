@@ -48,11 +48,8 @@ export default function Page() {
               <RecruitmentCard
                 key={index}
                 day={activity.day}
-                time={activity.time}
                 title={activity.title}
-                detail={activity.detail}
-                match={activity.match}
-                isMatch={false}
+                time={activity.time}
                 place={activity.place}
               />
             ))}

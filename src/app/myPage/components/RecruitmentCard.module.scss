@@ -7,6 +7,7 @@
   margin: 0 auto;
   margin-top: 3svh;
   color: #fff;
+  height: 13svh;
 }
 
 .titleWrapper {
@@ -18,4 +19,15 @@
 
 .detail {
   padding-top: 1svh;
+}
+
+.entrantList {
+  display: flex;
+  align-items: center;
+  margin-top: 1svh;
+}
+
+.userIcon {
+  border-radius: 50%;
+  border: 2px solid white; /* 枠が見えると重なりがきれい */
 }

@@ -3,16 +3,39 @@
 import style from "./RecruitmentCard.module.scss";
 import deleteIcon from "@/assets/Delete.svg";
 import Image from "next/image";
+import React from "react";
+import { Inter } from "next/font/google";
+import icon from "@/assets/tomatoIcon.svg";
 
 type Activity = {
   day: string;
   time: string;
   title: string;
-  detail: string;
-  match: number;
+  detail?: string;
+  match?: number;
   isMatch?: boolean;
   place?: string;
 };
+
+const entrantList = [
+  {
+    userIcon: { icon },
+  },
+  {
+    userIcon: { icon },
+  },
+  {
+    userIcon: { icon },
+  },
+  {
+    userIcon: { icon },
+  },
+];
+
+const inter = Inter({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 const isSameDay = (date1: Date, date2: Date): boolean => {
   return (
@@ -22,7 +45,7 @@ const isSameDay = (date1: Date, date2: Date): boolean => {
   );
 };
 
-const getRelativeDayFromString = (dayString: string): string => {
+const getRelativeDayFromString = (dayString: string) => {
   const [monthStr, dateStr] = dayString.split("/");
   const currentYear = new Date().getFullYear();
 
@@ -57,7 +80,7 @@ const getRelativeDayFromString = (dayString: string): string => {
 };
 
 export const RecruitmentCard: React.FC<Activity> = (props) => {
-  const { time, day, title, detail, match, isMatch, place } = props;
+  const { time, day, place } = props;
 
   const formattedDay = getRelativeDayFromString(day);
 
@@ -65,9 +88,11 @@ export const RecruitmentCard: React.FC<Activity> = (props) => {
     <>
       <div className={style.content}>
         <div className={style.titleWrapper}>
-          <h4 className={style.title}>
-            🟢 {formattedDay}：{time} / 📍{place}
-          </h4>
+          <div className={inter.className}>
+            <h4 className={style.title}>
+              {formattedDay}：{time} / {place}
+            </h4>
+          </div>
           <Image
             src={deleteIcon}
             alt="削除"
@@ -77,7 +102,22 @@ export const RecruitmentCard: React.FC<Activity> = (props) => {
             style={{ cursor: "pointer" }}
           />
         </div>
-        <p className={style.detail}>{detail}</p>
+        <div className={style.entrantList}>
+          {entrantList.map((entrant, index) => (
+            <div key={index} className={style.entrant}>
+              <Image
+                src={entrant.userIcon.icon}
+                alt="ユーザーアイコン"
+                style={{
+                  marginLeft: index === 0 ? 0 : "-8px",
+                }}
+                width={35}
+                height={35}
+                className={style.userIcon}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
