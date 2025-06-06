@@ -12,25 +12,6 @@
   object-fit: cover;
 }
 
-.scanLine {
-  position: absolute;
-  top: 50%;
-  left: 19%;
-  width: 243px;
-  height: 2px;
-  background: rgba(0, 255, 0, 0.8);
-  animation: scan 2s linear infinite;
-}
-
-@keyframes scan {
-  0% {
-    top: 35%;
-  }
-  100% {
-    top: 65%;
-  }
-}
-
 /* マスク：中央が四角にくり抜かれて透明になる */
 .mask {
   position: absolute;
@@ -51,38 +32,36 @@
   top: 0;
   left: 0;
   right: 0;
-  height: calc(50% - 121px);
+  height: calc(50% - 151px);
 }
 
 .bottom {
   bottom: 0;
   left: 0;
   right: 0;
-  height: calc(50% - 121px);
+  height: calc(50% - 151px);
 }
 
 .left {
-  top: calc(50% - 121px);
-  bottom: calc(50% - 121px);
+  top: calc(50% - 151px);
+  bottom: calc(50% - 151px);
   left: 0;
-  width: calc(50% - 121px);
+  width: calc(50% - 151px);
 }
 
 .right {
-  top: calc(50% - 121px);
-  bottom: calc(50% - 121px);
+  top: calc(50% - 151px);
+  bottom: calc(50% - 151px);
   right: 0;
-  width: calc(50% - 121px);
+  width: calc(50% - 151px);
 }
 
 /* オプション：枠を白線で表示 */
-.scanBox {
+.frame {
+  box-sizing: border-box;
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 250px;
-  height: 250px;
   transform: translate(-50%, -50%);
-  border: 3px solid white;
   z-index: 3;
 }

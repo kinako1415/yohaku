@@ -3,9 +3,11 @@
 import React, { useState } from "react";
 import { useZxing } from "react-zxing";
 import styles from "./scan.module.scss";
+import Image from "next/image";
+import frame from "@/assets/qrCodeFrame.svg"; // Adjust the path as necessary
 
 export const QrScan = () => {
-  const [result, setResult] = useState("");
+  const [, setResult] = useState("");
   const { ref } = useZxing({
     onDecodeResult(result) {
       setResult(result.getText());
@@ -22,9 +24,13 @@ export const QrScan = () => {
           <div className={styles.left}></div>
           <div className={styles.right}></div>
         </div>
-        <div className={styles.scanLine}></div>
-
-        <div className={styles.scanBox}></div>
+        <Image
+          src={frame}
+          alt="QR Scan Frame"
+          className={styles.frame}
+          width={310}
+          height={310}
+        />
       </div>
     </>
   );
