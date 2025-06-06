@@ -1,25 +1,20 @@
-import { Timestamp } from 'firebase/firestore';
+import { ChatRoom } from "./chatRoom";
 import { User } from "./user";
 
-export type YohakuParticipant = {
-	user: User;
-	joinedAt: Timestamp;
+export interface YohakuParticipant extends User {
+	joinedAt: Date;
 	isTyping: boolean;
 	isOnline: boolean;
-};
+}
 
-export type Yohaku = {
+export interface Yohaku {
 	yohakuId: string;
 	title: string;
-	startDate: Timestamp;
-	endDate: Timestamp;
-	authorId: string;
-	participantIds: string[];
-	chatRoomId: string;
-	place: string;
-	createdAt: Timestamp;
-};
-
-export type YohakuWithParticipants = Yohaku & {
+	startDate: Date;
+	endDate: Date;
+	author: User;
 	participants: YohakuParticipant[];
-};
+	chatRoom: ChatRoom;
+	place: string;
+	createdAt: Date;
+}
