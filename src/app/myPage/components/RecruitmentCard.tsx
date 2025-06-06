@@ -6,6 +6,7 @@ import Image from "next/image";
 import React from "react";
 import { Inter } from "next/font/google";
 import icon from "@/assets/tomatoIcon.svg";
+import yohaku from "@/assets/Frame.svg";
 
 type Activity = {
   day: string;
@@ -87,8 +88,17 @@ export const RecruitmentCard: React.FC<Activity> = (props) => {
   return (
     <>
       <div className={style.content}>
+        <div className={style.iconWrapper}>
+          <Image
+            className={style.icon}
+            src={yohaku}
+            alt="余白のアイコン"
+            width={130}
+            height={150}
+          />
+        </div>
         <div className={style.titleWrapper}>
-          <div className={inter.className}>
+          <div className={inter.className} style={{ zIndex: 100 }}>
             <h4 className={style.title}>
               {formattedDay}：{time} / {place}
             </h4>
