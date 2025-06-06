@@ -1,14 +1,16 @@
 "use client";
 
 import { InputField } from "@/components/elements/Input";
+import { InputArea } from "@/components/elements/InputArea";
 import React, { useState } from "react";
 
 type inputProps = {
   placeholder: string;
+  isArea?: boolean;
 };
 
 export const SettingInput: React.FC<inputProps> = (props) => {
-  const { placeholder } = props;
+  const { placeholder, isArea } = props;
   const [, setInputValue] = useState("");
 
   const handleChange = (
@@ -19,11 +21,19 @@ export const SettingInput: React.FC<inputProps> = (props) => {
 
   return (
     <div>
-      <InputField
-        onChange={handleChange}
-        placeholder={placeholder}
-        type="textarea"
-      />
+      {isArea ? (
+        <InputArea
+          onChange={handleChange}
+          placeholder={placeholder}
+          size="sm"
+        />
+      ) : (
+        <InputField
+          type="text"
+          onChange={handleChange}
+          placeholder={placeholder}
+        />
+      )}
     </div>
   );
 };
