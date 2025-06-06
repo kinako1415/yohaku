@@ -13,18 +13,20 @@ export const SettingInput: React.FC<inputProps> = (props) => {
   const { placeholder, isArea } = props;
   const [, setInputValue] = useState("");
 
+  const maxLength = 50;
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setInputValue(e.target.value);
   };
-
   return (
     <div>
       {isArea ? (
         <InputArea
           onChange={handleChange}
           placeholder={placeholder}
+          maxLength={maxLength}
           size="sm"
         />
       ) : (
