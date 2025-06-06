@@ -62,6 +62,7 @@ export const MessageInput = ({ onSendMessage }: MessageInputProps) => {
           value={inputValue}
           onChange={handleInputChange}
           onKeyPress={handleKeyPress}
+          radius="full"
           placeholder="メッセージを入力..."
           variant="filled"
           rightIcon={sendIcon}

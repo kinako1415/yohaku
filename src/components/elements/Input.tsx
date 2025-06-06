@@ -3,6 +3,7 @@ import { forwardRef, useState } from "react";
 import styles from "./Input.module.scss";
 import Image from "next/image";
 
+type radiusSize = "md" | "full";
 type InputSize = "sm" | "md" | "lg";
 type InputVariant = "default" | "filled";
 
@@ -14,6 +15,7 @@ type InputFieldProps = {
   errors?: string;
   isPassword?: boolean;
   size?: InputSize;
+  radius?: radiusSize;
   variant?: InputVariant;
   fullWidth?: boolean;
   leftIcon?: React.ReactNode;
@@ -31,6 +33,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       errors,
       isPassword = false,
       size = "md",
+      radius = "md",
       variant = "default",
       fullWidth = true,
       leftIcon,
@@ -50,7 +53,8 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
 
     const inputClasses = [
       styles.input,
-      size && styles[size],
+      size && styles[`size-${size}`],
+      radius && styles[`radius-${radius}`],
       variant && styles[variant],
       errors && styles.errorBorder,
       leftIcon && styles.hasLeftIcon,
