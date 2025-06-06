@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { InputField } from "@/components/elements/Input";
+import { IconButton } from "@/components/elements/IconButton";
 import styles from "./MessageInput.module.scss";
 
 interface MessageInputProps {
@@ -29,31 +30,12 @@ export const MessageInput = ({ onSendMessage }: MessageInputProps) => {
     setInputValue(e.target.value);
   };
 
-  const sendIcon = (
-    <button
-      type="submit"
-      disabled={!inputValue.trim()}
-      className={styles.sendButton}
-      onClick={handleSubmit}
-    >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path
-          d="M22 2L11 13"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M22 2L15 22L11 13L2 9L22 2Z"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </button>
-  );
+  const handleSendClick = () => {
+    if (inputValue.trim()) {
+      onSendMessage(inputValue.trim());
+      setInputValue("");
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -65,7 +47,16 @@ export const MessageInput = ({ onSendMessage }: MessageInputProps) => {
           radius="full"
           placeholder="メッセージを入力..."
           variant="filled"
-          rightIcon={sendIcon}
+          rightIcon={
+            <IconButton
+              icon="/send.svg"
+              alt="送信"
+              size="sm"
+              disabled={!inputValue.trim()}
+              onClick={handleSendClick}
+              className={styles.sendButton}
+            />
+          }
           className={styles.messageInput}
         />
       </form>

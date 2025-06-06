@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import styles from "./DateLocationCard.module.scss";
 
 interface DateLocationCardProps {
@@ -20,9 +21,10 @@ export const DateLocationCard = ({
   };
 
   return (
-    <div
-      className={`${styles.card} ${!isExpanded ? styles.collapsed : ""}`}
+    <motion.div
+      className={styles.card}
       onClick={toggleExpanded}
+      transition={{ duration: 0.3 }}
     >
       <div className={styles.header}>
         <div className={styles.dateSection}>
@@ -34,22 +36,46 @@ export const DateLocationCard = ({
           <span className={styles.location}>{location}</span>
         </div>
         <div className={styles.toggleButton}>
-          <span
-            className={`${styles.arrow} ${isExpanded ? styles.expanded : ""}`}
+          <motion.span
+            className={styles.arrow}
+            animate={{
+              rotate: isExpanded ? 180 : 0,
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             ▼
-          </span>
+          </motion.span>
         </div>
       </div>
-      {description && (
-        <div
-          className={`${styles.description} ${
-            !isExpanded ? styles.collapsed : ""
-          } ${styles.expandTransition}`}
-        >
-          {description}
-        </div>
-      )}
-    </div>
+      <AnimatePresence>
+        {isExpanded && description && (
+          <motion.div
+            className={styles.description}
+            initial={{
+              opacity: 0,
+              height: 0,
+              marginTop: 0,
+            }}
+            animate={{
+              opacity: 1,
+              height: "auto",
+              marginTop: 12,
+            }}
+            exit={{
+              opacity: 0,
+              height: 0,
+              marginTop: 0,
+            }}
+            transition={{
+              duration: 0.1,
+              ease: "easeInOut",
+              opacity: { duration: 0.2 },
+            }}
+          >
+            {description}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 };

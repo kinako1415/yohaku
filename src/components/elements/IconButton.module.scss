@@ -6,7 +6,7 @@
   border-radius: 50%;
   cursor: pointer;
   position: relative;
-  background-color: var(--primary-50);
+  background-color: var(--primary-700);
   outline: none;
   color: var(--primary-700);
 
@@ -79,6 +79,7 @@
   opacity: 0.5;
   cursor: not-allowed;
   transform: none !important;
+  background-color: var(--gray-200) !important;
 }
 
 .loading {
