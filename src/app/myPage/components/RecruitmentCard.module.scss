@@ -1,0 +1,21 @@
+.content {
+  background-color: #3fe57b;
+  border-radius: 12px;
+  width: fit-content;
+  padding: 7% 3% 7% 3%;
+  max-block-size: 500px;
+  margin: 0 auto;
+  margin-top: 3svh;
+  color: #fff;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.detail {
+  padding-top: 1svh;
+}
