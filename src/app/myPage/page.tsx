@@ -6,7 +6,7 @@ const activityList = [
   {
     day: "06/07",
     time: "15:00-17:00",
-    title: "代々木公園でお散歩しませんか？",
+    title: "代々木公園でお散歩しません？",
     detail: "天気がいいのでお散歩しませんか",
     place: "代々木公園",
     match: 2,
@@ -48,16 +48,14 @@ export default function Page() {
               <RecruitmentCard
                 key={index}
                 day={activity.day}
-                time={activity.time}
                 title={activity.title}
-                detail={activity.detail}
-                match={activity.match}
-                isMatch={false}
+                time={activity.time}
                 place={activity.place}
               />
             ))}
           </div>
         </div>
+
         <div>
           <h3>📅 参加予定</h3>
           <div className={style.joinActivity}>
@@ -70,13 +68,14 @@ export default function Page() {
                 detail={activity.detail}
                 match={activity.match}
                 isMatch={false}
+                width="sm"
               />
             ))}
           </div>
         </div>
 
         <div>
-          <h3>📅 最近のアクティビティ</h3>
+          <h3>🔥 最近のアクティビティ</h3>
           <div className={style.activity}>
             {activityList.map((activity, index) => (
               <Activity
@@ -87,6 +86,7 @@ export default function Page() {
                 detail={activity.detail}
                 match={activity.match}
                 isMatch={true}
+                width="lg"
               />
             ))}
           </div>
