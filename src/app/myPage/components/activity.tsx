@@ -20,8 +20,6 @@ export const Activity: React.FC<Activity> = (props) => {
         </div>
         <div className={style.text}>
           <h4 className={style.title}>{title}</h4>
-          <p className={style.detail}>{detail}</p>
-
           {isMatch && <p className={style.match}>{match}とマッチ</p>}
         </div>
       </div>
