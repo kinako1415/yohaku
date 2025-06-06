@@ -4,6 +4,11 @@
   height: 100vh;
 }
 
+.spacer {
+  height: 200px;
+  width: 100%;
+}
+
 .messageArea {
   flex: 1;
   overflow-y: auto;

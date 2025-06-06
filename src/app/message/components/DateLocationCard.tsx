@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./DateLocationCard.module.scss";
+import Image from "next/image";
 
 interface DateLocationCardProps {
   date: string;
@@ -12,7 +13,7 @@ interface DateLocationCardProps {
 export const DateLocationCard = ({
   date,
   location,
-  description = "ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。",
+  description = "ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。",
 }: DateLocationCardProps) => {
   const [isExpanded, setIsExpanded] = useState(true);
 
@@ -35,17 +36,22 @@ export const DateLocationCard = ({
           <span className={styles.locationLabel}>場所</span>
           <span className={styles.location}>{location}</span>
         </div>
-        <div className={styles.toggleButton}>
-          <motion.span
-            className={styles.arrow}
-            animate={{
-              rotate: isExpanded ? 180 : 0,
-            }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            ▼
-          </motion.span>
-        </div>
+        <motion.div
+          className={styles.toggleButton}
+          animate={{
+            rotate: isExpanded ? 180 : 0,
+          }}
+          transition={{ duration: 0.1, ease: "easeInOut" }}
+        >
+          <Image
+            src={`https://api.iconify.design/heroicons:chevron-down-16-solid.svg?color=%231F2937`}
+            alt={`icon`}
+            width={24}
+            height={24}
+            style={{ transformOrigin: "center" }}
+            priority={false}
+          />
+        </motion.div>
       </div>
       <AnimatePresence>
         {isExpanded && description && (

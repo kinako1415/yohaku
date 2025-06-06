@@ -60,12 +60,13 @@ export default function MessagePage() {
   return (
     <div className={styles.container}>
       <div className={styles.messageArea}>
-        <DateLocationCard date="4月12日" location="八重" />
+        <DateLocationCard date="4月12日" location="八草" />
 
         <div className={styles.messageList}>
           {messages.map((message) => (
             <MessageBubble key={message.id} message={message} />
           ))}
+          <div className={styles.spacer} />
         </div>
       </div>
 

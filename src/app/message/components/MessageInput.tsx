@@ -48,14 +48,24 @@ export const MessageInput = ({ onSendMessage }: MessageInputProps) => {
           placeholder="メッセージを入力..."
           variant="filled"
           rightIcon={
-            <IconButton
-              icon="/send.svg"
-              alt="送信"
-              size="sm"
-              disabled={!inputValue.trim()}
-              onClick={handleSendClick}
-              className={styles.sendButton}
-            />
+            !inputValue.trim() ? (
+              <IconButton
+                icon="https://api.iconify.design/mynaui:send.svg?color=%231F2937"
+                alt="送信"
+                size="sm"
+                disabled
+                onClick={handleSendClick}
+                className={styles.sendButton}
+              />
+            ) : (
+              <IconButton
+                icon="https://api.iconify.design/mynaui:send.svg?color=%23ffffff"
+                alt="送信"
+                size="sm"
+                onClick={handleSendClick}
+                className={styles.sendButton}
+              />
+            )
           }
           className={styles.messageInput}
         />
