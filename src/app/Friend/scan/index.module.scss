@@ -3,22 +3,10 @@
   width: 100%;
 }
 
-.img {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 11;
-
-  object-fit: cover;
-}
-
 .text {
   position: absolute;
-  top: 20%;
-  left: 50%;
+  top: 5%;
   color: #fff;
-  transform: translate(-50%, -50%);
   z-index: 12;
   font-size: 20px;
   width: fit-content;
@@ -26,4 +14,13 @@
   height: 20svh;
   width: 90%;
   margin: 0 auto;
+}
+
+.detail {
+  width: 100%;
+  margin-top: 1svh;
+  z-index: 12;
+  font-size: 12px;
+  color: #fff;
+  line-height: 1.3;
 }
