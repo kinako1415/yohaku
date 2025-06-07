@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { IconButton } from "@/components/elements/IconButton";
 import { InputArea } from "@/components/elements/InputArea";
 import styles from "./newPost.module.scss";
 import { InputField } from "@/components/elements/Input";

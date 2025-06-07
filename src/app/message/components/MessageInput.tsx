@@ -51,7 +51,6 @@ export const MessageInput = ({ onSendMessage }: MessageInputProps) => {
             !inputValue.trim() ? (
               <IconButton
                 icon="https://api.iconify.design/mynaui:send.svg?color=%231F2937"
-                alt="送信"
                 size="sm"
                 disabled
                 onClick={handleSendClick}
@@ -60,7 +59,6 @@ export const MessageInput = ({ onSendMessage }: MessageInputProps) => {
             ) : (
               <IconButton
                 icon="https://api.iconify.design/mynaui:send.svg?color=%23ffffff"
-                alt="送信"
                 size="sm"
                 onClick={handleSendClick}
                 className={styles.sendButton}
