@@ -11,13 +11,15 @@
 
 .inputProfile {
   margin-top: 10%;
+  position: relative;
 }
 
 .text {
   font-size: 12px;
   width: 90%;
   color: #6b7280;
-  margin-top: 1svh;
+  position: absolute;
+  bottom: 0;
 }
 
 .button {

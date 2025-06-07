@@ -25,14 +25,15 @@ export default function ConditionalHeader() {
 
   const shouldShowBackButton = () => {
     const segments = pathname.split("/").filter(Boolean);
-    return segments.length >= 2;
+    const isMyPage = pathname === "/myPage";
+    return segments.length >= 2 || isMyPage;
   };
 
   return shouldShow ? (
     <Header
       title={getTitle()}
       isCheck={shouldShowBackButton()}
-      pathname={pathname}
+      pathname={pathname} 
     />
   ) : null;
 }

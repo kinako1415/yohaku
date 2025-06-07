@@ -1,6 +1,8 @@
 import { Activity } from "./components/activity";
 import { RecruitmentCard } from "./components/RecruitmentCard";
 import style from "./index.module.scss";
+import Image from "next/image";
+import icon from "@/assets/yahakuIcon.svg";
 
 const activityList = [
   {
@@ -41,8 +43,12 @@ export default function Page() {
   return (
     <>
       <div className={style.content}>
+        <div className={style.profile}></div>
         <div>
-          <h3>現在募集中</h3>
+          <h3 className={style.joinTitle}>
+            <Image src={icon} alt="yohaku icon" width={24} height={24} />
+            Yo haku募集中!!
+          </h3>
           <div className={style.joinActivity}>
             {activityList.map((activity, index) => (
               <RecruitmentCard
