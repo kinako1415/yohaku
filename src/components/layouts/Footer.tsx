@@ -18,7 +18,7 @@ export const Footer = () => {
   const pathname = usePathname();
 
   return (
-    <>
+    <div className={style.footerContainer}>
       <div className={style.border}>
         <div className={style.content}>
           {nav.map((item) => {
@@ -47,6 +47,6 @@ export const Footer = () => {
           })}
         </div>
       </div>
-    </>
+    </div>
   );
 };

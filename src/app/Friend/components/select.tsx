@@ -24,7 +24,7 @@ type Friend = {
 export const Select = () => {
   const router = useRouter();
   return (
-    <>
+    <div className={style.container}>
       <div
         onClick={() => {
           router.push("./friend/111111");
@@ -77,6 +77,6 @@ export const Select = () => {
           </div>
         </TabPanel>
       </Tabs>
-    </>
+    </div>
   );
 };

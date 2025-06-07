@@ -3,7 +3,6 @@ import "./globals.css";
 import ConditionalHeader from "./ConditionalHeader";
 import ConditionalFooter from "./ConditionalFooter";
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -12,10 +11,8 @@ export default function RootLayout({
   return (
     <html lang="jp">
       <body>
-        <main>
-          <ConditionalHeader />
-          {children}
-        </main>
+        <ConditionalHeader />
+        <main>{children}</main>
         <ConditionalFooter />
       </body>
     </html>

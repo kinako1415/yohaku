@@ -1,11 +1,38 @@
 "use client";
+
 import { usePathname } from "next/navigation";
 import { Header } from "@/components/layouts/Header";
 
 export default function ConditionalHeader() {
   const pathname = usePathname();
+
+  // 非表示にしたいパス
   const hideOn = ["/signin", "/signup", "/friend/scan"];
   const shouldShow = !hideOn.includes(pathname);
 
-  return shouldShow ? <Header /> : null;
+  // 表示するタイトルをパスによって切り替える
+  const getTitle = () => {
+    if (pathname === "/myPage") return "マイページ";
+    if (pathname === "/myPage/setting") return "プロフィール編集";
+    if (pathname === "/friend") return "フレンド";
+    if (pathname === "/message") return "メッセージ";
+    if (/^\/friend\/[^/]+\/?$/.test(pathname)) {
+      return "QRコード / ID検索";
+    }
+    if (pathname === "/post") return "新規投稿";
+    return "余白カレンダー";
+  };
+
+  const shouldShowBackButton = () => {
+    const segments = pathname.split("/").filter(Boolean);
+    return segments.length >= 2;
+  };
+
+  return shouldShow ? (
+    <Header
+      title={getTitle()}
+      isCheck={shouldShowBackButton()}
+      pathname={pathname}
+    />
+  ) : null;
 }
