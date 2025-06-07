@@ -2,9 +2,7 @@ import { ChatRoom } from "./chatRoom";
 import { User } from "./user";
 
 export interface YohakuParticipant extends User {
-	joinedAt: Date;
-	isTyping: boolean;
-	isOnline: boolean;
+  joinedAt: Date;
 }
 
 export interface Yohaku {
