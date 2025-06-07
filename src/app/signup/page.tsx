@@ -33,12 +33,34 @@ export default function Signup() {
   });
 
   const onSubmit = async (data: signUpValue) => {
-    setIsLoading(true);
-    createUserWithEmailAndPassword(auth, data.email, data.password).then(() => {
-      setIsLoading(false);
+    try {
+      setIsLoading(true);
+      await createUserWithEmailAndPassword(auth, data.email, data.password);
       setSignupData(data);
       setCurrentStep("username");
-    });
+    } catch (error: any) {
+      // Firebase Auth のエラーコードに基づいてメッセージを設定
+      let errorMessage = "サインアップに失敗しました";
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          errorMessage = "このメールアドレスは既に使用されています";
+          break;
+        case "auth/invalid-email":
+          errorMessage = "無効なメールアドレスです";
+          break;
+        case "auth/operation-not-allowed":
+          errorMessage = "メール/パスワードでの登録が無効になっています";
+          break;
+        case "auth/weak-password":
+          errorMessage = "パスワードは6文字以上である必要があります";
+          break;
+      }
+      console.error("サインアップエラー:", errorMessage, error);
+      // TODO: エラーメッセージを表示するための状態を追加
+      // setError(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleUsernameComplete = async (username: string) => {
