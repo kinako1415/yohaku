@@ -1,7 +1,7 @@
 "use client";
 
 import style from "./HomeCalendar.module.scss";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import dayjs from "dayjs";
 
 import { useCalender } from "./useCalender";
@@ -9,6 +9,12 @@ import { JoinButton } from "./JoinButton";
 import icon from "@/assets/userIcon.svg";
 import Image from "next/image";
 import { Icon } from "@iconify/react/dist/iconify.js";
+<<<<<<< HEAD
+=======
+import { getAllYohakus } from "@/actions/yohaku/getAllYohakus";
+import { useAtom } from "jotai";
+import { PostYohakuAtom } from "@/store/PostedYohaku";
+>>>>>>> 428289e034c692f596540996605fdfb5c8c19a6c
 import { Yohaku } from "@/types";
 
 interface Props {
@@ -19,6 +25,32 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
   // デバッグ用：propsで受け取ったyohakusをコンソールに出力
   console.log("HomeCalendar received yohakus:", yohakus);
 
+<<<<<<< HEAD
+=======
+type Shift = {
+  startedAt: string;
+  endedAt: string;
+  title: string;
+  uid: number;
+  room: {
+    id: string;
+  };
+};
+
+type User = {
+  uid: number;
+  name: string;
+  userIcon: string;
+};
+
+type props = {
+  getYohakuData: Yohaku[] | null;
+};
+
+export const HomeCalendar: React.FC = () => {
+  const [yohakuData, setYohakuData] = useAtom<Yohaku[]>(PostYohakuAtom);
+
+>>>>>>> 428289e034c692f596540996605fdfb5c8c19a6c
   const {
     selectedMonth,
     selectedDate,
