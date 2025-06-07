@@ -9,7 +9,8 @@
   position: relative; // .copy の絶対位置指定の基準となる
   background-color: #d2ffdc;
   width: fit-content;
-  padding: 3% 15%;
+  padding: 3% 8%;
+  margin-top: 20px;
   border-radius: 12px;
 }
 
@@ -19,16 +20,6 @@
   font-weight: bold;
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.coptImg {
-  margin-left: 10px;
-}
-
-
-
-.copy {
-  position: absolute; // 絶対位置指定で他の要素のレイアウトに影響しない
-  top: 31svh;
+  justify-content: space-between;
+  gap: 10px;
 }
