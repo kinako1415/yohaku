@@ -48,8 +48,6 @@ export async function getAllYohakus() {
           ref: doc.data().userRef,
           joinedAt: doc.data().joinedAt,
         }));
-        // console.log("participantsData", participantsData);
-        // console.log("participantsData.length", participantsData.length);
 
         const participantSnaps =
           participantsData.length > 0
@@ -75,8 +73,6 @@ export async function getAllYohakus() {
           }
         );
 
-        // console.log("yohakuParticipant", yohakuParticipant);
-
         return {
           yohakuId: doc.id,
           title: data.title || "",
@@ -88,8 +84,6 @@ export async function getAllYohakus() {
           place: data.place || "",
           createdAt: data.createdAt?.toDate() || new Date(),
         };
-
-        console.log("yohakus", yohakus);
       })
     );
     return yohakus;
