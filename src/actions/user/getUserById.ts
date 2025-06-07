@@ -3,7 +3,7 @@
 import { db } from "@/libs/firebaseAdmin";
 import { JoinedYohaku, User } from "@/types";
 
-export async function getAllUsers() {
+export async function getUserById(id: string) {
   try {
     const snapshot = await db.collection("users").get();
 
@@ -92,9 +92,19 @@ export async function getAllUsers() {
       })
     );
 
-    return users;
+    const user: User = users.filter((u) => u.userId === id)[0];
+
+    return user;
   } catch (e) {
     console.error("Error fetching users:", e);
-    return [];
+    return {
+      userId: "",
+      name: "",
+      email: "",
+      avatar: "",
+      createdAt: new Date(),
+      friends: [],
+      joinedYohakus: [],
+    };
   }
 }
