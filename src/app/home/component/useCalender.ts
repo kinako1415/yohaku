@@ -19,7 +19,6 @@ export const useCalender = () => {
     setSelectedMonth(selectedMonth.add(1, "month"));
   }, [selectedMonth]);
 
-
   // 表示している月の日数を取得
   const daysInMonth = selectedMonth.daysInMonth();
 
@@ -57,6 +56,7 @@ export const useCalender = () => {
     { length: selectedMonthStartDay },
     (_, i) => selectedMonth.startOf("month").subtract(i + 1, "day")
   ).reverse();
+  //.reverse()並びを日付の昇順
 
   // 日曜日基準なので、週の最後の曜日（土曜日）を表す6を定義
   const LAST_DAY_OF_WEEK_INDEX = 6;
@@ -68,11 +68,11 @@ export const useCalender = () => {
     },
     (_, i) => selectedMonth.endOf("month").add(i + 1, "day")
   );
- //曜日始まり 週を取得
+  //曜日始まり 週を取得
   const selectedWeekList = useMemo(() => {
     const weekStart = selectedDate.startOf("week");
-    return Array.from({ length: 7}, (_, i) => weekStart.add(i, "day"));
-  },[selectedDate]);
+    return Array.from({ length: 7 }, (_, i) => weekStart.add(i, "day"));
+  }, [selectedDate]);
 
   // 前月、当月、次月の日付を結合し、週ごとに分ける
   const calenderData = useMemo(() => {

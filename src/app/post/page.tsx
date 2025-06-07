@@ -1,11 +1,5 @@
-import { Calendar } from "./components/Calendar";
+import InputPage from "./components/Input";
 
-
-export default function Post() {
-  return (
-		<>
-		<h1>投稿</h1>
-		<Calendar />
-		</>
-	)
+export default function Page() {
+	return <InputPage />
 }

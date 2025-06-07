@@ -1,0 +1,71 @@
+.container {
+    overflow: hidden;
+
+}
+.tabs {
+  width: 100%;
+  margin: auto;
+  padding: 0 24px;
+  
+}
+.tabList {
+  display: flex;
+  width: 50%;
+  gap: 8px;
+  margin-top: 10%;
+}
+
+.tab {
+  color: #1edb63;
+  background-color: #fff;
+  padding: 0px 16px;
+  font-size: 12px;
+  border-radius: 100px;
+  justify-content: center;
+  height: 32px;
+  align-items: center;
+  font-weight: 500;
+  border: 1px solid #1edb63;
+  transition: all 0.2s ease;
+  width: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  gap: 4px;
+}
+
+.tabSelected {
+  color: #fff;
+  background-color: #1edb63;
+  padding: 0px 16px;
+  font-size: 12px;
+  border-radius: 100px;
+  justify-content: center;
+  height: 32px;
+  align-items: center;
+  font-weight: 500;
+  border: none;
+  transition: all 0.2s ease;
+  width: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  gap: 4px;
+}
+.submitButton {
+	display: flex;
+  justify-content: center;
+  margin-top: 60%;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contentTitle {
+  margin-top: 10%;
+}
+.contentArea {
+  margin-top: 3%;
+}

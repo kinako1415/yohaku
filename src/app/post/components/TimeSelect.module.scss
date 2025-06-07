@@ -1,0 +1,53 @@
+.container {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  width: auto;
+	margin-left: 24px;
+	margin-right: 24px;
+	margin-top: 10%;
+	margin-bottom: -20%;
+
+}
+
+.timeRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.timeRowSelected {
+	background-color: #D9D9D9;
+}
+
+.label {
+	font-size: 16px;
+  font-weight: bold;
+  color: #1EDB63; 
+}
+
+.value {
+	font-size: 16px;
+  color: #6B7280;
+  font-weight: bold;
+}
+
+.active .label {
+  background-color: #D9D9D9;
+}
+
+.hr {
+  border: none;
+  border-top: 1px solid #E5E7EB;
+  margin: 0;
+}
+
+.pickerWrapper {
+  margin-top: 8px;
+  padding: 16px;
+  background-color: #fff;
+  border-top: 1px solid #E5E7EB;
+}
