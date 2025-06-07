@@ -5,10 +5,13 @@ import Image from "next/image";
 import defaultUserIcon from "@/assets/userIcon.svg";
 import icon from "@/assets/change.svg";
 import { useRef, useState } from "react";
+import { loginUserAtom } from "@/store/loginUser";
+import { useAtom } from "jotai";
 
 export const ChangeImage = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [currentImage, setCurrentImage] = useState(defaultUserIcon);
+  const [, setCurrentImage] = useState(defaultUserIcon);
+  const [user, setUser] = useAtom(loginUserAtom);
 
   const handleImageClick = () => {
     try {
@@ -31,10 +34,11 @@ export const ChangeImage = () => {
     }
   };
 
+
   return (
     <div className={style.userIcon}>
       <Image
-        src={currentImage || defaultUserIcon}
+        src={user?.name ?? defaultUserIcon}
         alt="userIcon"
         width={130}
         height={130}
