@@ -1,6 +1,6 @@
 "use server";
 import { db } from "@/libs/firebaseAdmin";
-import { User, Yohaku, YohakuParticipant } from "@/types";
+import { User, Yohaku } from "@/types";
 
 export async function getAllYohakus() {
   try {
