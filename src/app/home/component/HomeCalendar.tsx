@@ -1,15 +1,18 @@
 "use client";
 
 import style from "./HomeCalendar.module.scss";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import dayjs from "dayjs";
 
 import { useCalender } from "./useCalender";
-import { IconButton } from "@/components/elements/IconButton";
 import { JoinButton } from "./JoinButton";
 import icon from "@/assets/userIcon.svg";
 import Image from "next/image";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { getAllYohakus } from "@/actions/yohaku/getAllYohakus";
+import { useAtom } from "jotai";
+import { PostYohakuAtom } from "@/store/PostedYohaku";
+import { Yohaku } from "@/types";
 
 const expectData: Shift[] = [
   {
@@ -75,7 +78,13 @@ type User = {
   userIcon: string;
 };
 
-export const HomeCalendar: FC = () => {
+type props = {
+  getYohakuData: Yohaku[] | null;
+};
+
+export const HomeCalendar: React.FC = () => {
+  const [yohakuData, setYohakuData] = useAtom<Yohaku[]>(PostYohakuAtom);
+
   const {
     selectedMonth,
     selectedDate,
@@ -211,7 +220,8 @@ export const HomeCalendar: FC = () => {
       </table>
       <div className={style.detailsContainer}>
         <div className={style.detailsDay}>
-          {dayjs(selectedDate).format("M月D日")}の<span className={style.span}>Yo haku</span>
+          {dayjs(selectedDate).format("M月D日")}の
+          <span className={style.span}>Yo haku</span>
         </div>
         {selectedShifts.length > 0 ? (
           <div className={style.detailsList}>
