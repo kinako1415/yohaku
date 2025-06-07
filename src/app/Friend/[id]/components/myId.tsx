@@ -54,8 +54,10 @@ export const MyId = () => {
               style={{ cursor: "pointer" }}
             />
           </p>
+          <div className={style.copy}>
+            {copied ? "コピーが完了しました" : ""}
+          </div>
         </div>
-        <div className={style.copy}>{copied ? "コピーが完了しました" : ""}</div>
         <div className={style.qrCode}>
           <QRCodeCanvas
             value={profileUrl}
