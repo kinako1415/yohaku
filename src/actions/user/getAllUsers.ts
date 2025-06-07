@@ -1,77 +1,85 @@
 "use server";
 
 import { db } from "@/libs/firebaseAdmin";
-import { JoinedYohaku, User, Yohaku } from "@/types";
+import { JoinedYohaku, User, Yohaku, YohakuParticipant } from "@/types";
+import { join } from "path";
 
 export async function getAllUsers() {
   try {
     const snapshot = await db.collection("users").get();
 
-    const users = await Promise.all(
+    const users: User[] = await Promise.all(
       snapshot.docs.map(async (doc) => {
         const data = doc.data();
 
         // friendsの参照を一括取得（空チェック追加）
         const friendRefs = data.friends || [];
-        const friendSnaps = friendRefs.length > 0 ? await db.getAll(...friendRefs) : [];
-        const friends = friendSnaps.map((snap) => ({
-          id: snap.id,
-          ...snap.data(),
-        }));
+        const friendSnaps =
+          friendRefs.length > 0 ? await db.getAll(...friendRefs) : [];
+
+        const friends: User[] = friendSnaps.map((snap) => {
+          const friendData = snap.data() || {};
+          return {
+            userId: snap.id,
+            name: friendData.name,
+            email: friendData.email,
+            avatar: friendData.avatar || "",
+            createdAt: friendData.createdAt?.toDate() || new Date(),
+            joinedYohakus: friendData.joinedYohakus || [],
+            friends: friendData.friends || [],
+          };
+        });
 
         // joinedYohakusの取得
-        const joinedYohakusSnap = await db
+        const joinedYohakuSnaps = await db
           .collection("users")
           .doc(doc.id)
           .collection("joinedYohakus")
           .get();
 
-        if (joinedYohakusSnap.empty) {
+        if (joinedYohakuSnaps.empty) {
           return {
             userId: doc.id,
             name: data.name || "",
             email: data.email || "",
             avatar: data.avatar || "",
             createdAt: data.createdAt?.toDate() || new Date(),
-            friends,
-            joinedYohakus: [], // 空配列を返す
+            friends: friends || [],
+            joinedYohakus: [],
           };
         }
 
-        const joinedYohakusDocs = joinedYohakusSnap.docs;
-        const yohakuRefs = joinedYohakusDocs
-          .map((doc) => doc.data().yohakuRef)
-          .filter(Boolean); // undefinedや nullをフィルタリング
+        // 余白の参照とjoinedAtを一緒に保持
+        const joinedYohakuData = joinedYohakuSnaps.docs.map((doc) => ({
+          ref: doc.data().yohakuRef,
+          joinedAt: doc.data().joinedAt,
+        }));
 
-        const yohakuSnaps = yohakuRefs.length > 0 ? await db.getAll(...yohakuRefs) : [];
+        // 余白データの取得
+        const yohakuSnaps =
+          joinedYohakuData.length > 0
+            ? await db.getAll(...joinedYohakuData.map((data) => data.ref))
+            : [];
 
-        const joinedYohakus = await Promise.all(
-          joinedYohakusDocs.map(async (joinedDoc, index) => {
-            const joinedData = joinedDoc.data();
-            const yohakuData = yohakuSnaps[index]?.data() || {};
-            console.log("Yohaku Data:", joinedData);
-
-            // 参加者の参照を処理（空チェック追加）
-            console.log("Yohaku Data:", yohakuData);
-            const participantRefs = yohakuData?.participants || [];
-            const participantSnaps = participantRefs.length > 0 
-              ? await db.getAll(...participantRefs)
-              : [];
-
-            const participants = participantSnaps.map((snap) => ({
-              userId: snap.id,
-              ...snap.data(),
-              joinedAt: joinedData.joinedAt?.toDate(),
-            }));
+        const joinedYohakus: JoinedYohaku[] = joinedYohakuSnaps.docs
+          .map((doc, index) => {
+            const joinedData = doc.data();
+            const joinedYohakuData = yohakuSnaps[index]?.data() || {};
 
             return {
-              yohakuId: joinedDoc.id,
-              ...yohakuData,
-              participants,
+              yohakuId: doc.id,
+              title: joinedYohakuData.title || "無題の余白",
+              startDate: joinedYohakuData.startDate?.toDate() || new Date(),
+              endDate: joinedYohakuData.endDate?.toDate() || new Date(),
+              author: joinedYohakuData.authorRef,
+              participants: joinedYohakuData.participants || [],
+              chatRoom: joinedYohakuData.chatRoomRef,
+              place: joinedYohakuData.place || "",
+              createdAt: joinedYohakuData.createdAt?.toDate() || new Date(),
               joinedAt: joinedData.joinedAt?.toDate() || new Date(),
             };
           })
-        );
+          .filter((yohaku): yohaku is JoinedYohaku => yohaku !== null);
 
         return {
           userId: doc.id,
@@ -79,8 +87,8 @@ export async function getAllUsers() {
           email: data.email || "",
           avatar: data.avatar || "",
           createdAt: data.createdAt?.toDate() || new Date(),
-          friends,
-          joinedYohakus,
+          friends: friends || [],
+          joinedYohakus: joinedYohakus || [],
         };
       })
     );
