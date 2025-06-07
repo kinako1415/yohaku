@@ -19,7 +19,7 @@ export default function Page() {
           <p className={style.text}>50文字以内で簡潔に</p>
         </div>
         <div className={style.button}>
-          <Button>保存</Button> 
+          <Button>保存</Button>
         </div>
       </div>
     </>

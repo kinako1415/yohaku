@@ -27,6 +27,7 @@ export const SettingInput: React.FC<inputProps> = (props) => {
           onChange={handleChange}
           placeholder={placeholder}
           maxLength={maxLength}
+          showCharCount
           size="sm"
         />
       ) : (

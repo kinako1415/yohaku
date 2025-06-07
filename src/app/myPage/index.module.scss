@@ -8,6 +8,12 @@
   gap: 30px;
 }
 
+.joinTitle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .joinActivity {
   width: 100%;
   display: flex;
@@ -26,4 +32,16 @@
 /*Google Chrome、Safariへの対応*/
 .contents_box::-webkit-scrollbar {
   display: none;
+}
+
+.profile {
+  display: flex;
+  gap: 10px;
+  border: 2px solid var(--gray-300);
+  border-radius: 12px;
+  padding: 3%;
+}
+
+.title {
+  font-weight: bold;
 }
