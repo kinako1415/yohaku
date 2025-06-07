@@ -1,7 +1,7 @@
 "use client";
 
 import style from "./HomeCalendar.module.scss";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import dayjs from "dayjs";
 
 import { useCalender } from "./useCalender";
@@ -9,6 +9,9 @@ import { JoinButton } from "./JoinButton";
 import icon from "@/assets/userIcon.svg";
 import Image from "next/image";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { getAllYohakus } from "@/actions/yohaku/getAllYohakus";
+import { useAtom } from "jotai";
+import { PostYohakuAtom } from "@/store/PostedYohaku";
 import { Yohaku } from "@/types";
 
 interface Props {
@@ -17,7 +20,17 @@ interface Props {
 
 export const HomeCalendar: FC<Props> = ({ yohakus }) => {
   // デバッグ用：propsで受け取ったyohakusをコンソールに出力
-  console.log("HomeCalendar received yohakus:", yohakus);
+
+  const [yohakuData, setYohakuData] = useAtom<Yohaku[]>(PostYohakuAtom);
+
+  useEffect(() => {
+    setYohakuData(yohakus);
+  }, []);
+
+
+  type props = {
+    getYohakuData: Yohaku[] | null;
+  };
 
   const {
     selectedMonth,
@@ -40,7 +53,7 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
   const [weekView, setWeekView] = useState(false);
   const now = dayjs();
 
-  const selectedYohakus = yohakus.filter(
+  const selectedYohakus = yohakuData.filter(
     (yohaku) =>
       dayjs(yohaku.startDate).format("YYYY-MM-DD") ===
       dayjs(selectedDate).format("YYYY-MM-DD")
@@ -48,12 +61,13 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
 
   // 指定した日付に予定があるかチェックする関数
   const hasYohakuOnDate = (date: dayjs.Dayjs): boolean => {
-    return yohakus.some(
+    return yohakuData.some(
       (yohaku) =>
         dayjs(yohaku.startDate).format("YYYY-MM-DD") ===
         date.format("YYYY-MM-DD")
     );
   };
+
 
   return (
     <div className={style.content}>
