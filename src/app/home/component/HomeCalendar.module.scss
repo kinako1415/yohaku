@@ -232,3 +232,17 @@
 .JoinButton :hover {
   background-color: #16a34a;
 }
+
+// 予定がある日のスタイル
+.hasYohaku {
+  color: #2BD954 !important;
+  font-weight: bold;
+  position: relative;
+}
+
+// 選択された日と予定がある日が重複した場合の処理
+.selectedDay.hasYohaku {
+  background-color: #2BD954;
+  font-weight: normal;
+  color: white !important;
+}
