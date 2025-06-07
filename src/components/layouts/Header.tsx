@@ -9,10 +9,11 @@ type HeaderProps = {
   title: string;
   isCheck?: boolean;
   pathname?: string;
+  userIcon?: string;
 };
 
 export const Header: React.FC<HeaderProps> = (props) => {
-  const { title, isCheck, pathname } = props;
+  const { title, isCheck, pathname, userIcon } = props;
 
   const isMyPage = pathname === "/myPage";
   return (
@@ -45,7 +46,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
         <Link href="/myPage">
           <Image
             className={style.icon}
-            src={icon}
+            src={userIcon ?? icon}
             alt="icon"
             width={40}
             height={40}

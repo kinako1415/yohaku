@@ -2,9 +2,14 @@
 
 import { usePathname } from "next/navigation";
 import { Header } from "@/components/layouts/Header";
+import { loginUserAtom } from "@/store/loginUser";
+import { useAtom } from "jotai";
 
 export default function ConditionalHeader() {
   const pathname = usePathname();
+
+  const [user] = useAtom(loginUserAtom);
+  const userIcon = user?.avatar;
 
   // 非表示にしたいパス
   const hideOn = ["/signin", "/signup", "/friend/scan"];
@@ -33,7 +38,8 @@ export default function ConditionalHeader() {
     <Header
       title={getTitle()}
       isCheck={shouldShowBackButton()}
-      pathname={pathname} 
+      pathname={pathname}
+      userIcon={userIcon}
     />
   ) : null;
 }
