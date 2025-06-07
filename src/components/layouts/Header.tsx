@@ -4,6 +4,7 @@ import settingIcon from "@/assets/settingIcon.svg";
 import Image from "next/image";
 import backIcon from "@/assets/backButton.svg";
 import Link from "next/link";
+import { IconButton } from "../elements/IconButton";
 
 type HeaderProps = {
   title: string;
@@ -39,13 +40,10 @@ export const Header: React.FC<HeaderProps> = (props) => {
 
           <div />
           {isMyPage ? (
-            <Link href="/myPag/setting">
-              <Image
-                className={style.icon}
-                src={settingIcon}
-                alt="icon"
-                width={40}
-                height={40}
+            <Link href="/myPage/setting">
+              <IconButton
+                icon="https://api.iconify.design/heroicons:chevron-left-20-solid.svg?color=%2322c55e"
+                isLoading={true}
               />
             </Link>
           ) : (
