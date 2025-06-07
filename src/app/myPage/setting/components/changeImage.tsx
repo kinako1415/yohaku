@@ -12,7 +12,7 @@ export const ChangeImage = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [, setCurrentImage] = useState(defaultUserIcon);
 
-  const [user, setUser] = useAtom(loginUserAtom);
+  const [user] = useAtom(loginUserAtom);
   // グローバル、かつ永続化したいステート
 
   const handleImageClick = () => {
