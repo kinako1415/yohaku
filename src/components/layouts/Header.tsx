@@ -1,6 +1,5 @@
 import style from "./Header.module.scss";
 import icon from "../../assets/icon.svg";
-import settingIcon from "@/assets/settingIcon.svg";
 import Image from "next/image";
 import backIcon from "@/assets/backButton.svg";
 import Link from "next/link";
