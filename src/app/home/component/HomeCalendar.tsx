@@ -9,72 +9,16 @@ import { JoinButton } from "./JoinButton";
 import icon from "@/assets/userIcon.svg";
 import Image from "next/image";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { Yohaku } from "@/types";
 
-const expectData: Shift[] = [
-  {
-    startedAt: "2025-06-10T10:00:00+09:00",
-    endedAt: "2025-06-10T19:00:00+09:00",
-    title: "夜ご飯ラーメン行こ！",
-    uid: 1,
-    room: {
-      id: "1",
-    },
-  },
-  {
-    startedAt: "2025-06-12T11:00:00+09:00",
-    endedAt: "2025-06-12T13:00:00+09:00",
-    title: "今から渋谷でカフェ行きたい人いる？",
-    uid: 2,
-    room: {
-      id: "2",
-    },
-  },
-  {
-    startedAt: "2025-06-13T17:00:00+09:00",
-    endedAt: "2025-06-13T23:00:00+09:00",
-    title:
-      "夏休みディズニー行きたい人いる？ランドとシーどっちも行きたいなーって思ってるんだけどどうかな？あと三人くらいかな",
-    uid: 3,
-    room: {
-      id: "3",
-    },
-  },
-  {
-    startedAt: "2025-06-13T10:00:00+09:00",
-    endedAt: "2025-06-13T19:00:00+09:00",
-    title:
-      "美術館行かない？金山にある美術館なんだけど期間限定でゴッホ展がやっててすごく綺麗で写真映えしそうだからすごい気になってるんだけどよかったら誰か一緒に行きませんかー！",
-    uid: 4,
-    room: {
-      id: "4",
-    },
-  },
-];
+interface Props {
+  yohakus: Yohaku[];
+}
 
-const userList: User[] = [
-  { uid: 1, name: "田中", userIcon: icon },
-  { uid: 2, name: "佐藤", userIcon: icon },
-  { uid: 3, name: "鈴木", userIcon: icon },
-  { uid: 4, name: "山本", userIcon: icon },
-];
+export const HomeCalendar: FC<Props> = ({ yohakus }) => {
+  // デバッグ用：propsで受け取ったyohakusをコンソールに出力
+  console.log("HomeCalendar received yohakus:", yohakus);
 
-type Shift = {
-  startedAt: string;
-  endedAt: string;
-  title: string;
-  uid: number;
-  room: {
-    id: string;
-  };
-};
-
-type User = {
-  uid: number;
-  name: string;
-  userIcon: string;
-};
-
-export const HomeCalendar: FC = () => {
   const {
     selectedMonth,
     selectedDate,
@@ -96,11 +40,20 @@ export const HomeCalendar: FC = () => {
   const [weekView, setWeekView] = useState(false);
   const now = dayjs();
 
-  const selectedShifts = expectData.filter(
-    (item) =>
-      dayjs(item.startedAt).format("YYYY-MM-DD") ===
+  const selectedYohakus = yohakus.filter(
+    (yohaku) =>
+      dayjs(yohaku.startDate).format("YYYY-MM-DD") ===
       dayjs(selectedDate).format("YYYY-MM-DD")
   );
+
+  // 指定した日付に予定があるかチェックする関数
+  const hasYohakuOnDate = (date: dayjs.Dayjs): boolean => {
+    return yohakus.some(
+      (yohaku) =>
+        dayjs(yohaku.startDate).format("YYYY-MM-DD") ===
+        date.format("YYYY-MM-DD")
+    );
+  };
 
   return (
     <div className={style.content}>
@@ -178,7 +131,8 @@ export const HomeCalendar: FC = () => {
 											${date.isSame(selectedDate, "day") ? style.selectedDay : ""}
                       ${date.isSame(now, "day") ? style.selectedToDay : ""}
 											${date.month() !== selectedMonth.month() ? style.outside : ""}
-                    `}
+                      ${hasYohakuOnDate(date) ? style.hasYohaku : ""}
+                      `}
                   >
                     {date.date()}
                   </button>
@@ -193,10 +147,19 @@ export const HomeCalendar: FC = () => {
                     <button
                       onClick={() => handleSelectDate(date)}
                       className={`
-											${style.day} 
-											${date.isSame(selectedDate, "day") ? style.selectedDay : ""}
-                      ${date.isSame(now, "day") ? style.selectedToDay : ""}
-											${date.month() !== selectedMonth.month() ? style.outside : ""}
+                        ${style.day} 
+                        ${
+                          date.isSame(selectedDate, "day")
+                            ? style.selectedDay
+                            : ""
+                        }
+                        ${date.isSame(now, "day") ? style.selectedToDay : ""}
+                        ${
+                          date.month() !== selectedMonth.month()
+                            ? style.outside
+                            : ""
+                        }
+                        ${hasYohakuOnDate(date) ? style.hasYohaku : ""}
                     `}
                     >
                       {date.date()}
@@ -210,19 +173,20 @@ export const HomeCalendar: FC = () => {
       </table>
       <div className={style.detailsContainer}>
         <div className={style.detailsDay}>
-          {dayjs(selectedDate).format("M月D日")}の<span className={style.span}>Yo haku</span>
+          {dayjs(selectedDate).format("M月D日")}の
+          <span className={style.span}>Yo haku</span>
         </div>
-        {selectedShifts.length > 0 ? (
+        {selectedYohakus.length > 0 ? (
           <div className={style.detailsList}>
-            {selectedShifts.map((shift, index) => {
-              const user = userList.find((u) => u.uid === shift.uid);
+            {selectedYohakus.map((yohaku, index) => {
+              const user = yohaku.author;
               if (!user) return null;
               return (
                 <div className={style.details} key={index}>
                   <div className={style.userInfo}>
                     <div className={style.icon}>
                       <Image
-                        src={user.userIcon}
+                        src={user.avatar || icon}
                         alt={`${user.name}のアイコン`}
                         width={32}
                         height={32}
@@ -231,10 +195,10 @@ export const HomeCalendar: FC = () => {
 
                     <div className={style.textInfo}>
                       <div className={style.name}>{user.name}</div>
-                      <div className={style.title}>{shift.title}</div>
+                      <div className={style.title}>{yohaku.title}</div>
                       <div className={style.time}>
-                        {dayjs(shift.startedAt).format("HH:mm")} -{" "}
-                        {dayjs(shift.endedAt).format("HH:mm")}
+                        {dayjs(yohaku.startDate).format("HH:mm")} -{" "}
+                        {dayjs(yohaku.endDate).format("HH:mm")}
                       </div>
                     </div>
                   </div>

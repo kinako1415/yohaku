@@ -2,67 +2,78 @@
 import { db } from "@/libs/firebaseAdmin";
 import { User, Yohaku, YohakuParticipant } from "@/types";
 
-export async function getYohakuById(yohakuId: string) {
+export async function getYohakuById(yohakuId: string): Promise<Yohaku | null> {
   try {
-    const snapshot = await db.collection("yohakus").get();
-    const yohakus: Yohaku[] = await Promise.all(
-      snapshot.docs.map(async (doc) => {
-        const data = doc.data();
-        // friendsの参照を一括取得（空チェック追加）
-        const authorRef = data.authorRef || [];
-        const authorSnaps = authorRef ? await db.getAll(...[authorRef]) : [];
-        const author: User = authorSnaps.map((snap) => {
-          const authorData = snap.data() || {};
-          return {
-            userId: snap.id,
-            name: authorData.name,
-            email: authorData.email,
+    // 指定されたyohakuIdのドキュメントのみを取得
+    const yohakuDoc = await db.collection("yohakus").doc(yohakuId).get();
+
+    if (!yohakuDoc.exists) {
+      console.log(`Yohaku with ID ${yohakuId} not found`);
+      return null;
+    }
+
+    const data = yohakuDoc.data();
+    if (!data) {
+      return null;
+    }
+
+    // authorの取得
+    let author: User = {
+      userId: "unknown",
+      name: "不明",
+      email: "",
+      avatar: "",
+      createdAt: new Date(),
+      joinedYohakus: [],
+      friends: [],
+    };
+
+    if (data.authorRef) {
+      try {
+        const authorSnap = await data.authorRef.get();
+        if (authorSnap.exists) {
+          const authorData = authorSnap.data() || {};
+          author = {
+            userId: authorSnap.id,
+            name: authorData.name || "不明",
+            email: authorData.email || "",
             avatar: authorData.avatar || "",
             createdAt: authorData.createdAt?.toDate() || new Date(),
             joinedYohakus: [], // 循環参照を避けるため空配列
             friends: [], // 循環参照を避けるため空配列
           };
-        })[0];
-        // participantsの取得
-        const participantsSnaps = await db
-          .collection("yohakus")
-          .doc(doc.id)
-          .collection("participants")
-          .get();
-
-        if (participantsSnaps.empty) {
-          return {
-            yohakuId: doc.id,
-            title: data.title || "",
-            startDate: data.startDate?.toDate() || new Date(),
-            endDate: data.endDate?.toDate() || new Date(),
-            author: author,
-            participants: [],
-            chatRoom: data.chatRoomRef?.path || null, // DocumentReferenceをパス文字列に変換
-            place: data.place || "",
-            createdAt: data.createdAt?.toDate() || new Date(),
-          };
         }
+      } catch (error) {
+        console.error("Error fetching author:", error);
+      }
+    }
 
-        const participantsData = participantsSnaps.docs.map((doc) => ({
-          ref: doc.data().userRef,
-          joinedAt: doc.data().joinedAt,
-        }));
-        // console.log("participantsData", participantsData);
-        // console.log("participantsData.length", participantsData.length);
+    // participantsの取得
+    const participantsSnaps = await db
+      .collection("yohakus")
+      .doc(yohakuId)
+      .collection("participants")
+      .get();
 
-        const participantSnaps =
-          participantsData.length > 0
-            ? await db.getAll(...participantsData.map((data) => data.ref))
-            : [];
+    let participants: YohakuParticipant[] = [];
 
-        const yohakuParticipant: YohakuParticipant[] = participantSnaps.map(
-          (snap, index) => {
-            const participantsUserData = participantSnaps[index]?.data() || {};
+    if (!participantsSnaps.empty) {
+      const participantsData = participantsSnaps.docs.map((doc) => ({
+        ref: doc.data().userRef,
+        joinedAt: doc.data().joinedAt,
+      }));
 
+      if (participantsData.length > 0) {
+        try {
+          const participantSnaps = await db.getAll(
+            ...participantsData.map((data) => data.ref)
+          );
+
+          participants = participantSnaps.map((snap, index) => {
+            const participantsUserData = snap.data() || {};
             return {
-              userId: snap.id, // 修正: doc.id -> snap.id
-              name: participantsUserData.name || "",
+              userId: snap.id,
+              name: participantsUserData.name || "無名",
               email: participantsUserData.email || "",
               avatar: participantsUserData.avatar || "",
               createdAt: participantsUserData.createdAt?.toDate() || new Date(),
@@ -71,33 +82,30 @@ export async function getYohakuById(yohakuId: string) {
               joinedAt:
                 participantsData[index].joinedAt?.toDate() || new Date(),
             };
-          }
-        );
+          });
+        } catch (error) {
+          console.error("Error fetching participants:", error);
+          participants = [];
+        }
+      }
+    }
 
-        // console.log("yohakuParticipant", yohakuParticipant);
+    const yohaku: Yohaku = {
+      yohakuId: yohakuDoc.id,
+      title: data.title || "",
+      startDate: data.startDate?.toDate() || new Date(),
+      endDate: data.endDate?.toDate() || new Date(),
+      author: author,
+      participants: participants,
+      chatRoom: data.chatRoomRef?.id || "", // DocumentReferenceのIDのみを取得
+      place: data.place || "",
+      createdAt: data.createdAt?.toDate() || new Date(),
+    };
 
-        return {
-          yohakuId: doc.id,
-          title: data.title || "",
-          startDate: data.startDate?.toDate() || new Date(),
-          endDate: data.endDate?.toDate() || new Date(),
-          author: author,
-          participants: yohakuParticipant || [],
-          chatRoom: data.chatRoomRef?.path || null, // DocumentReferenceをパス文字列に変換
-          place: data.place || "",
-          createdAt: data.createdAt?.toDate() || new Date(),
-        };
-      })
-    );
-    console.log("yohakus", yohakus); // ログをループ外に移動
-
-    const yohaku: Yohaku = yohakus.filter(
-      (yohaku) => yohaku.yohakuId === yohakuId
-    )[0];
-
+    console.log("Retrieved yohaku:", yohaku);
     return yohaku;
-  } catch (e) {
-    console.error("Error fetching yohakus:", e);
+  } catch (error) {
+    console.error("Error fetching yohaku:", error);
     return null;
   }
 }
