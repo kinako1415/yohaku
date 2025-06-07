@@ -5,7 +5,7 @@ import style from "./JoinButton.module.scss";
 
 export const JoinButton = () => {
 	return (
-    <Button type="submit" size="sm" className={style.button}>
+    <Button type="submit"  className={style.button}>
       {/* onClick={handleJoin} */}
       参加する
     </Button>
