@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { auth } from "@/libs/firebase";
 import userIcon from "@/assets/userIcon.svg";
 import style from "./UserProfile.module.scss";
@@ -31,7 +31,7 @@ export function UserProfile() {
     });
 
     return () => unsubscribe(); // クリーンアップ：リスナー解除
-  }, []);
+  }, [setUser]);
 
   return (
     <div className={style.profile}>

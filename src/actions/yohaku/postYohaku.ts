@@ -1,7 +1,6 @@
 "use server";
 
-import { User } from "@/types";
-import { db, auth } from "@/libs/firebaseAdmin";
+import { db } from "@/libs/firebaseAdmin";
 import { Timestamp } from "firebase-admin/firestore";
 
 export async function postYohaku(

@@ -5,7 +5,6 @@ import { FC, useCallback, useState } from "react";
 import dayjs from "dayjs";
 
 import { useCalender } from "./useCalender";
-import { IconButton } from "@/components/elements/IconButton";
 import { JoinButton } from "./JoinButton";
 import icon from "@/assets/userIcon.svg";
 import Image from "next/image";

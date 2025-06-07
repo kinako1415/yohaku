@@ -1,4 +1,3 @@
-import { User } from "@/types";
 import { db } from "@/libs/firebaseAdmin";
 import { Timestamp } from "firebase-admin/firestore";
 

@@ -2,13 +2,12 @@
 import { db } from "@/libs/firebaseAdmin";
 import { User, Yohaku, YohakuParticipant } from "@/types";
 
-export async function getYohakuById(id: string) {
+export async function getYohakuById(yohakuId: string) {
   try {
     const snapshot = await db.collection("yohakus").get();
     const yohakus: Yohaku[] = await Promise.all(
       snapshot.docs.map(async (doc) => {
         const data = doc.data();
-
         // friendsの参照を一括取得（空チェック追加）
         const authorRef = data.authorRef || [];
         const authorSnaps = authorRef ? await db.getAll(...[authorRef]) : [];
@@ -20,8 +19,8 @@ export async function getYohakuById(id: string) {
             email: authorData.email,
             avatar: authorData.avatar || "",
             createdAt: authorData.createdAt?.toDate() || new Date(),
-            joinedYohakus: authorData.joinedYohakus || [],
-            friends: authorData.friends || [],
+            joinedYohakus: [], // 循環参照を避けるため空配列
+            friends: [], // 循環参照を避けるため空配列
           };
         })[0];
         // participantsの取得
@@ -39,7 +38,7 @@ export async function getYohakuById(id: string) {
             endDate: data.endDate?.toDate() || new Date(),
             author: author,
             participants: [],
-            chatRoom: data.chatRoomRef,
+            chatRoom: data.chatRoomRef?.path || null, // DocumentReferenceをパス文字列に変換
             place: data.place || "",
             createdAt: data.createdAt?.toDate() || new Date(),
           };
@@ -49,6 +48,8 @@ export async function getYohakuById(id: string) {
           ref: doc.data().userRef,
           joinedAt: doc.data().joinedAt,
         }));
+        // console.log("participantsData", participantsData);
+        // console.log("participantsData.length", participantsData.length);
 
         const participantSnaps =
           participantsData.length > 0
@@ -57,22 +58,23 @@ export async function getYohakuById(id: string) {
 
         const yohakuParticipant: YohakuParticipant[] = participantSnaps.map(
           (snap, index) => {
-            const participantsJoinData = doc.data();
             const participantsUserData = participantSnaps[index]?.data() || {};
 
             return {
-              userId: doc.id,
+              userId: snap.id, // 修正: doc.id -> snap.id
               name: participantsUserData.name || "",
               email: participantsUserData.email || "",
               avatar: participantsUserData.avatar || "",
               createdAt: participantsUserData.createdAt?.toDate() || new Date(),
-              friends: participantsUserData.friends || [],
-              joinedYohakus: participantsUserData.joinedYohakus || [],
+              friends: [], // 循環参照を避けるため空配列
+              joinedYohakus: [], // 循環参照を避けるため空配列
               joinedAt:
                 participantsData[index].joinedAt?.toDate() || new Date(),
             };
           }
         );
+
+        // console.log("yohakuParticipant", yohakuParticipant);
 
         return {
           yohakuId: doc.id,
@@ -81,20 +83,21 @@ export async function getYohakuById(id: string) {
           endDate: data.endDate?.toDate() || new Date(),
           author: author,
           participants: yohakuParticipant || [],
-          chatRoom: data.chatRoomRef,
+          chatRoom: data.chatRoomRef?.path || null, // DocumentReferenceをパス文字列に変換
           place: data.place || "",
           createdAt: data.createdAt?.toDate() || new Date(),
         };
       })
     );
+    console.log("yohakus", yohakus); // ログをループ外に移動
 
-    const yohaku: Yohaku = yohakus.filter((u) => u.yohakuId === id)[0];
-
-    console.log("yohaku", yohaku);
+    const yohaku: Yohaku = yohakus.filter(
+      (yohaku) => yohaku.yohakuId === yohakuId
+    )[0];
 
     return yohaku;
   } catch (e) {
     console.error("Error fetching yohakus:", e);
-    return {};
+    return null;
   }
 }
