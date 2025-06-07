@@ -9,6 +9,7 @@ import { IconButton } from "@/components/elements/IconButton";
 import { JoinButton } from "./JoinButton";
 import icon from "@/assets/userIcon.svg";
 import Image from "next/image";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const expectData: Shift[] = [
   {
@@ -107,19 +108,25 @@ export const HomeCalendar: FC = () => {
       <div className={style.header}>
         <div className={style.headerleft}>
           <div className={style.PrevMonthButton}>
-            <IconButton
-              size="sm"
-              icon="https://api.iconify.design/heroicons:chevron-left-20-solid.svg?color=%2322c55e"
-              onClick={movePrevMonth}
-            />
+            <button onClick={moveNextMonth} className={style.prevButton}>
+              <Icon
+                icon="heroicons:chevron-left-20-solid"
+                color="#22c55e"
+                width={24}
+                height={24}
+              />
+            </button>
           </div>
           <span className={style.month}>{selectedMonth.format("M月")}</span>
           <div className={style.NextMonthButton}>
-            <IconButton
-              size="sm"
-              icon="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%2322c55e"
-              onClick={moveNextMonth}
-            />
+            <button onClick={moveNextMonth} className={style.nextButton}>
+              <Icon
+                icon="heroicons:chevron-right-20-solid"
+                color="#22c55e"
+                width={24}
+                height={24}
+              />
+            </button>
           </div>
         </div>
         <button
@@ -204,7 +211,7 @@ export const HomeCalendar: FC = () => {
       </table>
       <div className={style.detailsContainer}>
         <div className={style.detailsDay}>
-          {dayjs(selectedDate).format("M月D日")}の余白
+          {dayjs(selectedDate).format("M月D日")}の<span className={style.span}>Yo haku</span>
         </div>
         {selectedShifts.length > 0 ? (
           <div className={style.detailsList}>

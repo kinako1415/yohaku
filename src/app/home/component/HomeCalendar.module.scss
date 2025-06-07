@@ -9,9 +9,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3.5rem;
+  gap: 4rem;
+  margin-left: 25%;
   margin-bottom: 1rem;
-  margin-left: 22%;
+}
+.headerleft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
 .WeekButton {
   background: none;
@@ -33,6 +39,24 @@
 .PrevMonthButton,
 .NextMonthButton {
   display: flex;
+}
+.prevButton, .nextButton {
+  background-color: #DCFCE7;
+  border: none;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  margin-top: 20%;
+}
+.prevButton:hover,
+.nextButton:hover {
+  background-color: #bbf7d0; 
+}
+
+.prevButton:active,
+.nextButton:active {
+  transform: scale(1.05); 
+  background-color: #86efac; 
 }
 .month {
   text-align: center;
@@ -148,6 +172,9 @@
   overflow-y: auto;
   padding-right: 4px;
   overflow: hidden;
+}
+.span {
+  color: var(--primary-700);
 }
 
 .userInfo {
