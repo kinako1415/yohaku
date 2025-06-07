@@ -44,35 +44,38 @@ export async function getAllYohakus() {
           };
         }
 
-        const participantsData = participantsSnaps.docs.map((doc) => ({
-          ref: doc.data().userRef,
-          joinedAt: doc.data().joinedAt,
-        }));
-        // console.log("participantsData", participantsData);
-        // console.log("participantsData.length", participantsData.length);
+        // participantsのデータを取得しないようにした
+        // firebaseの無料枠上限が怖い。。。
 
-        const participantSnaps =
-          participantsData.length > 0
-            ? await db.getAll(...participantsData.map((data) => data.ref))
-            : [];
+        // const participantsData = participantsSnaps.docs.map((doc) => ({
+        //   ref: doc.data().userRef,
+        //   joinedAt: doc.data().joinedAt,
+        // }));
+        // // console.log("participantsData", participantsData);
+        // // console.log("participantsData.length", participantsData.length);
 
-        const yohakuParticipant: YohakuParticipant[] = participantSnaps.map(
-          (snap, index) => {
-            const participantsUserData = participantSnaps[index]?.data() || {};
+        // const participantSnaps =
+        //   participantsData.length > 0
+        //     ? await db.getAll(...participantsData.map((data) => data.ref))
+        //     : [];
 
-            return {
-              userId: snap.id, // 修正: doc.id -> snap.id
-              name: participantsUserData.name || "",
-              email: participantsUserData.email || "",
-              avatar: participantsUserData.avatar || "",
-              createdAt: participantsUserData.createdAt?.toDate() || new Date(),
-              friends: [], // 循環参照を避けるため空配列
-              joinedYohakus: [], // 循環参照を避けるため空配列
-              joinedAt:
-                participantsData[index].joinedAt?.toDate() || new Date(),
-            };
-          }
-        );
+        // const yohakuParticipant: YohakuParticipant[] = participantSnaps.map(
+        //   (snap, index) => {
+        //     const participantsUserData = participantSnaps[index]?.data() || {};
+
+        //     return {
+        //       userId: snap.id, // 修正: doc.id -> snap.id
+        //       name: participantsUserData.name || "",
+        //       email: participantsUserData.email || "",
+        //       avatar: participantsUserData.avatar || "",
+        //       createdAt: participantsUserData.createdAt?.toDate() || new Date(),
+        //       friends: [], // 循環参照を避けるため空配列
+        //       joinedYohakus: [], // 循環参照を避けるため空配列
+        //       joinedAt:
+        //         participantsData[index].joinedAt?.toDate() || new Date(),
+        //     };
+        //   }
+        // );
 
         // console.log("yohakuParticipant", yohakuParticipant);
 
@@ -82,7 +85,7 @@ export async function getAllYohakus() {
           startDate: data.startDate?.toDate() || new Date(),
           endDate: data.endDate?.toDate() || new Date(),
           author: author,
-          participants: yohakuParticipant || [],
+          participants: [],
           chatRoom: data.chatRoomRef?.path || null, // DocumentReferenceをパス文字列に変換
           place: data.place || "",
           createdAt: data.createdAt?.toDate() || new Date(),
