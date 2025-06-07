@@ -10,6 +10,70 @@ import { JoinButton } from "./JoinButton";
 import icon from "@/assets/userIcon.svg";
 import Image from "next/image";
 
+const expectData: Shift[] = [
+  {
+    startedAt: "2025-06-10T10:00:00+09:00",
+    endedAt: "2025-06-10T19:00:00+09:00",
+    title: "夜ご飯ラーメン行こ！",
+    uid: 1,
+    room: {
+      id: "1",
+    },
+  },
+  {
+    startedAt: "2025-06-12T11:00:00+09:00",
+    endedAt: "2025-06-12T13:00:00+09:00",
+    title: "今から渋谷でカフェ行きたい人いる？",
+    uid: 2,
+    room: {
+      id: "2",
+    },
+  },
+  {
+    startedAt: "2025-06-13T17:00:00+09:00",
+    endedAt: "2025-06-13T23:00:00+09:00",
+    title:
+      "夏休みディズニー行きたい人いる？ランドとシーどっちも行きたいなーって思ってるんだけどどうかな？あと三人くらいかな",
+    uid: 3,
+    room: {
+      id: "3",
+    },
+  },
+  {
+    startedAt: "2025-06-13T10:00:00+09:00",
+    endedAt: "2025-06-13T19:00:00+09:00",
+    title:
+      "美術館行かない？金山にある美術館なんだけど期間限定でゴッホ展がやっててすごく綺麗で写真映えしそうだからすごい気になってるんだけどよかったら誰か一緒に行きませんかー！",
+    uid: 4,
+    room: {
+      id: "4",
+    },
+  },
+];
+
+const userList: User[] = [
+  { uid: 1, name: "田中", userIcon: icon },
+  { uid: 2, name: "佐藤", userIcon: icon },
+  { uid: 3, name: "鈴木", userIcon: icon },
+  { uid: 4, name: "山本", userIcon: icon },
+];
+
+type Shift = {
+  startedAt: string;
+  endedAt: string;
+  title: string;
+  uid: number;
+  room: {
+    id: string;
+  };
+};
+
+type User = {
+  uid: number;
+  name: string;
+  userIcon: string;
+};
+
 export const HomeCalendar: FC = () => {
   const {
     selectedMonth,
@@ -25,74 +89,9 @@ export const HomeCalendar: FC = () => {
     handleNextMonth();
   }, [handleNextMonth]);
 
-    const movePrevMonth = useCallback(() => {
-      handlePrevMonth();
-    }, [handlePrevMonth]);
-
-
-  const expectData: Shift[] = [
-    {
-      startedAt: "2025-06-10T10:00:00+09:00",
-      endedAt: "2025-06-10T19:00:00+09:00",
-      title: "夜ご飯ラーメン行こ！",
-      uid: 1,
-      room: {
-        id: "1",
-      },
-    },
-    {
-      startedAt: "2025-06-12T11:00:00+09:00",
-      endedAt: "2025-06-12T13:00:00+09:00",
-      title: "今から渋谷でカフェ行きたい人いる？",
-      uid: 2,
-      room: {
-        id: "2",
-      },
-    },
-    {
-      startedAt: "2025-06-13T17:00:00+09:00",
-      endedAt: "2025-06-13T23:00:00+09:00",
-      title:
-        "夏休みディズニー行きたい人いる？ランドとシーどっちも行きたいなーって思ってるんだけどどうかな？あと三人くらいかな",
-      uid: 3,
-      room: {
-        id: "3",
-      },
-    },
-    {
-      startedAt: "2025-06-13T10:00:00+09:00",
-      endedAt: "2025-06-13T19:00:00+09:00",
-      title:
-        "美術館行かない？金山にある美術館なんだけど期間限定でゴッホ店がやっててすごく綺麗で写真映えしそうだからすごい気になってるんだけどよかったら誰か一緒に行きませんかー！",
-      uid: 4,
-      room: {
-        id: "4",
-      },
-    },
-  ];
-
-  const userList: User[] = [
-    { uid: 1, name: "田中", userIcon: icon },
-    { uid: 2, name: "佐藤", userIcon: icon },
-    { uid: 3, name: "鈴木", userIcon: icon },
-    { uid: 4, name: "山本", userIcon: icon },
-  ];
-
-  type Shift = {
-    startedAt: string;
-    endedAt: string;
-    title: string;
-    uid: number;
-    room: {
-      id: string;
-    };
-  };
-
-  type User = {
-    uid: number;
-    name: string;
-    userIcon: string;
-  };
+  const movePrevMonth = useCallback(() => {
+    handlePrevMonth();
+  }, [handlePrevMonth]);
 
   const [weekView, setWeekView] = useState(false);
   const now = dayjs();
