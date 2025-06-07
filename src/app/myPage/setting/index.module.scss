@@ -1,20 +1,31 @@
 .content {
   width: 90%;
   margin: 0 auto;
-}
-
-.userIcon {
-  padding: 10%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
+  inset: 0;
 }
 
 .change {
   margin-top: 5%;
-
 }
 
 .inputProfile {
   margin-top: 10%;
+  position: relative;
+}
+
+.text {
+  font-size: 12px;
+  width: 90%;
+  color: #6b7280;
+  position: absolute;
+  bottom: 0;
+}
+
+.button {
+  margin-top: 18svh;
+  width: 25%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
 }

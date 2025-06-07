@@ -2,9 +2,16 @@
   background-color: #f9fafb;
   border-radius: 12px;
   padding: 5%;
-  width: 100%;
   margin: 0 auto;
   margin-top: 3svh;
+  width: 100%;
+
+  &.smWidth {
+    width: 500px;
+  }
+  &.lgWidth {
+    width: 100%;
+  }
 }
 
 .times {
@@ -33,11 +40,7 @@
 }
 
 .title {
-  padding-top: 10%;
-}
-
-.detail {
-  font-size: 14px;
+  padding-top: 6%;
 }
 
 .match {

@@ -61,7 +61,7 @@ export const MyId = () => {
             value={profileUrl}
             size={230}
             bgColor="#fff"
-            fgColor="#3fe57b"
+            fgColor="#1F2937" //QRコードの色
             level="H"
             imageSettings={{
               src: yohaku.src,

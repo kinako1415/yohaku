@@ -1,8 +1,8 @@
 import { HomeCalendar } from "./home/component/HomeCalendar";
 
 
+export default async function Home() {
 
-export default function Home() {
   return (
     <>
       <HomeCalendar/>

@@ -7,7 +7,6 @@ import icon from "@/assets/userIcon.svg";
 import Image from "next/image";
 import qr from "@/assets/QRcode Icon.svg";
 import { useRouter } from "next/navigation";
-import { AllowButton } from "./AllowButton";
 
 const friendList: Friend[] = [
   { uid: 1, name: "田中", userIcon: icon },
@@ -25,7 +24,7 @@ type Friend = {
 export const Select = () => {
   const router = useRouter();
   return (
-    <>
+    <div className={style.container}>
       <div
         onClick={() => {
           router.push("./friend/111111");
@@ -78,6 +77,6 @@ export const Select = () => {
           </div>
         </TabPanel>
       </Tabs>
-    </>
+    </div>
   );
 };

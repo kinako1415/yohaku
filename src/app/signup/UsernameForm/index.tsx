@@ -10,7 +10,7 @@ import Image from "next/image";
 import styles from "./usernameForm.module.scss";
 
 interface UsernameFormProps {
-  onComplete?: (username: string) => void;
+  onComplete: (username: string) => void;
 }
 
 export function UsernameForm({ onComplete }: UsernameFormProps) {
@@ -27,16 +27,9 @@ export function UsernameForm({ onComplete }: UsernameFormProps) {
 
   const onSubmit = async (data: UsernameValue) => {
     setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-      setIsCompleting(true);
-
-      // Exit animation duration before completing
-      setTimeout(() => {
-        onComplete?.(data.username);
-      }, 800);
-    }, 1500);
+    await onComplete(data.username);
+    setIsCompleting(true);
+    setIsLoading(false);
   };
 
   return (

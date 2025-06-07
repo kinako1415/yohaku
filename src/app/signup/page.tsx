@@ -11,6 +11,11 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import styles from "./signup.module.scss";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "@/libs/firebase";
+import { appleProvider } from "@/libs/firebase";
+import { registerUser } from "@/actions/user/registerUser";
+import { FirebaseError } from "firebase/app";
 
 export default function Signup() {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,29 +34,60 @@ export default function Signup() {
   });
 
   const onSubmit = async (data: signUpValue) => {
-    setIsLoading(true);
-    console.log("Email signup:", data);
-
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      setIsLoading(true);
+      await createUserWithEmailAndPassword(auth, data.email, data.password);
       setSignupData(data);
       setCurrentStep("username");
-    }, 2000);
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        // Firebase Auth のエラーコードに基づいてメッセージを設定
+        let errorMessage = "サインアップに失敗しました";
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            errorMessage = "このメールアドレスは既に使用されています";
+            break;
+          case "auth/invalid-email":
+            errorMessage = "無効なメールアドレスです";
+            break;
+          case "auth/operation-not-allowed":
+            errorMessage = "メール/パスワードでの登録が無効になっています";
+            break;
+          case "auth/weak-password":
+            errorMessage = "パスワードは6文字以上である必要があります";
+            break;
+        }
+        console.error("サインアップエラー:", errorMessage, error);
+        // TODO: エラーメッセージを表示するための状態を追加
+        // setError(errorMessage);
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleUsernameComplete = (username: string) => {
-    console.log("Username selected:", username);
+  const handleUsernameComplete = async (username: string) => {
+    const currentUser = auth.currentUser;
+    if (!currentUser) {
+      console.error("failed sign up.");
+      return;
+    }
+    const { success, error } = await registerUser(currentUser.uid, username);
+    if (!success) console.error(error);
     console.log("Signup complete with data:", { ...signupData, username });
-    router.push("/home");
+    router.push("/");
   };
 
   const handleAppleLogin = () => {
-    console.log("Apple signup clicked");
+    signInWithPopup(auth, appleProvider).then(() => {
+      setCurrentStep("username");
+    });
   };
 
   const handleGoogleLogin = () => {
-    console.log("Google signup clicked");
+    signInWithPopup(auth, googleProvider).then(() => {
+      setCurrentStep("username");
+    });
   };
 
   return (

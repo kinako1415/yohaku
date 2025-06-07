@@ -1,0 +1,45 @@
+.content {
+  background-color: var(--primary-700);
+  border-radius: 12px;
+  width: 330px;
+  padding: 3% 7%;
+  // max-block-size: 500px;
+  margin: 0 auto;
+  margin-top: 3svh;
+  color: #fff;
+  height: 12svh;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.titleWrapper {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.entrantList {
+  display: flex;
+  align-items: center;
+  margin-top: 1svh;
+}
+
+.userIcon {
+  border-radius: 50%;
+  border: 2px solid white; /* 枠が見えると重なりがきれい */
+}
+
+.iconWrapper {
+  position: relative;
+  inset: 0;
+}
+
+.icon {
+  position: absolute;
+  left: 65%;
+  bottom: -13svh;
+}
