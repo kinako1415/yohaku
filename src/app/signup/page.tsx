@@ -11,6 +11,10 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import styles from "./signup.module.scss";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "@/libs/firebase";
+import { appleProvider } from "@/libs/firebase";
+import { registerUser } from "@/actions/user/registerUser";
 
 export default function Signup() {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,28 +34,35 @@ export default function Signup() {
 
   const onSubmit = async (data: signUpValue) => {
     setIsLoading(true);
-    console.log("Email signup:", data);
-
-    // Simulate API call
-    setTimeout(() => {
+    createUserWithEmailAndPassword(auth, data.email, data.password).then(() => {
       setIsLoading(false);
       setSignupData(data);
       setCurrentStep("username");
-    }, 2000);
+    });
   };
 
-  const handleUsernameComplete = (username: string) => {
-    console.log("Username selected:", username);
+  const handleUsernameComplete = async (username: string) => {
+    const currentUser = auth.currentUser;
+    if (!currentUser) {
+      console.error("failed sign up.");
+      return;
+    }
+    const { success, error } = await registerUser(currentUser.uid, username);
+    if (!success) console.error(error);
     console.log("Signup complete with data:", { ...signupData, username });
-    router.push("/home");
+    router.push("/");
   };
 
   const handleAppleLogin = () => {
-    console.log("Apple signup clicked");
+    signInWithPopup(auth, appleProvider).then(() => {
+      setCurrentStep("username");
+    });
   };
 
   const handleGoogleLogin = () => {
-    console.log("Google signup clicked");
+    signInWithPopup(auth, googleProvider).then(() => {
+      setCurrentStep("username");
+    });
   };
 
   return (
