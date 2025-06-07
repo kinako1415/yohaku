@@ -5,10 +5,15 @@ import Image from "next/image";
 import defaultUserIcon from "@/assets/userIcon.svg";
 import icon from "@/assets/change.svg";
 import { useRef, useState } from "react";
+import { loginUserAtom } from "@/store/loginUser";
+import { useAtom } from "jotai";
 
 export const ChangeImage = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [currentImage, setCurrentImage] = useState(defaultUserIcon);
+  const [, setCurrentImage] = useState(defaultUserIcon);
+
+  const [user] = useAtom(loginUserAtom);
+  // グローバル、かつ永続化したいステート
 
   const handleImageClick = () => {
     try {
@@ -31,10 +36,15 @@ export const ChangeImage = () => {
     }
   };
 
+  if (!user) {
+    // user が null の間は何も表示しない、またはローディング表示
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className={style.userIcon}>
       <Image
-        src={currentImage || defaultUserIcon}
+        src={user?.avatar ?? defaultUserIcon}
         alt="userIcon"
         width={130}
         height={130}

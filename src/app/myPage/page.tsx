@@ -1,9 +1,9 @@
 import { Activity } from "./components/activity";
 import { RecruitmentCard } from "./components/RecruitmentCard";
+import { UserProfile } from "./components/UserProfile";
 import style from "./index.module.scss";
 import Image from "next/image";
 import icon from "@/assets/yahakuIcon.svg";
-import userIcon from "@/assets/userIcon.svg";
 
 const activityList = [
   {
@@ -42,73 +42,64 @@ const activityList = [
 
 export default function Page() {
   return (
-    <>
-      <div className={style.content}>
-        <div className={style.profile}>
-          <Image src={userIcon} alt="userIcon" width={40} height={40} />
-          <p>
-            <span className={style.title}>
-              yuki
-              <br />
-            </span>
-            何か書く場所！！
-          </p>
-          <p></p>
-        </div>
-        <div>
-          <h3 className={style.joinTitle}>
-            <Image src={icon} alt="yohaku icon" width={24} height={24} />
-            Yo haku募集中!!
-          </h3>
-          <div className={style.joinActivity}>
-            {activityList.map((activity, index) => (
-              <RecruitmentCard
-                key={index}
-                day={activity.day}
-                title={activity.title}
-                time={activity.time}
-                place={activity.place}
-              />
-            ))}
-          </div>
-        </div>
+    <div className={style.content}>
+      <div className={style.profile}>
+        <UserProfile />
+      </div>
 
-        <div>
-          <h3>📅 参加予定</h3>
-          <div className={style.joinActivity}>
-            {activityList.map((activity, index) => (
-              <Activity
-                key={index}
-                day={activity.day}
-                time={activity.time}
-                title={activity.title}
-                detail={activity.detail}
-                match={activity.match}
-                isMatch={false}
-                width="sm"
-              />
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h3>🔥 最近のアクティビティ</h3>
-          <div className={style.activity}>
-            {activityList.map((activity, index) => (
-              <Activity
-                key={index}
-                day={activity.day}
-                time={activity.time}
-                title={activity.title}
-                detail={activity.detail}
-                match={activity.match}
-                isMatch={true}
-                width="lg"
-              />
-            ))}
-          </div>
+      <div>
+        <h3 className={style.joinTitle}>
+          <Image src={icon} alt="yohaku icon" width={24} height={24} />
+          Yo haku募集中!!
+        </h3>
+        <div className={style.joinActivity}>
+          {activityList.map((activity, index) => (
+            <RecruitmentCard
+              key={index}
+              day={activity.day}
+              title={activity.title}
+              time={activity.time}
+              place={activity.place}
+            />
+          ))}
         </div>
       </div>
-    </>
+
+      <div>
+        <h3>📅 参加予定</h3>
+        <div className={style.joinActivity}>
+          {activityList.map((activity, index) => (
+            <Activity
+              key={index}
+              day={activity.day}
+              time={activity.time}
+              title={activity.title}
+              detail={activity.detail}
+              match={activity.match}
+              isMatch={false}
+              width="sm"
+            />
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h3>🔥 最近のアクティビティ</h3>
+        <div className={style.activity}>
+          {activityList.map((activity, index) => (
+            <Activity
+              key={index}
+              day={activity.day}
+              time={activity.time}
+              title={activity.title}
+              detail={activity.detail}
+              match={activity.match}
+              isMatch={true}
+              width="lg"
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

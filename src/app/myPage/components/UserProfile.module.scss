@@ -1,0 +1,16 @@
+.profile {
+  display: flex;
+  gap: 10px;
+  border: 2px solid var(--gray-300);
+  border-radius: 12px;
+  padding: 3%;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.icon {
+  border-radius: 50px;
+}
