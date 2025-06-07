@@ -13,38 +13,25 @@ import { onAuthStateChanged } from "firebase/auth";
 
 export function UserProfile() {
   const [user, setUser] = useAtom<User | null>(loginUserAtom);
-  const [uid, setUid] = useState<string>();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        setUid(user.uid);
-      } else {
-        setUid(undefined);
+        const userId = user.uid;
+
+        try {
+          const loginUserInfo = await getUserById(userId);
+          setUser(loginUserInfo);
+          console.log("aaaa", user);
+          console.log("ユーザー情報:", loginUserInfo);
+        } catch (error) {
+          console.error("ユーザー情報の取得に失敗しました", error);
+        }
       }
     });
 
-    return () => unsubscribe();
+    return () => unsubscribe(); // クリーンアップ：リスナー解除
   }, []);
-
-  console.log(uid);
-
-  useEffect(() => {
-    if (!uid) return;
-
-    const fetchUser = async () => {
-      try {
-        const loginUserInfo = await getUserById(uid);
-        setUser(loginUserInfo);
-
-        console.log(loginUserInfo);
-      } catch {
-        console.log("ユーザー情報の取得に失敗しました");
-      }
-    };
-
-    fetchUser();
-  }, [uid]);
 
   return (
     <div className={style.profile}>

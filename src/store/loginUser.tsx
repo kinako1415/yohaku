@@ -1,4 +1,4 @@
-import { atom } from "jotai";
 import type { User } from "@/types/user";
+import { atomWithStorage } from "jotai/utils";
 
-export const loginUserAtom = atom<User | null>(null);
+export const loginUserAtom = atomWithStorage<User | null>("userAuth", null);

@@ -11,7 +11,9 @@ import { useAtom } from "jotai";
 export const ChangeImage = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [, setCurrentImage] = useState(defaultUserIcon);
+
   const [user, setUser] = useAtom(loginUserAtom);
+  // グローバル、かつ永続化したいステート
 
   const handleImageClick = () => {
     try {
@@ -34,11 +36,15 @@ export const ChangeImage = () => {
     }
   };
 
+  if (!user) {
+    // user が null の間は何も表示しない、またはローディング表示
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className={style.userIcon}>
       <Image
-        src={user?.name ?? defaultUserIcon}
+        src={user?.avatar ?? defaultUserIcon}
         alt="userIcon"
         width={130}
         height={130}
