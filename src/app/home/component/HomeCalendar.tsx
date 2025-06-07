@@ -111,7 +111,6 @@ export const HomeCalendar: FC = () => {
             <IconButton
               size="sm"
               icon="https://api.iconify.design/heroicons:chevron-left-20-solid.svg?color=%2322c55e"
-              alt="前月"
               onClick={movePrevMonth}
             />
           </div>
@@ -120,7 +119,6 @@ export const HomeCalendar: FC = () => {
             <IconButton
               size="sm"
               icon="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%2322c55e"
-              alt="次月"
               onClick={moveNextMonth}
             />
           </div>

@@ -24,7 +24,6 @@ export const Calendar: FC = () => {
           <IconButton
             size="sm"
             icon="https://api.iconify.design/heroicons:chevron-left-20-solid.svg?color=%2322c55e"
-            alt="前月"
             onClick={handlePrevMonth}
           />
         </div>
@@ -33,7 +32,6 @@ export const Calendar: FC = () => {
           <IconButton
             size="sm"
             icon="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%2322c55e"
-            alt="次月"
             onClick={handleNextMonth}
           />
         </div>
