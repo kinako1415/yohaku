@@ -108,7 +108,7 @@ export const HomeCalendar: FC = () => {
       <div className={style.header}>
         <div className={style.headerleft}>
           <div className={style.PrevMonthButton}>
-            <button onClick={moveNextMonth} className={style.prevButton}>
+            <button onClick={movePrevMonth} className={style.prevButton}>
               <Icon
                 icon="heroicons:chevron-left-20-solid"
                 color="#22c55e"
@@ -229,13 +229,14 @@ export const HomeCalendar: FC = () => {
                         height={32}
                       />
                     </div>
+
                     <div className={style.textInfo}>
                       <div className={style.name}>{user.name}</div>
+                      <div className={style.title}>{shift.title}</div>
                       <div className={style.time}>
                         {dayjs(shift.startedAt).format("HH:mm")} -{" "}
                         {dayjs(shift.endedAt).format("HH:mm")}
                       </div>
-                      <div className={style.title}>{shift.title}</div>
                     </div>
                   </div>
                   <div className={style.JoinButton}>
