@@ -9,9 +9,14 @@ import { Button } from "@/components/elements/Button";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "./signin.module.scss";
+import { useRouter } from "next/navigation";
+import { auth, appleProvider, googleProvider } from "@/libs/firebase";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 export default function Signin() {
   const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
 
   const {
     register,
@@ -22,17 +27,26 @@ export default function Signin() {
   });
 
   const onSubmit = async (data: signInValue) => {
-    setIsLoading(true);
-    console.log("Email login:", data);
-    setTimeout(() => setIsLoading(false), 2000);
+    try {
+      setIsLoading(true);
+      console.log("Email login:", data);
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+    } finally {
+      setIsLoading(false);
+      router.push("/");
+    }
   };
 
   const handleAppleLogin = () => {
-    console.log("Apple login clicked");
+    signInWithPopup(auth, appleProvider).then(() => {
+      router.push("/");
+    });
   };
 
   const handleGoogleLogin = () => {
-    console.log("Google login clicked");
+    signInWithPopup(auth, googleProvider).then(() => {
+      router.push("/");
+    });
   };
 
   return (
