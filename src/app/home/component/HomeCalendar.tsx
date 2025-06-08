@@ -64,7 +64,6 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
         date.format("YYYY-MM-DD")
     );
   };
-  console.log("yohakuData", yohakuData);
 
   return (
     <div className={style.content}>
