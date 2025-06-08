@@ -206,6 +206,8 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
                     <div className={style.textInfo}>
                       <div className={style.name}>{user.name}</div>
                       <div className={style.title}>{yohaku.title}</div>
+                      <div className={style.place}>{yohaku.place}</div>
+
                       <div className={style.time}>
                         {dayjs(yohaku.startDate).format("HH:mm")} -{" "}
                         {dayjs(yohaku.endDate).format("HH:mm")}

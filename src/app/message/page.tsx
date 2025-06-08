@@ -16,24 +16,24 @@ type Message = {
 const initialMessages: Message[] = [
   {
     id: "1",
-    text: "ご飯どうする？",
+    text: "いまどこにいる？",
+    sender: "user",
+    senderName: "alueo",
+    timestamp: "today, 3:55pm",
+  },
+  {
+    id: "2",
+    text: "今、名古屋駅だよ！",
     sender: "other",
     senderName: "sadfad",
     timestamp: "today, 3:55pm",
   },
   {
-    id: "2",
-    text: "マック買ってカラオケで食べよう！",
-    sender: "user",
-    senderName: "alueo",
-    timestamp: "today, 3:56pm",
-  },
-  {
     id: "3",
-    text: "いいねそうしよう！",
+    text: "夜ご飯何食べようか？",
     sender: "other",
     senderName: "sadfad",
-    timestamp: "today, 3:56pm",
+    timestamp: "today, 3:55pm",
   },
 ];
 
