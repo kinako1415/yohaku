@@ -24,11 +24,7 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
 
   useEffect(() => {
     setYohakuData(yohakus);
-  }, []);
-
-  type props = {
-    getYohakuData: Yohaku[] | null;
-  };
+  }, [setYohakuData, yohakus]);
 
   const {
     selectedMonth,
