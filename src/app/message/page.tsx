@@ -16,23 +16,23 @@ type Message = {
 const initialMessages: Message[] = [
   {
     id: "1",
-    text: "ありうえおかきくけこさしせ",
+    text: "ご飯どうする？",
     sender: "other",
     senderName: "sadfad",
-    timestamp: "today, 3:56pm",
+    timestamp: "today, 3:55pm",
   },
   {
     id: "2",
-    text: "ありうえおかきくけこさしせ",
-    sender: "other",
-    senderName: "sadfad",
+    text: "マック買ってカラオケで食べよう！",
+    sender: "user",
+    senderName: "alueo",
     timestamp: "today, 3:56pm",
   },
   {
     id: "3",
-    text: "ありうえおかきくけこさしました",
-    sender: "user",
-    senderName: "alueo",
+    text: "いいねそうしよう！",
+    sender: "other",
+    senderName: "sadfad",
     timestamp: "today, 3:56pm",
   },
 ];
@@ -60,7 +60,7 @@ export default function MessagePage() {
   return (
     <div className={styles.container}>
       <div className={styles.messageArea}>
-        <DateLocationCard date="4月12日" location="八草" />
+        <DateLocationCard date="6月8日" location="joyjoy 藤が丘店" />
 
         <div className={styles.messageList}>
           {messages.map((message) => (
