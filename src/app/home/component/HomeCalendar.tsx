@@ -12,6 +12,9 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useAtom } from "jotai";
 import { PostYohakuAtom } from "@/store/PostedYohaku";
 import { Yohaku } from "@/types";
+import { useRouter } from "next/navigation";
+import { joinYohaku } from "@/actions/yohaku/joinYohaku";
+import { auth } from "@/libs/firebase";
 
 interface Props {
   yohakus: Yohaku[];
@@ -19,13 +22,14 @@ interface Props {
 
 export const HomeCalendar: FC<Props> = ({ yohakus }) => {
   // デバッグ用：propsで受け取ったyohakusをコンソールに出力
+  const router = useRouter();
 
   const [yohakuData, setYohakuData] = useAtom<Yohaku[]>(PostYohakuAtom);
+  const loginUser = auth.currentUser;
 
   useEffect(() => {
     setYohakuData(yohakus);
-  }, [yohakus,setYohakuData]);
-
+  }, [yohakus, setYohakuData]);
 
   const {
     // selectedYear,
@@ -62,6 +66,16 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
         dayjs(yohaku.startDate).format("YYYY-MM-DD") ===
         date.format("YYYY-MM-DD")
     );
+  };
+
+  const handleJoin = async (yohakuId: string) => {
+    if (!loginUser) {
+      alert("ログインしてください");
+      return;
+    }
+    await joinYohaku(yohakuId, loginUser.uid).then(() => {
+      router.push("/message");
+    });
   };
 
   return (
@@ -213,7 +227,9 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
                     </div>
                   </div>
                   <div className={style.JoinButton}>
-                    <JoinButton />
+                    <JoinButton
+                      handleJoin={() => handleJoin(yohaku.yohakuId)}
+                    />
                   </div>
                 </div>
               );
@@ -221,7 +237,7 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
           </div>
         ) : (
           <div className={style.noShift}>
-          <p>予定はありません</p>
+            <p>予定はありません</p>
           </div>
         )}
       </div>
