@@ -18,7 +18,7 @@
   width: 100%;
   display: flex;
   overflow-x: auto;
-  white-space: nowrap; /* 子要素が折り返さないようにする */
+  justify-content: space-between;
   gap: 15px; /* カード間のスペース */
   padding-bottom: 1svh;
 
@@ -33,4 +33,3 @@
 .contents_box::-webkit-scrollbar {
   display: none;
 }
-

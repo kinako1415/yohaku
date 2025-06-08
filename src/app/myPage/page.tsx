@@ -1,9 +1,9 @@
-import { Activity } from "./components/activity";
 import { RecruitmentCard } from "./components/RecruitmentCard";
 import { UserProfile } from "./components/UserProfile";
 import style from "./index.module.scss";
 import Image from "next/image";
 import icon from "@/assets/yahakuIcon.svg";
+import { ShowActivity } from "./components/showActivity";
 
 const activityList = [
   {
@@ -68,37 +68,14 @@ export default function Page() {
       <div>
         <h3>📅 参加予定</h3>
         <div className={style.joinActivity}>
-          {activityList.map((activity, index) => (
-            <Activity
-              key={index}
-              day={activity.day}
-              time={activity.time}
-              title={activity.title}
-              detail={activity.detail}
-              match={activity.match}
-              isMatch={false}
-              width="sm"
-            />
-          ))}
+          <ShowActivity isMatch={false} />
         </div>
       </div>
 
       <div>
         <h3>🔥 最近のアクティビティ</h3>
-        <div className={style.activity}>
-          {activityList.map((activity, index) => (
-            <Activity
-              key={index}
-              day={activity.day}
-              time={activity.time}
-              title={activity.title}
-              detail={activity.detail}
-              match={activity.match}
-              isMatch={true}
-              width="lg"
-            />
-          ))}
-        </div>
+
+        <ShowActivity isMatch={true} />
       </div>
     </div>
   );
