@@ -7,24 +7,12 @@ import React from "react";
 import { Inter } from "next/font/google";
 import { YohakuParticipant } from "@/types";
 import yohaku from "@/assets/Frame.svg";
-
-import icon from "@/assets/tomatoIcon.svg";
+import userIcn from "@/assets/userIcon.svg";
 
 const inter = Inter({
   weight: "400",
   subsets: ["latin"],
 });
-
-const entrantList = [
-  {
-    userIcon: { icon },
-  },
-  {
-    userIcon: {
-      icon: "https://lh3.googleusercontent.com/a/ACg8ocIp3N9SKIKmUcpv_FFG773DhMdRlmtkuDl-PhuOMxeq1Z8ZBA=s96-c",
-    }, // URL画像
-  },
-];
 
 const isSameDay = (date1: Date, date2: Date): boolean => {
   return (
@@ -78,8 +66,6 @@ type Activity = {
 export const RecruitmentCard: React.FC<Activity> = (props) => {
   const { time, day, place, icon } = props;
 
-  console.log("a", icon);
-
   const formattedDay = getRelativeDayFromString(day);
 
   return (
@@ -110,10 +96,10 @@ export const RecruitmentCard: React.FC<Activity> = (props) => {
           />
         </div>
         <div className={style.entrantList}>
-          {entrantList.map((entrant, index) => (
+          {icon.map((entrant, index) => (
             <div key={index} className={style.entrant}>
               <Image
-                src={entrant.userIcon?.icon || deleteIcon} // プロパティ名に応じて修正
+                src={entrant.avatar || userIcn} // プロパティ名に応じて修正
                 alt="ユーザーアイコン"
                 style={{
                   marginLeft: index === 0 ? 0 : "-8px",
