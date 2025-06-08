@@ -7,6 +7,7 @@ import React from "react";
 import { Inter } from "next/font/google";
 import { YohakuParticipant } from "@/types";
 import yohaku from "@/assets/Frame.svg";
+import { deleteYohakuById } from "@/actions/yohaku/deleteYohakuById";
 import userIcn from "@/assets/userIcon.svg";
 
 const inter = Inter({
@@ -61,12 +62,24 @@ type Activity = {
   time: string;
   place?: string;
   icon: YohakuParticipant[];
+  yohakuId?: string;
+  onDelete?: (id: string) => void;
 };
 
 export const RecruitmentCard: React.FC<Activity> = (props) => {
-  const { time, day, place, icon } = props;
+  const { time, day, place, icon, onDelete } = props;
 
   const formattedDay = getRelativeDayFromString(day);
+
+  const handleDelete = async () => {
+    console.log("削除しました");
+    props.yohakuId &&
+      (await deleteYohakuById(props.yohakuId).finally(() => {
+        if (onDelete) {
+          props.yohakuId && onDelete(props.yohakuId);
+        }
+      }));
+  };
 
   return (
     <>
@@ -86,14 +99,16 @@ export const RecruitmentCard: React.FC<Activity> = (props) => {
               {formattedDay}：{time} / {place}
             </h4>
           </div>
-          <Image
-            src={deleteIcon}
-            alt="削除"
-            width={30}
-            height={30}
-            className={style.deleteIcon}
-            style={{ cursor: "pointer" }}
-          />
+          <button className={style.deleteButton} onClick={handleDelete}>
+            <Image
+              src={deleteIcon}
+              alt="削除"
+              width={30}
+              height={30}
+              className={style.deleteIcon}
+              style={{ cursor: "pointer" }}
+            />
+          </button>
         </div>
         <div className={style.entrantList}>
           {icon.map((entrant, index) => (
