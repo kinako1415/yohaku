@@ -4,10 +4,13 @@
   padding: 5%;
   margin: 0 auto;
   margin-top: 3svh;
-  width: 100%;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  flex-shrink: 0;
 
   &.smWidth {
-    width: 500px;
+    width: 80%;
   }
   &.lgWidth {
     width: 100%;
@@ -21,22 +24,11 @@
 }
 
 .day {
-  text-align: left;
   background-color: #3fe57b;
   width: fit-content;
-  padding: 1.5% 4%;
+  padding: 2% 5%;
   border-radius: 12px;
   color: #fff;
-}
-
-.time {
-  text-align: right;
-}
-
-.text {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }
 
 .title {
@@ -46,4 +38,5 @@
 .match {
   font-size: 14px;
   color: #3fe57b;
+  padding-top: 1svh;
 }

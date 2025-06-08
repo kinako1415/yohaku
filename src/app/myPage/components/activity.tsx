@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import style from "./activity.module.scss";
 
@@ -8,7 +10,6 @@ type ActivityProps = {
   day: string;
   time: string;
   title: string;
-  detail: string;
   match: number;
   isMatch?: boolean;
   width?: ActivityWidth; // Make width optional
