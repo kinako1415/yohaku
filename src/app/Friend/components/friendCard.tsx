@@ -14,7 +14,13 @@ export const FriendCard: React.FC<FriendProps> = (props) => {
   const { name, userIcon, isApply, isAllow } = props;
   return (
     <div className={style.content}>
-      <Image src={userIcon} alt="userIcon" width={40} height={40} />
+      <Image
+        className={style.userIcon}
+        src={userIcon}
+        alt="userIcon"
+        width={40}
+        height={40}
+      />
       <p className={style.userName}>{name}</p>
 
       {isApply && (

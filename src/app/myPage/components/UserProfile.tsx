@@ -37,8 +37,8 @@ export function UserProfile() {
     <div className={style.profile}>
       <Image
         src={user?.avatar ?? userIcon}
-        width={50}
-        height={50}
+        width={60}
+        height={60}
         alt="userIconです"
         className={style.icon}
       />
