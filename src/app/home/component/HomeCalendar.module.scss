@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10%;
+  margin-top: 2%;
 }
 .year {
   text-align: center;
@@ -68,6 +68,7 @@
 .month {
   text-align: center;
   font-weight: bold;
+  margin-top: 20%;
   font-size: 24px;
   color: var(--primary-700);
 }
@@ -83,7 +84,7 @@
   border: 0.86px solid#D1D5DB;
   border-radius: 10.35px;
   margin: 0 24px;
-  margin-top: -0.5rem;
+  margin-top: -1.5rem;
 }
 
 .headerTh {
@@ -223,7 +224,14 @@
 }
 
 .JoinButton {
-  margin-left: -50%;
+  position: absolute;
+right: 5%;
+  margin-top: 0%;
+  padding: 8px 16px;
+
+
+  display: inline-block;
+
 }
 
 .JoinButton :hover {
