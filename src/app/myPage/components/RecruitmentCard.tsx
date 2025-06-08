@@ -99,7 +99,7 @@ export const RecruitmentCard: React.FC<Activity> = (props) => {
               {formattedDay}：{time} / {place}
             </h4>
           </div>
-          <button className={style.deleteButton} onClick={handleDelete}>
+          <div className={style.deleteButton} onClick={handleDelete}>
             <Image
               src={deleteIcon}
               alt="削除"
@@ -108,7 +108,7 @@ export const RecruitmentCard: React.FC<Activity> = (props) => {
               className={style.deleteIcon}
               style={{ cursor: "pointer" }}
             />
-          </button>
+          </div>
         </div>
         <div className={style.entrantList}>
           {icon.map((entrant, index) => (

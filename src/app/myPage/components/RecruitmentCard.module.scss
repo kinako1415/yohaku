@@ -1,26 +1,20 @@
 .content {
   background-color: var(--primary-700);
   border-radius: 12px;
-  width: 330px;
+  width: 90%;
   padding: 3% 7%;
-  // max-block-size: 500px;
   margin: 0 auto;
   margin-top: 3svh;
   color: #fff;
   height: 12svh;
   overflow: hidden;
   flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .titleWrapper {
   display: flex;
-  gap: 30px;
   justify-content: space-between;
   align-items: center;
-  padding-top: 10px;
 }
 
 .entrantList {
@@ -30,8 +24,13 @@
 
 .userIcon {
   border-radius: 50%;
-  border: 2px solid white; /* 枠が見えると重なりがきれい */
-  margin-top: 1svh;
+  border: 2px solid white;
+}
+
+.deleteIcon {
+  position: absolute;
+  left: 300px;
+  top: 312px;
 }
 
 .iconWrapper {
@@ -42,11 +41,9 @@
 .icon {
   position: absolute;
   left: 65%;
-  bottom: -13svh;
+  bottom: -14svh;
 }
 
 .deleteButton {
   z-index: 100;
-  border: none;
-  background-color: transparent;
 }
