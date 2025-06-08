@@ -5,33 +5,8 @@ import deleteIcon from "@/assets/Delete.svg";
 import Image from "next/image";
 import React from "react";
 import { Inter } from "next/font/google";
-import icon from "@/assets/tomatoIcon.svg";
+import { YohakuParticipant } from "@/types";
 import yohaku from "@/assets/Frame.svg";
-
-type Activity = {
-  day: string;
-  time: string;
-  title: string;
-  detail?: string;
-  match?: number;
-  isMatch?: boolean;
-  place?: string;
-};
-
-const entrantList = [
-  {
-    userIcon: { icon },
-  },
-  {
-    userIcon: { icon },
-  },
-  {
-    userIcon: { icon },
-  },
-  {
-    userIcon: { icon },
-  },
-];
 
 const inter = Inter({
   weight: "400",
@@ -80,8 +55,17 @@ const getRelativeDayFromString = (dayString: string) => {
   }
 };
 
+type Activity = {
+  day: string;
+  time: string;
+  place?: string;
+  icon: YohakuParticipant[];
+};
+
 export const RecruitmentCard: React.FC<Activity> = (props) => {
-  const { time, day, place } = props;
+  const { time, day, place, icon } = props;
+
+  console.log("a", icon);
 
   const formattedDay = getRelativeDayFromString(day);
 
@@ -113,10 +97,10 @@ export const RecruitmentCard: React.FC<Activity> = (props) => {
           />
         </div>
         <div className={style.entrantList}>
-          {entrantList.map((entrant, index) => (
+          {icon.map((entrant, index) => (
             <div key={index} className={style.entrant}>
               <Image
-                src={entrant.userIcon.icon}
+                src={entrant.avatar} // プロパティ名に応じて修正
                 alt="ユーザーアイコン"
                 style={{
                   marginLeft: index === 0 ? 0 : "-8px",
