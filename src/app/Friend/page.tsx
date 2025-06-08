@@ -27,27 +27,31 @@ const friendList: Friend[] = [
     uid: 5,
     name: "yui",
     userIcon:
-      "https://lh3.googleusercontent.com/a/ACg8ocK7yuiProfilePic1=s96-c",
+      "https://iconbu.com/wp-content/uploads/2023/08/%E6%A2%A8%E3%81%AE%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88.jpg",
   },
   {
     uid: 6,
     name: "haru",
-    userIcon: "https://lh3.googleusercontent.com/a/ACg8ocK7haruIcon22=s96-c",
+    userIcon:
+      "https://iconbu.com/wp-content/uploads/2020/09/%E3%82%8A%E3%82%93%E3%81%94%E3%81%95%E3%82%93.jpg",
   },
   {
     uid: 7,
     name: "momo",
-    userIcon: "https://lh3.googleusercontent.com/a/ACg8ocK7momoAvatar=s96-c",
+    userIcon:
+      "https://iconbu.com/wp-content/uploads/2022/06/%E3%82%8A%E3%82%93%E3%81%94%E3%81%A8%E7%99%BD%E7%8C%AB%E3%81%95%E3%82%93.jpg",
   },
   {
     uid: 8,
     name: "sou",
-    userIcon: "https://lh3.googleusercontent.com/a/ACg8ocK7souIconPic=s96-c",
+    userIcon:
+      "https://iconbu.com/wp-content/uploads/2022/01/%E5%94%90%E8%8D%89%E3%81%AD%E3%81%93%E3%81%95%E3%82%93.jpg",
   },
   {
     uid: 9,
     name: "aoi",
-    userIcon: "https://lh3.googleusercontent.com/a/ACg8ocK7aoiProfile=s96-c",
+    userIcon:
+      "https://iconbu.com/wp-content/uploads/2022/02/%E3%81%84%E3%81%A1%E3%81%94%E3%81%A8%E3%81%AD%E3%81%93%E3%81%95%E3%82%93.jpg",
   },
 ];
 
