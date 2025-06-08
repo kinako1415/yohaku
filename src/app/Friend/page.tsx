@@ -1,13 +1,28 @@
 import { FriendCard } from "./components/friendCard";
 import { Select } from "./components/select";
 import style from "./index.module.scss";
-import icon from "@/assets/userIcon.svg";
+import tomatoIcon from "@/assets/tomatoIcon.svg";
 
 const friendList: Friend[] = [
-  { uid: 1, name: "田中", userIcon: icon },
-  { uid: 2, name: "佐藤", userIcon: icon },
-  { uid: 3, name: "鈴木", userIcon: icon },
-  { uid: 4, name: "山本", userIcon: icon },
+  {
+    uid: 1,
+    name: "sana",
+    userIcon:
+      "https://lh3.googleusercontent.com/a/ACg8ocKOUK6Hpi2gsNdYE62g_AVAZqLZYdw0-7rZH8ynQq7TjPMKLEzQ=s96-c",
+  },
+  { uid: 2, name: "tomato", userIcon: tomatoIcon },
+  {
+    uid: 3,
+    name: "koto",
+    userIcon:
+      "https://lh3.googleusercontent.com/a/ACg8ocIp3N9SKIKmUcpv_FFG773DhMdRlmtkuDl-PhuOMxeq1Z8ZBA=s96-c",
+  },
+  {
+    uid: 4,
+    name: "rin",
+    userIcon:
+      "https://lh3.googleusercontent.com/a/ACg8ocI-NVwyhSSCCfaMyi8HoOGk6wVQE_C5afV0M-PdIIF_IOh8hg=s96-c",
+  },
 ];
 
 type Friend = {

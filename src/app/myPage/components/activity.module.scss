@@ -8,6 +8,7 @@
   align-items: left;
   flex-direction: column;
   flex-shrink: 0;
+  height: 150px;
 
   &.smWidth {
     width: 80%;
@@ -25,12 +26,14 @@
 
 .day {
   background-color: #3fe57b;
-  width: fit-content;
-  padding: 2% 5%;
-  border-radius: 12px;
   color: #fff;
+  padding: 0.5px 20px;
+  padding-top: 8px;
+  border-radius: 12px;
+  align-items: center;
+  font-weight: bold;
+  width: fit-content;
 }
-
 .title {
   padding-top: 6%;
 }
