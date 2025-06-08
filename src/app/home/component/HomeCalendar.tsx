@@ -27,9 +27,8 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
   }, [yohakus,setYohakuData]);
 
 
-
-
   const {
+    selectedYear,
     selectedMonth,
     selectedDate,
     calenderData,
@@ -67,6 +66,7 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
 
   return (
     <div className={style.content}>
+      {/* <span className={style.year}>{selectedYear}</span> */}
       <div className={style.header}>
         <div className={style.headerleft}>
           <div className={style.PrevMonthButton}>

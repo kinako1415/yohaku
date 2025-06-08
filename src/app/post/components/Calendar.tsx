@@ -74,8 +74,7 @@ export const Calendar: FC = () => {
           ))}
         </tbody>
       </table>
-      {/* 選択された日にち情報を表示 */}
-      {/* 選択された日: {dayjs(selectedDate).format("YYYY年M月D日")} */}
+
     </div>
   );
 };

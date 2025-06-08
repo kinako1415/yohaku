@@ -6,6 +6,7 @@ import { useState, useMemo, useCallback } from "react";
 dayjs.locale(ja);
 
 export const useCalender = () => {
+
   const [selectedMonth, setSelectedMonth] = useState<dayjs.Dayjs>(dayjs());
   const [selectedDate, setSelectedDate] = useState<dayjs.Dayjs>(dayjs());
 
@@ -21,6 +22,8 @@ export const useCalender = () => {
 
   // 表示している月の日数を取得
   const daysInMonth = selectedMonth.daysInMonth();
+  // 表示している月の年を取得
+  const selectedYear = selectedMonth.year();
 
   // 表示している月の日数分配列を作成する
   const selectedMonthDateList = Array.from({ length: daysInMonth }, (_, i) =>
@@ -95,6 +98,7 @@ export const useCalender = () => {
   }, [prevMonthDateList, selectedMonthDateList, nextMonthDateList]);
 
   return {
+    selectedYear,
     selectedMonth,
     selectedDate,
     calenderData,

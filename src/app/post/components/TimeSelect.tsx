@@ -17,8 +17,6 @@ const minutes = Array.from({ length: 12 }, (_, i) =>
 
 export const TimeSelect: React.FC<TimeSelectProps> = ({
   startedAt, endedAt, onStartChange, onEndChange,}: TimeSelectProps) => {
-  // const [startTime, setstartTime] = useState({ hour: "14", minute: "00" });
-  // const [endTime, setendTime] = useState({ hour: "14", minute: "00" });
   const [selectPicker, setselectPicker] = useState<"start" | "end" | null>(
     null
   );
@@ -35,7 +33,6 @@ export const TimeSelect: React.FC<TimeSelectProps> = ({
   const pickerRef = useRef<HTMLDivElement>(null);
   const pickerValue = selectPicker === "start" ? getTimeObject(startedAt) : getTimeObject(endedAt);
 
-  //const { setValue } = useFormContext();
 
   const handleChange = (value: { hour: string; minute: string }) => {
     const formatted = `${value.hour}:${value.minute}`;
