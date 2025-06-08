@@ -1,15 +1,14 @@
-import { Timestamp } from 'firebase/firestore';
-import { User } from './user';
+import { User } from "./user";
 
 export type Chat = {
-	chatId: string;
-	content: string;
-	author: User;
-	createdAt: Timestamp;
-}
+  chatId: string;
+  content: string;
+  author: User;
+  createdAt: Date;
+};
 
 export type ChatRoom = {
-	chatRoomId: string;
-	chats: Chat[];
-	createdAt: Timestamp;
-}
+  chatRoomId: string;
+  chats: Chat[];
+  createdAt: Date;
+};

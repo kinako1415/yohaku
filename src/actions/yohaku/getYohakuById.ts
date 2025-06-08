@@ -1,6 +1,6 @@
 "use server";
 import { db } from "@/libs/firebaseAdmin";
-import { User, Yohaku, YohakuParticipant } from "@/types";
+import { ChatRoom, User, Yohaku, YohakuParticipant } from "@/types";
 
 export async function getYohakuById(yohakuId: string): Promise<Yohaku | null> {
   try {
@@ -42,6 +42,31 @@ export async function getYohakuById(yohakuId: string): Promise<Yohaku | null> {
             joinedYohakus: [], // 循環参照を避けるため空配列
             friends: [], // 循環参照を避けるため空配列
           };
+        }
+      } catch (error) {
+        console.error("Error fetching author:", error);
+      }
+    }
+
+    //chatRoomの取得
+    let chatRoom: ChatRoom = {
+      chatRoomId: "unkown",
+      chats: [],
+      createdAt: new Date(),
+    };
+
+    if (data.chatRoomRef) {
+      try {
+        const chatRoomSnap = await data.chatRoomRef.get();
+        if (chatRoomSnap.exists) {
+          const chatRoomData = chatRoomSnap.data() || {};
+          chatRoom = {
+            chatRoomId: chatRoomData.chatRoomId,
+            chats: [],
+            createdAt: chatRoomData.createdAt?.toDate() || new Date(),
+          };
+
+          console.log("chatRoom", chatRoom);
         }
       } catch (error) {
         console.error("Error fetching author:", error);
@@ -101,8 +126,6 @@ export async function getYohakuById(yohakuId: string): Promise<Yohaku | null> {
       place: data.place || "",
       createdAt: data.createdAt?.toDate() || new Date(),
     };
-
-    console.log("Retrieved yohaku:", yohaku);
     return yohaku;
   } catch (error) {
     console.error("Error fetching yohaku:", error);
