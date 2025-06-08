@@ -91,10 +91,10 @@ export default function InputPage() {
         <Tabs className={style.tabs}>
           <TabList className={style.tabList}>
             <Tab className={style.tab} selectedClassName={style.tabSelected}>
-              今から
+              <p className={style.p}>今から</p>
             </Tab>
             <Tab className={style.tab} selectedClassName={style.tabSelected}>
-              後日指定
+              <p className={style.p}>後日指定</p>
             </Tab>
           </TabList>
           {/* 今からの時 */}
