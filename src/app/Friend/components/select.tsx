@@ -3,7 +3,6 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import style from "./select.module.scss";
 import { FriendCard } from "./friendCard";
-import icon from "@/assets/userIcon.svg";
 import Image from "next/image";
 import qr from "@/assets/QRcode Icon.svg";
 import { useRouter } from "next/navigation";
