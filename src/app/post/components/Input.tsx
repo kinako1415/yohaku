@@ -10,15 +10,24 @@ import { InputArea } from "@/components/elements/InputArea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { postInSchema, postInValue } from "@/schemas/post";
 import { useState } from "react";
+import { useAtom } from "jotai";
+import { loginUserAtom } from "@/store/loginUser";
+import dayjs from "dayjs";
+import { postYohaku } from "@/actions/yohaku/postYohaku";
+import { useRouter } from "next/navigation";
 
 export default function InputPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const [currentUser] = useAtom(loginUserAtom);
+  const router = useRouter();
+  const selectedDate = dayjs();
 
   const {
     register,
     handleSubmit,
     control,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<postInValue>({
     resolver: zodResolver(postInSchema),
@@ -28,16 +37,52 @@ export default function InputPage() {
     },
   });
 
+  //時間取得
   const startedAt = useWatch({ control, name: "startedAt" });
   const endedAt = useWatch({ control, name: "endedAt" });
 
   const onSubmit = async (data: postInValue) => {
+    if (!currentUser) {
+      return;
+    }
+
     setIsLoading(true);
+
     console.log("Posted:", data);
-    // 実際の投稿処理（API呼び出しなど）
-    await new Promise((resolve) => setTimeout(resolve, 2000)); // 2秒間のシミュレーション
-    setIsLoading(false);
-    alert("投稿が完了しました！"); // 完了メッセージ
+
+    try {
+      const startDate = new Date(
+        `${selectedDate.format("YYYY-MM-DD")}T${data.startedAt}:00`
+      );
+      const endDate = new Date(
+        `${selectedDate.format("YYYY-MM-DD")}T${data.endedAt}:00`
+      );
+
+      const result = await postYohaku(
+        currentUser.userId,
+        data.title,
+        endDate,
+        startDate,
+        data.place
+      );
+
+      if (result.success) {
+        console.log("投稿が完了しました！");
+        reset({
+          title: "",
+          place: "",
+          startedAt: "14:00",
+          endedAt: "15:00",
+        });
+        router.push("/");
+      } else {
+        console.log("投稿に失敗しました。");
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -69,8 +114,8 @@ export default function InputPage() {
                   label="場所"
                   type="Area"
                   placeholder="例：〇〇公園"
-                  errors={errors.area?.message}
-                  {...register("area")}
+                  errors={errors.place?.message}
+                  {...register("place")}
                 />
               </div>
             </div>
@@ -93,8 +138,8 @@ export default function InputPage() {
                   label="場所"
                   type="Area"
                   placeholder="例：〇〇公園"
-                  errors={errors.area?.message}
-                  {...register("area")}
+                  errors={errors.place?.message}
+                  {...register("place")}
                 />
               </div>
             </div>

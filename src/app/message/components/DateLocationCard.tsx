@@ -13,7 +13,7 @@ interface DateLocationCardProps {
 export const DateLocationCard = ({
   date,
   location,
-  description = "ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。ここに詳細を書く。",
+  description = "カラオケ行こう！",
 }: DateLocationCardProps) => {
   const [isExpanded, setIsExpanded] = useState(true);
 

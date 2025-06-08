@@ -31,7 +31,8 @@ export default function ConditionalHeader() {
   const shouldShowBackButton = () => {
     const segments = pathname.split("/").filter(Boolean);
     const isMyPage = pathname === "/myPage";
-    return segments.length >= 2 || isMyPage;
+    const isMessage = pathname === "/message";
+    return segments.length >= 2 || isMyPage || isMessage;
   };
 
   return shouldShow ? (
