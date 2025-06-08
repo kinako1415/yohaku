@@ -261,3 +261,19 @@ right: 5%;
   font-weight: normal;
   color: white !important;
 }
+
+.noShift {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #DFE3E9;
+  margin-top: 0 auto;
+  width: 100%;
+  max-width: 400px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 4px;
+  overflow: hidden;
+}

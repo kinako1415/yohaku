@@ -220,7 +220,9 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
             })}
           </div>
         ) : (
+          <div className={style.noShift}>
           <p>予定はありません</p>
+          </div>
         )}
       </div>
     </div>
