@@ -28,7 +28,7 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
 
 
   const {
-    selectedYear,
+    // selectedYear,
     selectedMonth,
     selectedDate,
     calenderData,
