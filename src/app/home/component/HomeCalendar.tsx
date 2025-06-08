@@ -9,7 +9,6 @@ import { JoinButton } from "./JoinButton";
 import icon from "@/assets/userIcon.svg";
 import Image from "next/image";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { getAllYohakus } from "@/actions/yohaku/getAllYohakus";
 import { useAtom } from "jotai";
 import { PostYohakuAtom } from "@/store/PostedYohaku";
 import { Yohaku } from "@/types";
@@ -26,7 +25,6 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
   useEffect(() => {
     setYohakuData(yohakus);
   }, []);
-
 
   type props = {
     getYohakuData: Yohaku[] | null;
@@ -67,7 +65,6 @@ export const HomeCalendar: FC<Props> = ({ yohakus }) => {
         date.format("YYYY-MM-DD")
     );
   };
-
 
   return (
     <div className={style.content}>
