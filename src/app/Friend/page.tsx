@@ -23,6 +23,32 @@ const friendList: Friend[] = [
     userIcon:
       "https://lh3.googleusercontent.com/a/ACg8ocI-NVwyhSSCCfaMyi8HoOGk6wVQE_C5afV0M-PdIIF_IOh8hg=s96-c",
   },
+  {
+    uid: 5,
+    name: "yui",
+    userIcon:
+      "https://lh3.googleusercontent.com/a/ACg8ocK7yuiProfilePic1=s96-c",
+  },
+  {
+    uid: 6,
+    name: "haru",
+    userIcon: "https://lh3.googleusercontent.com/a/ACg8ocK7haruIcon22=s96-c",
+  },
+  {
+    uid: 7,
+    name: "momo",
+    userIcon: "https://lh3.googleusercontent.com/a/ACg8ocK7momoAvatar=s96-c",
+  },
+  {
+    uid: 8,
+    name: "sou",
+    userIcon: "https://lh3.googleusercontent.com/a/ACg8ocK7souIconPic=s96-c",
+  },
+  {
+    uid: 9,
+    name: "aoi",
+    userIcon: "https://lh3.googleusercontent.com/a/ACg8ocK7aoiProfile=s96-c",
+  },
 ];
 
 type Friend = {

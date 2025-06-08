@@ -4,7 +4,7 @@ import style from "./Footer.module.scss";
 import Image from "next/image";
 import homeIcon from "../../assets/navItem.svg";
 import postIcon from "../../assets/Post.svg";
-import friendIcon from "../../assets/friend.svg";
+import friendIcon from "@/assets/friendIcon.svg";
 import { usePathname, useRouter } from "next/navigation";
 
 export const nav = [

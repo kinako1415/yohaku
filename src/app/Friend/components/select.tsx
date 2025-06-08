@@ -9,10 +9,27 @@ import qr from "@/assets/QRcode Icon.svg";
 import { useRouter } from "next/navigation";
 
 const friendList: Friend[] = [
-  { uid: 1, name: "田中", userIcon: icon },
-  { uid: 2, name: "佐藤", userIcon: icon },
-  { uid: 3, name: "鈴木", userIcon: icon },
-  { uid: 4, name: "山本", userIcon: icon },
+  {
+    uid: 1,
+    name: "tomtoma",
+    userIcon:
+      "https://obs.line-scdn.net/0hO3YQohulEBxkKAX2uOBvSzp7FmcWTxJUCxYUJRZtUH4SGR8hLT0eETdIB1BLYwkhBy0cAR5URnwWaFQxBy5XKSNDTk0sbFI1Lk4WEQp6BVA8ZxQhEz4DKiQpCA",
+  },
+  {
+    uid: 2,
+    name: "しゃち",
+    userIcon:
+      "https://iconbu.com/wp-content/uploads/2022/03/%E3%81%AE%E3%82%93%E3%81%B3%E3%82%8A%E3%82%B5%E3%83%A1%E3%81%95%E3%82%93.jpg",
+  },
+];
+
+const friendCheckList: Friend[] = [
+  {
+    uid: 1,
+    name: "nasubi",
+    userIcon:
+      "https://iconbu.com/wp-content/uploads/2021/06/%E3%83%8A%E3%82%B9%E3%81%95%E3%82%93%E3%81%AE%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88.jpg",
+  },
 ];
 
 type Friend = {
@@ -64,7 +81,7 @@ export const Select = () => {
         <TabPanel>
           <div className={style.wrapper}>
             <div className={style.content}>
-              {friendList.map((friend) => (
+              {friendCheckList.map((friend) => (
                 <FriendCard
                   key={friend.uid}
                   name={friend.name}
