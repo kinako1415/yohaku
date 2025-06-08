@@ -12,6 +12,7 @@ export const ShowRecruitmentCard = () => {
   const [yohakuList] = useAtom(PostYohakuAtom);
   const [yohakuDetails, setYohakuDetails] = useState<Yohaku[]>([]);
   const [user] = useAtom(loginUserAtom);
+  const [deleteYohaku, setDeleteYohaku] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchYohakuDetails = async () => {
@@ -27,12 +28,16 @@ export const ShowRecruitmentCard = () => {
     if (yohakuList.length > 0) {
       fetchYohakuDetails();
     }
-  }, [yohakuList]);
+  }, [yohakuList, deleteYohaku]);
 
   // 自分が募集したものだけフィルタ
   const myYohakuDetails = yohakuDetails.filter(
     (activity) => activity.author.userId === user?.userId
   );
+
+  const onDelete = (yohakuId: string) => {
+    setDeleteYohaku(yohakuId);
+  };
 
   return (
     <>
@@ -60,6 +65,8 @@ export const ShowRecruitmentCard = () => {
               time={time}
               place={activity.place}
               icon={activity.participants}
+              yohakuId={activity.yohakuId}
+              onDelete={onDelete}
             />
           );
         })

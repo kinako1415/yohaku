@@ -20,17 +20,18 @@
   gap: 30px;
   justify-content: space-between;
   align-items: center;
+  padding-top: 10px;
 }
 
 .entrantList {
   display: flex;
   align-items: center;
-  margin-top: 1svh;
 }
 
 .userIcon {
   border-radius: 50%;
   border: 2px solid white; /* 枠が見えると重なりがきれい */
+  margin-top: 1svh;
 }
 
 .iconWrapper {
@@ -42,4 +43,10 @@
   position: absolute;
   left: 65%;
   bottom: -13svh;
+}
+
+.deleteButton {
+  z-index: 100;
+  border: none;
+  background-color: transparent;
 }

@@ -7,24 +7,13 @@ import React from "react";
 import { Inter } from "next/font/google";
 import { YohakuParticipant } from "@/types";
 import yohaku from "@/assets/Frame.svg";
-
-import icon from "@/assets/tomatoIcon.svg";
+import { deleteYohakuById } from "@/actions/yohaku/deleteYohakuById";
+import userIcn from "@/assets/userIcon.svg";
 
 const inter = Inter({
   weight: "400",
   subsets: ["latin"],
 });
-
-const entrantList = [
-  {
-    userIcon: { icon },
-  },
-  {
-    userIcon: {
-      icon: "https://lh3.googleusercontent.com/a/ACg8ocIp3N9SKIKmUcpv_FFG773DhMdRlmtkuDl-PhuOMxeq1Z8ZBA=s96-c",
-    }, // URL画像
-  },
-];
 
 const isSameDay = (date1: Date, date2: Date): boolean => {
   return (
@@ -73,14 +62,24 @@ type Activity = {
   time: string;
   place?: string;
   icon: YohakuParticipant[];
+  yohakuId?: string;
+  onDelete?: (id: string) => void;
 };
 
 export const RecruitmentCard: React.FC<Activity> = (props) => {
-  const { time, day, place, icon } = props;
-
-  console.log("a", icon);
+  const { time, day, place, icon, onDelete } = props;
 
   const formattedDay = getRelativeDayFromString(day);
+
+  const handleDelete = async () => {
+    console.log("削除しました");
+    props.yohakuId &&
+      (await deleteYohakuById(props.yohakuId).finally(() => {
+        if (onDelete) {
+          props.yohakuId && onDelete(props.yohakuId);
+        }
+      }));
+  };
 
   return (
     <>
@@ -100,20 +99,22 @@ export const RecruitmentCard: React.FC<Activity> = (props) => {
               {formattedDay}：{time} / {place}
             </h4>
           </div>
-          <Image
-            src={deleteIcon}
-            alt="削除"
-            width={30}
-            height={30}
-            className={style.deleteIcon}
-            style={{ cursor: "pointer" }}
-          />
+          <button className={style.deleteButton} onClick={handleDelete}>
+            <Image
+              src={deleteIcon}
+              alt="削除"
+              width={30}
+              height={30}
+              className={style.deleteIcon}
+              style={{ cursor: "pointer" }}
+            />
+          </button>
         </div>
         <div className={style.entrantList}>
-          {entrantList.map((entrant, index) => (
+          {icon.map((entrant, index) => (
             <div key={index} className={style.entrant}>
               <Image
-                src={entrant.userIcon?.icon || deleteIcon} // プロパティ名に応じて修正
+                src={entrant.avatar || userIcn} // プロパティ名に応じて修正
                 alt="ユーザーアイコン"
                 style={{
                   marginLeft: index === 0 ? 0 : "-8px",
