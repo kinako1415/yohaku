@@ -1,37 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # yohaku
+
+**「予定しない余白」を共有し、新しいつながり方を生み出すソーシャルカレンダーアプリ**
+
+## プロダクトコンセプト: 余白は、誘いの種
+
+yohakuは、あなたの **"余白（今または将来の空き時間）"** をボタン一つでフレンドに共有し、誰かと **「何かが始まるきっかけ」** を創出します。目的が曖昧でも、全員揃わなくても、あなたの「余白」から新しい出会いや活動が生まれます。
+
+## yohakuが解決する課題と体験価値
+
+| 従来の課題             | **yohakuのアプローチ**                         |
+| ----------------- | ---------------------------------------- |
+| 候補日が集まらない/全員調整が大変 | **「この日の誰か」だけでOK**。「全員調整」が不要になります。        |
+| 目的が曖昧で予定が進まない     | **「目的未満」の投稿が可能**。予定じゃなくても"会うきっかけ"が生まれます。 |
+| 返信が遅い/調整にイライラする   | 返信を待たずとも、**余白ベースで自動マッチ**が走るのでイライラを軽減。    |
+
+## 基本機能
+
+1. **余白の公開**: 「今から夜ごはん行ける人〜！」「今から3時間ヒマ」など、自分の　**"余白"をボタン一つで投稿・公開**。
+2. **カードUI**: カレンダーではなく、**"軽さ"を大事にしたカードUI**で投稿を閲覧・操作。
+3. **フレンド機能**: フレンドを追加し、限定的な範囲で余白を共有。
+4. **簡易メッセージグループ**: マッチしたyohakuに対して、**その場限りのメッセージグループを即座に作成**し、会話をスタート。
+
+## プロダクトの現在地: UIリファクタリングの進行状況
+
+yohakuは、現在リリースに向けて別ブランチで、大規模な**UI/UX、機能のリファクタリングを進行中**です！！
+
+### 新旧デザインの比較
+
+|項目|旧UI (Initial Design)|**新UI (Refactoring in Progress)**|
+|---|---|---|
+|**全体像**|<img width="1410" height="708" alt="image" src="https://github.com/user-attachments/assets/9ac4f1d2-03ae-41fd-bd0c-e2b28d00035c" />|<img width="1500" height="1284" alt="home" src="https://github.com/user-attachments/assets/5a12e5a3-250c-43a5-9fb0-e0128ad9e79d" /><img width="4353" height="4206" alt="signin signup" src="https://github.com/user-attachments/assets/574e0179-8e20-4c46-a63a-0cbbe310e9f1" />|
+|**主な変更点**|[全体的に少しかっちりしている...]|[全体的にpopなデザインへ]|
+|**変更の目的**|[堅苦しくて大学生が使いたいようなアプリ作りではない]|**使ってて楽しいUIになるようにしたかった！|
+
+
+## 今後の展望（検討アイデア）
+
+- **イベント連携**：町で開催されているイベントとyohakuを連携させ、イベント内での「余白マッチング」を促進。
+- **マップ連動**：現在地周辺のフレンドの余白や、おすすめの余白イベントを提示。
+
+yohakuは、「全員揃わないと何もできない」から、「**誰かと余白をシェアすることで"何かが生まれる"**」という価値転換を目指して開発を続けています。
